@@ -1,4 +1,4 @@
-=== WooDiscuz - WooCommerce Comments and Product Discussions ===
+=== WooDiscuz - WooCommerce Comments ===
 
 Contributors: gVectors Team
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JD86QPWM6QUXW
@@ -9,20 +9,20 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products. Adds a new "Discussions" Tab next to "Reviews" tab.
+WooCommerce comments and discussion Tab. Allows your customers to discuss about your products. Adds a new "Discussions" Tab next to "Reviews" tab.
 
 == Description ==
 
-WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows voting for comments and share products.
+WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
 
-**WooDiscuz helps you to increase your sales!**
-* *It gives life to your online store ;)*
-* *Keeps your customers closer to you*
-* *Lets them discuss about your products*
-* *Allows to ask pre-sale questions before buying the product*
-* *Lets your shop visitors see all customers' activity*
-* *Allows you to provide an excellent customer support on product page*
-* *As a result you have a ready and product specific FAQ under each Product separately*
+**WooDiscuz helps you increase your sales!**
+- *It gives life to your online store ;)*
+- *Keeps your customers closer to you*
+- *Lets them discuss about your products*
+- *Allows to ask pre-sale questions before buying the product*
+- *Lets your shop visitors see all customers' activity*
+- *Allows you to provide an excellent customer support on product page*
+- *As a result you have a ready and product specific FAQ under each Product separately*
 
 
 **WooDiscuz Features:**
@@ -38,7 +38,7 @@ WooCommerce product comments and discussion Tab. Allows your customers to discus
 * | Uses Wordpress Comment system with all managing functions and features
 * | Flexible options for Guests, Customers and Administrators permissions
 * | Adds labels/titles for each discussion member ( Guest, Customer, Support )
-* | Use Wordpress Avatar System, fully compatible with BuddyPress and other profiling plugins
+* | Uses WP Avatar System, fully compatible with BuddyPress and other profiling plugins
 * | Secure and Anti-Spam features will not allow spammers to comment
 * | Comment voting with positive and negative result
 * | Smart voting system with tracking by logged-in user and cookies
