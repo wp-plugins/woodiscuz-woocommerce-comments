@@ -9,13 +9,14 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce comments and discussion Tab. Allows your customers to discuss about your products. Adds a new "Discussions" Tab next to "Reviews" tab.
+WooCommerce comments and discussion Tab. Allows your customers discuss about your products, vote for comments and share. 
 
 == Description ==
 
 WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
 
 **WooDiscuz helps you increase your sales!**
+
 - *It gives life to your online store ;)*
 - *Keeps your customers closer to you*
 - *Lets them discuss about your products*
