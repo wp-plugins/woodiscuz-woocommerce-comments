@@ -1,8 +1,8 @@
 <?php
 
 /*
-  Plugin Name: WooDiscuz - WooCommerce Comments and Product Discussions
-  Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sell questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
+  Plugin Name: WooDiscuz - WooCommerce Comments
+  Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
   Version: 1.0.0
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
