@@ -117,7 +117,7 @@ Support Forum: <http://gvectors.com/questions/>
 == Changelog ==
 
 = 1.0.2 =
-Fixed Bug : wp-content redirection issue
+Fixed Bug : CAPTCHA reloading issue with wp-content redirecting plugins.
 
 = 1.0.1 =
 Fixed Bug : All comment replies from Dashboard > Comments went to Product Review. Now it's being filtered and added in right place.
