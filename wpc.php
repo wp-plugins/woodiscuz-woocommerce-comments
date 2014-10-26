@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 1.0.0
+  Version: 1.0.1
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -151,11 +151,27 @@ class WPC {
         return $args;
     }
 
+    /**
+     * change comment type 
+     */
     public function wpc_new_comment($commentdata) {
+        
+         $commentdata['comment_type'] = isset($commentdata['comment_type']) ? $commentdata['comment_type'] : '';
         $comment_post = get_post($commentdata['comment_post_ID']);
         if ($comment_post->post_type === 'product' && $commentdata['comment_type'] != 'woodiscuz') {
-            $commentdata['comment_type'] = 'woodiscuz_review';
+            $com_parent = $commentdata['comment_parent'];
+            if ($com_parent != 0) {
+                $parent_comment = get_comment($com_parent);
+                if ($parent_comment->comment_type == 'woodiscuz') {
+                    $commentdata['comment_type'] = 'woodiscuz';
+                } else {
+                    $commentdata['comment_type'] = 'woodiscuz_review';
+                }
+            } else {
+                $commentdata['comment_type'] = 'woodiscuz_review';
+            }
         }
+
         return $commentdata;
     }
 
@@ -487,7 +503,7 @@ class WPC {
     public function init_plugin_dir_name() {
         $plugin_dir_path = plugin_dir_path(__FILE__);
         $path_array = array_values(array_filter(explode(DIRECTORY_SEPARATOR, $plugin_dir_path)));
-        $path_last_part  = $path_array[count($path_array) - 1];
+        $path_last_part = $path_array[count($path_array) - 1];
         WPC::$PLUGIN_DIRECTORY = untrailingslashit($path_last_part);
     }
 
