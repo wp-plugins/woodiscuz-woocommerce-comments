@@ -1,6 +1,7 @@
 <?php
 
 /* captcha.php file */
+error_reporting(0);
 $comm_id = isset($_GET['comm_id']) ? $_GET['comm_id'] : 0;
 session_start();
 
