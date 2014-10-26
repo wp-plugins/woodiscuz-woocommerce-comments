@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
         var uniqueID = getUniqueID($(this));
         var wpc_commpost_ID = $('#wpc_comment_post_ID-' + uniqueID).val();
         var wpc_commparent = $('#wpc_comment_parent-' + uniqueID).val();
-        $("#wpc_captcha_img-" + uniqueID).attr("src", wpc_home_url + "/wp-content/plugins/" + wpc_plugin_dir_url + "/captcha/captcha.php?comm_id=" + wpc_commpost_ID + '-' + wpc_commparent + '&r=' + Math.random());
+        $("#wpc_captcha_img-" + uniqueID).attr("src", wpc_home_url + "/" + wpc_plugin_dir_url + "/captcha/captcha.php?comm_id=" + wpc_commpost_ID + '-' + wpc_commparent + '&r=' + Math.random());
     });
 
     $('.wpc_comm_submit').live('click', function () {
@@ -74,7 +74,7 @@ jQuery(document).ready(function ($) {
                     action: 'comms_via_ajax'
                 }
             }).done(function (response) {
-                $("#wpc_captcha_img-" + uniqueID).attr("src", wpc_home_url + "/wp-content/plugins/" + wpc_plugin_dir_url + "/captcha/captcha.php?comm_id=" + wpc_comment_post_ID + '-' + wpc_comment_parent + '&r=' + Math.random());
+                $("#wpc_captcha_img-" + uniqueID).attr("src", wpc_home_url + "/" + wpc_plugin_dir_url + "/captcha/captcha.php?comm_id=" + wpc_comment_post_ID + '-' + wpc_comment_parent + '&r=' + Math.random());
                 var obj = $.parseJSON(response);
                 wpc_new_comment_id = parseInt(obj.wpc_new_comment_id);
                 if (obj.code === -1) {
