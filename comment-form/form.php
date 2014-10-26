@@ -74,7 +74,7 @@ $unique_id = $post->ID . '_' . 0;
                         <div style="clear:both"></div>
                     </div>
                 </div>           
-                <input type="hidden" name="wpc_home_url" value="<?php echo home_url(); ?>" id="wpc_home_url" />
+                <input type="hidden" name="wpc_home_url" value="<?php echo plugins_url(); ?>" id="wpc_home_url" />
                 <input type="hidden" name="wpc_plugin_dir_url" value="<?php echo WPC::$PLUGIN_DIRECTORY; ?>" id="wpc_plugin_dir_url" />
                 <input type="hidden" name="wpc_comment_post_ID" value="<?php echo $post->ID; ?>" id="wpc_comment_post_ID-<?php echo $unique_id; ?>" />
                 <input type="hidden" name="wpc_comment_parent"  value="0" id="wpc_comment_parent-<?php echo $unique_id; ?>" />

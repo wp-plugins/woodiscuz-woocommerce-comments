@@ -126,7 +126,7 @@ class Comment_Template_Builder {
             $output .= '</div>';
             $output .= '</div>';
 
-            $output .= '<input type="hidden" name="wpc_home_url" value="' . home_url() . '" id="wpc_home_url-' . $unique_id . '" />';
+            $output .= '<input type="hidden" name="wpc_home_url" value="' . plugins_url() . '" id="wpc_home_url-' . $unique_id . '" />';
             $output .= '<input type="hidden" name="wpc_comment_post_ID" value="' . $comment->comment_post_ID . '" id="wpc_comment_post_ID-' . $unique_id . '" />';
             $output .= '<input type="hidden" name="wpc_comment_parent" value="' . $comment->comment_ID . '" id="wpc_comment_parent-' . $unique_id . '" />';
 

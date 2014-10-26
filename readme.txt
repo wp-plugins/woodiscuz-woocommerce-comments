@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support.
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,9 @@ Support Forum: <http://gvectors.com/questions/>
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+
+= 1.0.2 =
+Fixed Bug : wp-content redirection issue
 
 = 1.0.1 =
 Fixed Bug : All comment replies from Dashboard > Comments went to Product Review. Now it's being filtered and added in right place.
