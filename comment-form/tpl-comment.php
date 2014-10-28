@@ -24,7 +24,7 @@ class Comment_Template_Builder {
         $vote_title_text = '';
         $user = get_user_by('id', $comment->user_id);
         $author_title = $this->get_author_title_by_user($user);
-        $posted_date = $this->wpc_helper->dateDiff(time(), strtotime($comment->comment_date), 2);
+        $posted_date = $this->wpc_helper->dateDiff(time(), strtotime($comment->comment_date_gmt), 2);
 
         $reply_text = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_reply_text'];
         $share_text = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_share_text'];

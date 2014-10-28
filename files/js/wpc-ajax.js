@@ -119,7 +119,7 @@ jQuery(document).ready(function ($) {
                     }
                     if (wpc_new_comment_id !== -1) {
                         emailNotification(wpc_comment_parent, wpc_new_comment_id);
-                    }                    
+                    }
                 }
                 $('#wpc_captcha-' + uniqueID).val('');
                 $('.wpc_tooltipster').tooltipster({offsetY: 2});

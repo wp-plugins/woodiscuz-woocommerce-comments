@@ -35,7 +35,7 @@ $unique_id = $post->ID . '_' . 0;
 ?>
 
 <div id="woopcomm">
-    <p class="wpc-comment-title">Got something to discuss?</p>
+    <p class="wpc-comment-title"><?php echo $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_header_text'];?></p>
     <div class="wpc-form-wrapper">
         <?php
         if ($this->is_guest_can_comment()) {

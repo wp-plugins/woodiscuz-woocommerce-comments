@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support.
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,11 @@ Support Forum: <http://gvectors.com/questions/>
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+
+= 1.0.3 =
+Fixed Bug : Gravatars issue in product reviews
+Fixed Bug : WooDiscuz comments' time zones synchronization with Wordpress
+Fixed Bug : Header text changing issue
 
 = 1.0.2 =
 Fixed Bug : CAPTCHA reloading issue with wp-content redirecting plugins.

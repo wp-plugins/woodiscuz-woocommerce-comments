@@ -64,3 +64,6 @@ form .item.multi input:nth-last-child(-n+2){ margin:0; }
 .bad input, 
 .bad select, 
 .bad textarea{ box-shadow:0 0 4px -2px #CE5454; position:relative; left:0; /*-moz-animation:.7s 1 shake linear; -webkit-animation:0.7s 1 shake linear;*/ }
+
+.wpc_comm_form input {box-shadow: 0 0 4px -2px #d4d0ba;}
+.wpc_comm_form textarea{box-shadow:0 0 4px -2px #d4d0ba;}
