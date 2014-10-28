@@ -1,0 +1,10 @@
+/* ===== Options Form CSS ===== */
+
+.wpc-form tr.wpc-row-light{background: #fff;}
+.wpc-form tr.wpc-row-dark{background: #fbfbfb;}
+
+.woodiscuz_options_page .wpc-phrases-settings-form input[type="text"],
+.woodiscuz_options_page .wpc-phrases-settings-form textarea {
+    width: 300px;
+}
+
