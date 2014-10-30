@@ -3,7 +3,7 @@
 Contributors: gVectors Team
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JD86QPWM6QUXW
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support.
-Requires at least: 4.0
+Requires at least: 3.0
 Tested up to: 4.0
 Stable tag: 1.0.3
 License: GPLv2 or later
