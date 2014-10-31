@@ -1,12 +1,19 @@
 === WooDiscuz - WooCommerce Comments ===
 
 Contributors: gVectors Team
+
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JD86QPWM6QUXW
-Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support.
+
+Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support
+
 Requires at least: 3.0
+
 Tested up to: 4.0
+
 Stable tag: 1.0.3
+
 License: GPLv2 or later
+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WooCommerce comments and discussion Tab. Allows your customers discuss about your products, vote for comments and share. 
@@ -18,12 +25,15 @@ WooCommerce product comments and discussion Tab. Allows your customers to discus
 **WooDiscuz helps you increase your sales!**
 
 - *It gives life to your online store ;)*
-- *Keeps your customers closer to you*
+- *Keeps customers closer to your shop*
 - *Lets them discuss about your products*
 - *Allows to ask pre-sale questions before buying the product*
 - *Lets your shop visitors see all customers' activity*
 - *Allows you to provide an excellent customer support on product page*
 - *As a result you have a ready and product specific FAQ under each Product separately*
+
+
+[youtube https://www.youtube.com/watch?v=umtFm20haRA /]
 
 
 **WooDiscuz Features:**
@@ -65,7 +75,7 @@ WooCommerce product comments and discussion Tab. Allows your customers to discus
 
 If your Wordpress is not 4.x please read the note below.
 
-**NOTE:** This plugin is designed for Wordpress 4.0 and higher versions. If your Wordpress version is less than 4.0, you should do a small change in `wp-includes/comment-template.php` file.
+**IMPORTANT NOTE:** This plugin is designed for Wordpress 4.0 and higher versions. If your Wordpress version is less than 4.0, you should do a small change in `wp-includes/comment-template.php` file.
 
 Please open it and find this:
 
@@ -85,7 +95,7 @@ There will not be any additional changes on Wordpress update. If you update your
 
 If your Wordpress is not 4.x please read the note below.
 
-**NOTE:** This plugin is designed for Wordpress 4.0 and higher versions. If your Wordpress version is less than 4.0, you should do a small change in `wp-includes/comment-template.php` file.
+**IMPORTANT NOTE:** This plugin is designed for Wordpress 4.0 and higher versions. If your Wordpress version is less than 4.0, you should do a small change in `wp-includes/comment-template.php` file.
 
 Please open it and find this:
 
@@ -102,7 +112,8 @@ There will not be any additional changes on Wordpress update. If you update your
 = Please Check the Following WooDiscuz Resources =
 
 Support Forum: <http://gvectors.com/questions/>
-
+Plugin Page: http://www.gvectors.com/woodiscuz-woocommerce-comments-and-product-discussions/
+WooDiscuz Global Community: http://woodiscuz.com/
 
 == Screenshots ==
 
