@@ -129,13 +129,13 @@ There will not be any additional changes on Wordpress update. If you update your
 == Changelog ==
 
 = 1.0.4 =
-Fixed Bug : Maximum execution time error on inserting a new comment.
-Fixed Bug : Encoding issue with non-latin characters
+* Fixed Bug : Maximum execution time error on inserting a new comment.
+* Fixed Bug : Encoding issue with non-latin characters
 
 = 1.0.3 =
-Fixed Bug : Gravatars issue in product reviews
-Fixed Bug : WooDiscuz comments' time zones synchronization with Wordpress
-Fixed Bug : Header text changing issue
+* Fixed Bug : Gravatars issue in product reviews
+* Fixed Bug : WooDiscuz comments' time zones synchronization with Wordpress
+* Fixed Bug : Header text changing issue
 
 = 1.0.2 =
 Fixed Bug : CAPTCHA reloading issue with wp-content redirecting plugins.
