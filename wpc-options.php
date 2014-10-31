@@ -140,15 +140,17 @@ class WPC_Options {
             $this->wpc_options_serialize->wpc_phrases['wpc_email_message'] = isset($_POST['wpc_email_message']) ? $_POST['wpc_email_message'] : 'New comment on the product discussion section you\'ve been interested in';
             $this->wpc_options_serialize->wpc_phrases['wpc_error_empty_text'] = isset($_POST['wpc_error_empty_text']) ? $_POST['wpc_error_empty_text'] : 'please fill out this field to comment';
             $this->wpc_options_serialize->wpc_phrases['wpc_error_email_text'] = isset($_POST['wpc_error_email_text']) ? $_POST['wpc_error_email_text'] : 'email address is invalid';
-            $this->wpc_options_serialize->wpc_phrases['wpc_year_text'] = isset($_POST['wpc_year_text']) ? $_POST['wpc_year_text'] : 'year';
-            $this->wpc_options_serialize->wpc_phrases['wpc_month_text'] = isset($_POST['wpc_month_text']) ? $_POST['wpc_month_text'] : 'month';
-            $this->wpc_options_serialize->wpc_phrases['wpc_day_text'] = isset($_POST['wpc_day_text']) ? $_POST['wpc_day_text'] : 'day';
-            $this->wpc_options_serialize->wpc_phrases['wpc_hour_text'] = isset($_POST['wpc_hour_text']) ? $_POST['wpc_hour_text'] : 'hour';
-            $this->wpc_options_serialize->wpc_phrases['wpc_minute_text'] = isset($_POST['wpc_minute_text']) ? $_POST['wpc_minute_text'] : 'minute';
-            $this->wpc_options_serialize->wpc_phrases['wpc_second_text'] = isset($_POST['wpc_second_text']) ? $_POST['wpc_second_text'] : 'second';
+            
+            $this->wpc_options_serialize->wpc_phrases['wpc_year_text']['datetime'][0] = isset($_POST['wpc_year_text']) ? $_POST['wpc_year_text'] : 'year';
+            $this->wpc_options_serialize->wpc_phrases['wpc_month_text']['datetime'][0] = isset($_POST['wpc_month_text']) ? $_POST['wpc_month_text'] : 'month';
+            $this->wpc_options_serialize->wpc_phrases['wpc_day_text']['datetime'][0] = isset($_POST['wpc_day_text']) ? $_POST['wpc_day_text'] : 'day';
+            $this->wpc_options_serialize->wpc_phrases['wpc_hour_text']['datetime'][0] = isset($_POST['wpc_hour_text']) ? $_POST['wpc_hour_text'] : 'hour';
+            $this->wpc_options_serialize->wpc_phrases['wpc_minute_text']['datetime'][0] = isset($_POST['wpc_minute_text']) ? $_POST['wpc_minute_text'] : 'minute';
+            $this->wpc_options_serialize->wpc_phrases['wpc_second_text']['datetime'][0] = isset($_POST['wpc_second_text']) ? $_POST['wpc_second_text'] : 'second';
             $this->wpc_options_serialize->wpc_phrases['wpc_plural_text'] = isset($_POST['wpc_plural_text']) ? $_POST['wpc_plural_text'] : 's';
             $this->wpc_options_serialize->wpc_phrases['wpc_right_now_text'] = isset($_POST['wpc_right_now_text']) ? $_POST['wpc_right_now_text'] : 'right now';
             $this->wpc_options_serialize->wpc_phrases['wpc_ago_text'] = isset($_POST['wpc_ago_text']) ? $_POST['wpc_ago_text'] : 'ago';
+            
             $this->wpc_options_serialize->wpc_phrases['wpc_you_must_be_text'] = isset($_POST['wpc_you_must_be_text']) ? $_POST['wpc_you_must_be_text'] : 'You must be';
             $this->wpc_options_serialize->wpc_phrases['wpc_logged_in_text'] = isset($_POST['wpc_logged_in_text']) ? $_POST['wpc_logged_in_text'] : 'logged in';
             $this->wpc_options_serialize->wpc_phrases['wpc_to_post_comment_text'] = isset($_POST['wpc_to_post_comment_text']) ? $_POST['wpc_to_post_comment_text'] : 'to post a comment';

@@ -219,12 +219,12 @@ class WPC_Options_Serialize {
             'wpc_email_message' => 'New comment on the product discussion section you\'ve been interested in',
             'wpc_error_empty_text' => 'please fill out this field to comment',
             'wpc_error_email_text' => 'email address is invalid',
-            'wpc_year_text' => 'year',
-            'wpc_month_text' => 'month',
-            'wpc_day_text' => 'day',
-            'wpc_hour_text' => 'hour',
-            'wpc_minute_text' => 'minute',
-            'wpc_second_text' => 'second',
+            'wpc_year_text' => array('datetime' => array('year', 1)),
+            'wpc_month_text' => array('datetime' => array('month', 2)),
+            'wpc_day_text' => array('datetime' => array('day', 3)),
+            'wpc_hour_text' => array('datetime' => array('hour', 4)),
+            'wpc_minute_text' => array('datetime' => array('minute',  5)),
+            'wpc_second_text' => array('datetime' => array('second', 6)),
             'wpc_plural_text' => 's',
             'wpc_right_now_text' => 'right now',
             'wpc_ago_text' => 'ago',
@@ -267,15 +267,6 @@ class WPC_Options_Serialize {
         );
 
         return $options;
-    }
-
-    public function phrases_to_array() {
-        $phrases = $this->wpc_db_helper->get_phrases();
-        if ($phrases) {
-            foreach ($phrases as $phrase_arr) {
-                $this->wpc_phrases[$phrase_arr['phrase_key']] = $phrase_arr['phrase_value'];
-            }
-        }
     }
 
     public function update_options() {

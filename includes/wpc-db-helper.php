@@ -2,7 +2,7 @@
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-class WPC_DB_Helper {
+class WPC_DB_Helper {    
 
     private $db;
     private $dbprefix;
@@ -88,6 +88,10 @@ class WPC_DB_Helper {
     public function update_phrases($phrases) {
         if ($phrases) {
             foreach ($phrases as $phrase_key => $phrase_value) {
+
+                if (is_array($phrase_value) && array_key_exists(WPC_Helper::$datetime, $phrase_value)) {
+                    $phrase_value = $phrase_value[WPC_Helper::$datetime][0];
+                }
                 if ($this->is_phrase_exists($phrase_key)) {
                     $sql = $this->db->prepare("UPDATE `" . $this->phrases . "` SET `phrase_value` = %s WHERE `phrase_key` = %s;", $phrase_value, $phrase_key);
                 } else {
@@ -111,8 +115,7 @@ class WPC_DB_Helper {
         $phrases = $this->db->get_results($sql, ARRAY_A);
         $tmp_phrases = array();
         foreach ($phrases as $phrase) {
-
-            $tmp_phrases[$phrase['phrase_key']] = stripslashes($phrase['phrase_value']);
+           $tmp_phrases[$phrase['phrase_key']] = WPC_Helper::init_phrase_key_value($phrase);
         }
         return $tmp_phrases;
     }
@@ -121,7 +124,7 @@ class WPC_DB_Helper {
      * get product comments which types is null
      */
     public function get_empty_comment_types() {
-        $result = $this->db->get_results("SELECT `comm`.`comment_ID` as `comment_id` FROM `" . $this->db->prefix . "comments` AS `comm`, `" . $this->db->prefix . "commentmeta` AS `meta` WHERE `comm`.`comment_ID` = `meta`.`comment_id` AND `comm`.`comment_type` LIKE '' AND `meta`.`meta_key` LIKE 'rating';", ARRAY_A);        
+        $result = $this->db->get_results("SELECT `comm`.`comment_ID` as `comment_id` FROM `" . $this->db->prefix . "comments` AS `comm`, `" . $this->db->prefix . "commentmeta` AS `meta` WHERE `comm`.`comment_ID` = `meta`.`comment_id` AND `comm`.`comment_type` LIKE '' AND `meta`.`meta_key` LIKE 'rating';", ARRAY_A);
         return $result;
     }
 

@@ -2,6 +2,17 @@
 
 class WPC_Helper {
 
+    public static $datetime = 'datetime';
+    public static $datetime_phrases_keys = array(
+        'wpc_year_text', 'wpc_month_text', 'wpc_day_text',
+        'wpc_hour_text', 'wpc_minute_text', 'wpc_second_text'
+    );
+    public static $year = 'wpc_year_text';
+    public static $month = 'wpc_month_text';
+    public static $day = 'wpc_day_text';
+    public static $hour = 'wpc_hour_text';
+    public static $minute = 'wpc_minute_text';
+    public static $second = 'wpc_second_text';
     private $wpc_options_serialize;
 
     function __construct($wpc_options_serialize) {
@@ -30,18 +41,19 @@ class WPC_Helper {
 
 // Set up intervals and diffs arrays
         $intervals = array(
-            $this->wpc_options_serialize->wpc_phrases['wpc_year_text'],
-            $this->wpc_options_serialize->wpc_phrases['wpc_month_text'],
-            $this->wpc_options_serialize->wpc_phrases['wpc_day_text'],
-            $this->wpc_options_serialize->wpc_phrases['wpc_hour_text'],
-            $this->wpc_options_serialize->wpc_phrases['wpc_minute_text'],
-            $this->wpc_options_serialize->wpc_phrases['wpc_second_text']
+            $this->wpc_options_serialize->wpc_phrases['wpc_year_text']['datetime'][1],
+            $this->wpc_options_serialize->wpc_phrases['wpc_month_text']['datetime'][1],
+            $this->wpc_options_serialize->wpc_phrases['wpc_day_text']['datetime'][1],
+            $this->wpc_options_serialize->wpc_phrases['wpc_hour_text']['datetime'][1],
+            $this->wpc_options_serialize->wpc_phrases['wpc_minute_text']['datetime'][1],
+            $this->wpc_options_serialize->wpc_phrases['wpc_second_text']['datetime'][1]
         );
         $diffs = array();
 
 // Loop thru all intervals
         foreach ($intervals as $interval) {
 // Create temp time from time1 and interval
+            $interval = $this->date_comparision_by_index($interval);
             $ttime = strtotime('+1 ' . $interval, $time1);
 // Set initial values
             $add = 1;
@@ -62,6 +74,7 @@ class WPC_Helper {
         $times = array();
 // Loop thru all diffs
         foreach ($diffs as $interval => $value) {
+            $interval = $this->date_text_by_index($interval);
 // Break if we have needed precission
             if ($count >= $precision) {
                 break;
@@ -102,6 +115,60 @@ class WPC_Helper {
             }
         }
         return $comm_auth_avatar;
+    }
+
+    public static function init_phrase_key_value($phrase) {
+        $phrase_value = stripslashes($phrase['phrase_value']);
+        switch ($phrase['phrase_key']) {
+            case WPC_Helper::$year:
+                return array(WPC_Helper::$datetime => array($phrase_value, 1));
+            case WPC_Helper::$month:
+                return array(WPC_Helper::$datetime => array($phrase_value, 2));
+            case WPC_Helper::$day:
+                return array(WPC_Helper::$datetime => array($phrase_value, 3));
+            case WPC_Helper::$hour:
+                return array(WPC_Helper::$datetime => array($phrase_value, 4));
+            case WPC_Helper::$minute:
+                return array(WPC_Helper::$datetime => array($phrase_value, 5));
+            case WPC_Helper::$second:
+                return array(WPC_Helper::$datetime => array($phrase_value, 6));
+            default :
+                return $phrase_value;
+        }
+    }
+
+    private function date_comparision_by_index($index) {
+        switch ($index) {
+            case 1:
+                return 'year';
+            case 2:
+                return 'month';
+            case 3:
+                return 'day';
+            case 4:
+                return 'hour';
+            case 5:
+                return 'minute';
+            case 6:
+                return 'second';
+        }
+    }
+
+    private function date_text_by_index($index) {
+        switch ($index) {
+            case 'year':
+                return $this->wpc_options_serialize->wpc_phrases['wpc_year_text']['datetime'][0];
+            case 'month':
+                return $this->wpc_options_serialize->wpc_phrases['wpc_month_text']['datetime'][0];
+            case 'day':
+                return $this->wpc_options_serialize->wpc_phrases['wpc_day_text']['datetime'][0];
+            case 'hour':
+                return $this->wpc_options_serialize->wpc_phrases['wpc_hour_text']['datetime'][0];
+            case 'minute':
+                return $this->wpc_options_serialize->wpc_phrases['wpc_minute_text']['datetime'][0];
+            case 'second':
+                return $this->wpc_options_serialize->wpc_phrases['wpc_second_text']['datetime'][0];
+        }
     }
 
 }

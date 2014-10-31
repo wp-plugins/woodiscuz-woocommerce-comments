@@ -236,8 +236,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_email_message">
-            <textarea name="wpc_email_message" id="wpc_email_message"><?php echo $this->wpc_options_serialize->wpc_phrases['wpc_email_message']; ?></textarea>
-            <!--<input type="text" value="<?php // echo $this->wpc_options_serialize->wpc_phrases['wpc_email_message'];  ?>" name="wpc_email_message" id="wpc_email_message" />-->
+            <textarea name="wpc_email_message" id="wpc_email_message"><?php echo $this->wpc_options_serialize->wpc_phrases['wpc_email_message']; ?></textarea>            
         </label>
     </td>
 </tr>
@@ -270,7 +269,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_year_text">
-            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_year_text']; ?>" name="wpc_year_text" id="wpc_year_text" />
+            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_year_text']['datetime'][0]; ?>" name="wpc_year_text" id="wpc_year_text" />
         </label>
     </td>
 </tr>
@@ -281,7 +280,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_month_text">
-            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_month_text']; ?>" name="wpc_month_text" id="wpc_month_text" />
+            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_month_text']['datetime'][0]; ?>" name="wpc_month_text" id="wpc_month_text" />
         </label>
     </td>
 </tr>
@@ -292,7 +291,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_day_text">
-            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_day_text']; ?>" name="wpc_day_text" id="wpc_day_text" />
+            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_day_text']['datetime'][0]; ?>" name="wpc_day_text" id="wpc_day_text" />
         </label>
     </td>
 </tr>
@@ -303,7 +302,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_hour_text">
-            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_hour_text']; ?>" name="wpc_hour_text" id="wpc_hour_text" />
+            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_hour_text']['datetime'][0]; ?>" name="wpc_hour_text" id="wpc_hour_text" />
         </label>
     </td>
 </tr>
@@ -314,7 +313,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_minute_text">
-            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_minute_text']; ?>" name="wpc_minute_text" id="wpc_minute_text" />
+            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_minute_text']['datetime'][0]; ?>" name="wpc_minute_text" id="wpc_minute_text" />
         </label>
     </td>
 </tr>
@@ -325,7 +324,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_second_text">
-            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_second_text']; ?>" name="wpc_second_text" id="wpc_second_text" />
+            <input type="text" value="<?php echo $this->wpc_options_serialize->wpc_phrases['wpc_second_text']['datetime'][0]; ?>" name="wpc_second_text" id="wpc_second_text" />
         </label>
     </td>
 </tr>

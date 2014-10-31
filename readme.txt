@@ -10,7 +10,7 @@ Requires at least: 3.0
 
 Tested up to: 4.0
 
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 License: GPLv2 or later
 
@@ -111,9 +111,10 @@ There will not be any additional changes on Wordpress update. If you update your
 
 = Please Check the Following WooDiscuz Resources =
 
-Support Forum: <http://gvectors.com/questions/>
-Plugin Page: http://www.gvectors.com/woodiscuz-woocommerce-comments-and-product-discussions/
-WooDiscuz Global Community: http://woodiscuz.com/
+* Support Forum: <http://gvectors.com/questions/>
+* Plugin Page: http://www.gvectors.com/woodiscuz-woocommerce-comments-and-product-discussions/
+* WooDiscuz Global Community: http://woodiscuz.com/
+* Blog: http://profprojects.com/category/blog/woocommerce/
 
 == Screenshots ==
 
@@ -126,6 +127,10 @@ WooDiscuz Global Community: http://woodiscuz.com/
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+
+= 1.0.4 =
+Fixed Bug : Maximum execution time error on inserting a new comment.
+Fixed Bug : Encoding issue with non-latin characters
 
 = 1.0.3 =
 Fixed Bug : Gravatars issue in product reviews
