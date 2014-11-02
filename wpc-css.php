@@ -70,7 +70,7 @@ class WPC_CSS {
             #woopcomm .wpc-comment-footer .wpc-vote-result{ padding:2px 6px 2px 5px; background:<?php echo $this->highlight_color; ?>; color:#FFFFFF; font-size:12px; font-weight:bold; display:inline; margin-right:5px;}
             #woopcomm .wpc-toggle{ float:right; text-align:right; padding-right:0px; margin-right:0px; color:#999999; cursor:pointer; font-size:12px; }
 
-            #woopcomm .item { background: none; border-radius: 0px; box-shadow: none; float:none; }
+            #woopcomm .item { background: none; border-radius: 0px; box-shadow: none; }
             #wpc_response_info img{ margin: 0px auto 0px auto; }
             #woopcomm .share_buttons_box img { display:inline!important; }
 
