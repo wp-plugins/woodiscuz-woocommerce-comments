@@ -72,6 +72,7 @@ class WPC_CSS {
 
             #woopcomm .item { background: none; border-radius: 0px; box-shadow: none; float:none; }
             #wpc_response_info img{ margin: 0px auto 0px auto; }
+            #woopcomm .share_buttons_box img { display:inline!important; }
 
             /* === CUSTOM === */
 
