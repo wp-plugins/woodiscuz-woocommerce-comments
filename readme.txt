@@ -10,7 +10,7 @@ Requires at least: 3.0
 
 Tested up to: 4.0
 
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 
 License: GPLv2 or later
 
@@ -127,6 +127,9 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+
+= 1.0.5 =
+* Fixed Bug : Pop-up box appears and the loading continues for the infinite time on posting a new comment
 
 = 1.0.4 =
 * Fixed Bug : Maximum execution time error on inserting a new comment.

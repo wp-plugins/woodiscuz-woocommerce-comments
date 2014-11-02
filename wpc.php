@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 1.0.4
+  Version: 1.0.5
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -212,7 +212,7 @@ class WPC {
         wp_enqueue_style('validator-style');
 
         wp_enqueue_script('wpc-ajax-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), '1.0.0', false);
-        wp_localize_script('jquery', 'wpc_ajax_obj', array('url' => admin_url('admin-ajax.php')));
+        wp_localize_script('wpc-ajax-js', 'wpc_ajax_obj', array('url' => admin_url('admin-ajax.php')));
 
         wp_enqueue_script('wpc-cookie-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
 
