@@ -206,7 +206,7 @@
     </td>
 </tr>
 
-<tr valign="top" class="wpc-row-light">
+<tr valign="top" class="wpc-row-dark">
     <th scope="row">
         <label for="wpc_reply_bg_color"><?php _e('Reply Background Color', 'woodiscuz'); ?></label>
     </th>
