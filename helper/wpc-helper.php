@@ -22,7 +22,7 @@ class WPC_Helper {
 // Set timezone
 // Time format is UNIX timestamp or
 // PHP strtotime compatible strings
-    public function dateDiff($time1, $time2, $precision = 6) {
+    public function dateDiff($time1, $time2, $precision = 2) {
 // If not numeric then convert texts to unix timestamps
         if (!is_int($time1)) {
             $time1 = strtotime($time1);
@@ -115,7 +115,7 @@ class WPC_Helper {
             }
         }
         return $comm_auth_avatar;
-    }
+    }    
 
     public static function init_phrase_key_value($phrase) {
         $phrase_value = stripslashes($phrase['phrase_value']);
