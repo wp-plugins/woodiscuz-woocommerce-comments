@@ -69,10 +69,10 @@ class WPC_CSS {
             #woopcomm .wpc-comment-footer .wpc-voted{ color:#666666; cursor:default; }
             #woopcomm .wpc-comment-footer .wpc-vote-result{ padding:2px 6px 2px 5px; background:<?php echo $this->highlight_color; ?>; color:#FFFFFF; font-size:12px; font-weight:bold; display:inline; margin-right:5px;}
             #woopcomm .wpc-toggle{ float:right; text-align:right; padding-right:0px; margin-right:0px; color:#999999; cursor:pointer; font-size:12px; }
-
             #woopcomm .item { background: none; border-radius: 0px; box-shadow: none; }
             #wpc_response_info img{ margin: 0px auto 0px auto; }
             #woopcomm .share_buttons_box img { display:inline!important; }
+            #woopcomm .wpc-captcha-label img{ display: inline!important; border:none; padding:0px 1px; margin:0px; }
 
             /* === CUSTOM === */
 
@@ -116,6 +116,27 @@ class WPC_CSS {
             .wpc-load-more-submit {
                 width: 100%;
                 text-align: center;
+            }
+
+            #wpc_openModalFormAction > div#wpc_response_info {
+                width: 200px;
+                background: none repeat scroll 0 0 #EDEDED;
+                color:#444444;
+                font-size: 18px;
+                font-weight: normal;
+                padding: 45px 10px 50px 10px!important;
+                text-align: center;
+                line-height:25px;
+            }
+
+            #wpc_openModalFormAction > div#wpc_response_info {
+                /*z-index: 10000;*/
+            }
+            
+            #wpc_openModalFormAction > div#wpc_response_info a.close {
+              background: url("<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/x.png'); ?>") no-repeat;
+              background-position-x: right;
+              background-position-y: top;
             }
 
         </style>

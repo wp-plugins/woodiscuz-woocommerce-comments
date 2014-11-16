@@ -11,9 +11,16 @@ jQuery(document).ready(function ($) {
     var wpc_submitID;
     var wpc_comments_offset;
     var wpc_new_comment_id;
+    var wpc_loading_image;
 
     $(".wpc_comment").autoGrow();
 
+    $('#wpc_openModalFormAction .close').live('click', function () {
+        $('#wpc_openModalFormAction').css('opacity', '0');
+        $('#wpc_openModalFormAction').css('pointer-events', 'none');
+    });
+
+    wpc_loading_image = "<img width='64' height='64' src='" + wpc_home_url + '/' + wpc_plugin_dir_url + "/files/img/loader/ajax-loader-200x200.gif' />";
     wpc_comments_offset = $('#wpc_comments_offset');
     wpc_comments_offset.val('1');
 
@@ -41,7 +48,6 @@ jQuery(document).ready(function ($) {
     });
 
     $('.wpc_comm_submit').live('click', function () {
-
         wpc_submitID = $(this).attr('id');
         var uniqueID = wpc_submitID.substring(wpc_submitID.lastIndexOf('-') + 1);
         wpc_name = $('#wpc_name-' + uniqueID).val();
@@ -57,7 +63,10 @@ jQuery(document).ready(function ($) {
         if (!validator.checkAll(wpc_form)) {
             submit = false;
         } else {
-            var modal = $('#wpc_response_info').modal();
+            $('#wpc_openModalFormAction .close').css('display', 'none');
+            $('#wpc_openModalFormAction').css('opacity', '1');
+            $('#wpc_openModalFormAction').css('pointer-events', 'auto');
+            $('#wpc_openModalFormAction > #wpc_response_info').html(wpc_loading_image);
         }
 
         if (submit) {
@@ -110,7 +119,8 @@ jQuery(document).ready(function ($) {
                             $('#wpc-secondary-forms-wrapper-' + uniqueID).after(obj.message);
                         }
                     }
-                    modal.close();
+                    $('#wpc_openModalFormAction').css('opacity', '0');
+                    $('#wpc_openModalFormAction').css('pointer-events', 'none');
                     if (wpc_name !== '' && wpc_email !== '') {
                         $.cookie('wpc_author_name', wpc_name);
                         $.cookie('wpc_author_email', wpc_email);
@@ -139,7 +149,10 @@ jQuery(document).ready(function ($) {
         var commentID = getCommentID(uniqueID);
         var voteType;
 
-        var modal = $('#wpc_response_info').modal();
+        $('#wpc_openModalFormAction > #wpc_response_info').html(wpc_loading_image);
+        $('#wpc_openModalFormAction .close').css('display', 'block');
+        $('#wpc_openModalFormAction').css('opacity', '1');
+        $('#wpc_openModalFormAction').css('pointer-events', 'auto');
         if ($(this).hasClass('wpc-up')) {
             voteType = 1;
         } else {
@@ -160,16 +173,21 @@ jQuery(document).ready(function ($) {
 
             if (obj.code !== -1) {
                 $('#vote-count-' + uniqueID).text(parseInt($('#vote-count-' + uniqueID).text()) + voteType);
-                modal.close();
+                $('#wpc_openModalFormAction').css('opacity', '0');
+                $('#wpc_openModalFormAction').css('pointer-events', 'none');
             } else {
-                $('#wpc_response_info').html(obj.message);
+                var html = "<a href='#close' title='Close' class='close'>&nbsp;</a>";
+                $('#wpc_response_info').html(html + obj.message);
+                $('#wpc_openModalFormAction .close').css('display', 'block');
             }
         });
     });
 
     $('.wpc-load-more-submit').live('click', function () {
-
-        var modal = $('#wpc_response_info').modal();
+        $('#wpc_openModalFormAction > #wpc_response_info').html(wpc_loading_image);
+        $('#wpc_openModalFormAction .close').css('display', 'none');
+        $('#wpc_openModalFormAction').css('opacity', '1');
+        $('#wpc_openModalFormAction').css('pointer-events', 'auto');
 
         var wpc_comments_offset_value = wpc_comments_offset.val();
         var wpc_post_id = getPostID($(this).attr('id'));
@@ -193,7 +211,8 @@ jQuery(document).ready(function ($) {
                 $('.wpc-load-more-submit-wrap').remove();
             }
             $('.wpc-thread-wrapper').html(response);
-            modal.close();
+            $('#wpc_openModalFormAction').css('opacity', '0');
+            $('#wpc_openModalFormAction').css('pointer-events', 'none');
             $('.wpc_tooltipster').tooltipster({offsetY: 2});
         });
     });

@@ -10,7 +10,7 @@ Requires at least: 3.0
 
 Tested up to: 4.0
 
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 
 License: GPLv2 or later
 
@@ -127,6 +127,11 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+
+= 1.0.6 =
+* Added : Number of comments on the Discussion Tub next to the title.
+* Fixed Bug : Shorter view of comment date displaying
+* Fixed Bug : Pop-up box conflict with theme JavaScript. Changed to CSS only.
 
 = 1.0.5 =
 * Fixed Bug : Pop-up box appears and the loading continues for the infinite time on posting a new comment

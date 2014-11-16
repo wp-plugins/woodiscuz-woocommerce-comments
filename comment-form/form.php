@@ -35,7 +35,7 @@ $unique_id = $post->ID . '_' . 0;
 ?>
 
 <div id="woopcomm">
-    <p class="wpc-comment-title"><?php echo $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_header_text'];?></p>
+    <p class="wpc-comment-title"><?php echo $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_header_text']; ?></p>
     <div class="wpc-form-wrapper">
         <?php
         if ($this->is_guest_can_comment()) {
@@ -97,6 +97,15 @@ $unique_id = $post->ID . '_' . 0;
             <input type="hidden" name="wpc_parent_comments_count" id="wpc_parent_comments_count" value="<?php echo $wpc_parent_comments_count; ?>" />
         </div>
     <?php } ?>
+    
+    <div id="wpc_openModalFormAction" class="modalDialog">
+        <div id="wpc_response_info" class="wpc_modal">
+            <div id="wpc_response_info_box">
+                <a href="#close" title="Close" class="close">&nbsp;</a>
+                <img width="64" height="64" src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/loader/ajax-loader-200x200.gif'); ?>" />
+            </div>
+        </div>
+    </div>
 
     <div style="display: none;">
         <div id="wpc_response_info" class="wpc_modal">

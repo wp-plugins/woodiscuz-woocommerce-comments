@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 1.0.5
+  Version: 1.0.6
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -26,9 +26,12 @@ class WPC {
     private $comment_tpl_builder;
     private $wpc_css;
     private $wpc_parent_comments_count;
+    public $commetns_count = 0;
+    private $comment_count_text;
     public static $PLUGIN_DIRECTORY;
 
     function __construct() {
+        global $post;
         add_action('init', array(&$this, 'init_plugin_dir_name'), 1);
 
         $this->wpc_options = new WPC_Options();
@@ -61,7 +64,7 @@ class WPC {
 
         add_action('wp_ajax_email_notification', array(&$this, 'email_notification'));
         add_action('wp_ajax_nopriv_email_notification', array(&$this, 'email_notification'));
-        
+
         add_action('get_avatar_comment_types', array(&$this, 'woodiscuz_review_avatar'));
 
         if (!$this->wpc_options->wpc_options_serialize->wpc_tab_on_off) {
@@ -104,7 +107,7 @@ class WPC {
 
     public function register_session() {
         if (!session_id()) {
-            session_start();
+            @session_start();
         }
     }
 
@@ -119,10 +122,12 @@ class WPC {
      */
 
     public function add_comment_tab($tabs) {
+        global $post;
+        $this->commetns_count = $this->wpc_db_helper->get_comment_count($post->ID);
+        $this->comment_count_text = ($this->commetns_count > 0) ? "(" . $this->commetns_count . ")" : "";
         $priority = ($this->wpc_options->wpc_options_serialize->wpc_comment_tab_priority) ? 1 : 100;
-
         $tabs['comment_tab'] = array(
-            'title' => $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_discuss_tab'],
+            'title' => $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_discuss_tab'] . $this->comment_count_text,
             'priority' => $priority,
             'callback' => array(&$this, 'wpc_comment_tab_content')
         );
@@ -157,8 +162,8 @@ class WPC {
      * change comment type 
      */
     public function wpc_new_comment($commentdata) {
-        
-         $commentdata['comment_type'] = isset($commentdata['comment_type']) ? $commentdata['comment_type'] : '';
+
+        $commentdata['comment_type'] = isset($commentdata['comment_type']) ? $commentdata['comment_type'] : '';
         $comment_post = get_post($commentdata['comment_post_ID']);
         if ($comment_post->post_type === 'product' && $commentdata['comment_type'] != 'woodiscuz') {
             $com_parent = $commentdata['comment_parent'];
@@ -192,19 +197,18 @@ class WPC {
      */
     public function front_end_styles_scripts() {
 
-        wp_register_style('basic-dialog-style', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/css/basic.css'));
-        wp_enqueue_style('basic-dialog-style');
 
         $u_agent = $_SERVER['HTTP_USER_AGENT'];
 
         if (preg_match('/MSIE/i', $u_agent)) {
-            wp_register_style('basic-dialog-ie-style', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/css/basic-ie.css'));
-            wp_enqueue_style('basic-dialog-ie-style');
-
             wp_enqueue_script('wpc-html5-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/tooltipster/js/html5.js'), array('jquery'), '1.2', false);
+
+            wp_register_style('modal-css-ie', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box-ie.css'));
+            wp_enqueue_style('modal-css-ie');
         }
 
-        wp_enqueue_script('basic-dialog-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/jquery.simplemodal.js'), array('jquery'), '1.0.0', false);
+        wp_register_style('modal-box-css', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box.css'));
+        wp_enqueue_style('modal-box-css');        
 
         wp_enqueue_script('form-validator-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/validator.js'), array('jquery'), '1.0.0', false);
 
@@ -508,12 +512,12 @@ class WPC {
         $path_last_part = $path_array[count($path_array) - 1];
         WPC::$PLUGIN_DIRECTORY = untrailingslashit($path_last_part);
     }
-    
+
     /**
      * check comment types and return arguments
      * by default comment type is comment
      */
-    public function woodiscuz_review_avatar($args){
+    public function woodiscuz_review_avatar($args) {
         $args[] = 'woodiscuz_review';
         return $args;
     }
