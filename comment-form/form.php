@@ -106,10 +106,4 @@ $unique_id = $post->ID . '_' . 0;
             </div>
         </div>
     </div>
-
-    <div style="display: none;">
-        <div id="wpc_response_info" class="wpc_modal">
-            <img width="64" height="64" src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/loader/ajax-loader-200x200.gif'); ?>" />
-        </div>
-    </div>
 </div>
