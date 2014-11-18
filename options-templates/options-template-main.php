@@ -134,7 +134,6 @@
     </th>
     <td colspan="3">
         <?php
-        var_dump($roles);
         foreach ($roles as $key => $role) {
             if ($key != 'subscriber') {
                 ?>
