@@ -15,7 +15,7 @@ jQuery(document).ready(function ($) {
 
     $(".wpc_comment").autoGrow();
 
-    $('#wpc_openModalFormAction .close').live('click', function () {
+    $(document).delegate('#wpc_openModalFormAction .close', 'click', function () {
         $('#wpc_openModalFormAction').css('opacity', '0');
         $('#wpc_openModalFormAction').css('pointer-events', 'none');
     });
@@ -24,30 +24,30 @@ jQuery(document).ready(function ($) {
     wpc_comments_offset = $('#wpc_comments_offset');
     wpc_comments_offset.val('1');
 
-    $('.wpc_comment').live('focus', function () {
+    $(document).delegate('.wpc_comment', 'focus', function () {
         var uniqueID = getUniqueID($(this));
         $('#wpc-form-footer-' + uniqueID).slideDown(700);
     });
 
 
-    $('.wpc-reply-link').live('click', function () {
+    $(document).delegate('.wpc-reply-link', 'click', function () {
         var uniqueID = getUniqueID($(this));
         $('#wpc-secondary-forms-wrapper-' + uniqueID).slideToggle(700);
     });
 
-    $('.wpc-share-link').live('click', function () {
+    $(document).delegate('.wpc-share-link', 'click', function () {
         var uniqueID = getUniqueID($(this));
         $('#share_buttons_box-' + uniqueID).slideToggle(1000);
     });
 
-    $('.wpc_captcha_refresh_img').live('click', function () {
+    $(document).delegate('.wpc_captcha_refresh_img', 'click', function () {
         var uniqueID = getUniqueID($(this));
         var wpc_commpost_ID = $('#wpc_comment_post_ID-' + uniqueID).val();
         var wpc_commparent = $('#wpc_comment_parent-' + uniqueID).val();
         $("#wpc_captcha_img-" + uniqueID).attr("src", wpc_home_url + "/" + wpc_plugin_dir_url + "/captcha/captcha.php?comm_id=" + wpc_commpost_ID + '-' + wpc_commparent + '&r=' + Math.random());
     });
 
-    $('.wpc_comm_submit').live('click', function () {
+    $(document).delegate('.wpc_comm_submit', 'click', function () {
         wpc_submitID = $(this).attr('id');
         var uniqueID = wpc_submitID.substring(wpc_submitID.lastIndexOf('-') + 1);
         wpc_name = $('#wpc_name-' + uniqueID).val();
@@ -144,7 +144,7 @@ jQuery(document).ready(function ($) {
 
 
 
-    $('.wpc_vote').live('click', function () {
+    $(document).delegate('.wpc_vote', 'click', function () {
         var uniqueID = getUniqueID($(this));
         var commentID = getCommentID(uniqueID);
         var voteType;
@@ -183,7 +183,7 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    $('.wpc-load-more-submit').live('click', function () {
+    $(document).delegate('.wpc-load-more-submit', 'click', function () {
         $('#wpc_openModalFormAction > #wpc_response_info').html(wpc_loading_image);
         $('#wpc_openModalFormAction .close').css('display', 'none');
         $('#wpc_openModalFormAction').css('opacity', '1');
