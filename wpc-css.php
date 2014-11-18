@@ -22,7 +22,7 @@ class WPC_CSS {
 
             /* ===== Comment Form CSS ===== */
 
-            #woopcomm { margin:10px auto; width:100%; padding:15px; border:#CCCCCC dotted 1px; }
+            #woopcomm { margin:10px auto; width:99%; padding:15px; border:#CCCCCC dotted 1px; }
             #woopcomm form { margin:0px; padding:0px; background:none; border:none; }
             #woopcomm form div{ margin:0px; }
             #woopcomm .wpc-form-wrapper{ padding:10px; background:#F9F9F9; margin-top:10px; border:1px solid #F1F1F1; }
@@ -31,18 +31,18 @@ class WPC_CSS {
             #woopcomm .wpc-field-name{ width:49%; float:left; }
             #woopcomm .wpc-field-email{ width:49%; float:right; text-align:right; }
             #woopcomm .wpc-field-comment{ margin:5px auto 10px auto; }
-            #woopcomm .wpc-field-captcha{ width:55%; float:left; }
-            #woopcomm .wpc-field-submit{ width:45%; float:right; text-align:right; }
-            #woopcomm .wpc-field-name input[type="text"]{ width:95%; padding:5px; font-size:14px; }
-            #woopcomm .wpc-field-email input[type="email"]{ width:100%; padding:5px; font-size:14px; }
-            #woopcomm .wpc-field-captcha input[type="text"]{ width:40%; padding:5px; font-size:14px; }
+            #woopcomm .wpc-field-captcha{ width:55%; float:left; margin:0px; }
+            #woopcomm .wpc-field-submit{ width:45%; float:right; text-align:right; margin:0px; }
+            #woopcomm .wpc-field-name input[type="text"]{ width:95%; max-width:100%; padding:5px; font-size:14px; margin:0px; }
+            #woopcomm .wpc-field-email input[type="email"]{ width:100%; max-width:100%; padding:5px; font-size:14px; margin:0px; }
+            #woopcomm .wpc-field-captcha input[type="text"]{ width:40%; padding:5px; font-size:14px; margin:0px; }
             #woopcomm .wpc-field-submit input[type="submit"]{ margin:1px; }
             #woopcomm .wpc-field-submit input[type="button"]{ margin:1px; }
             #woopcomm .captcha_msg{ color: #aaaaaa; font-family: Lato,sans-serif; font-size: 12px; line-height: 18px; display:block; clear:both; }
-            #woopcomm .wpc-field-comment textarea{ width:100%; height:43px; min-height: 43px !important; padding:5px; box-sizing: border-box; }
+            #woopcomm .wpc-field-comment textarea{ width:100%; max-width:100%; height:43px; min-height: 43px !important; padding:5px; box-sizing: border-box; }
             #woopcomm .wpc-label{ display:block; font-size:14px; padding:5px; }
             #woopcomm .wpc-field-captcha .wpc-label{ font-size:18px; padding:5px; text-align:center; display:inline; }
-            #woopcomm input[type="text"], #woopcomm input[type="email"], #woopcomm textarea{ font-size:14px; color:#666666; font-family:Lato,sans-serif; box-sizing: border-box; }
+            #woopcomm input[type="text"], #woopcomm input[type="email"], #woopcomm textarea{ font-size:14px; color:#666666; font-family:Lato,sans-serif; box-sizing: border-box; margin:0px; }
             #woopcomm .wpc-copyright{ margin: 0px 0px 0px auto; text-align:right; display: block; padding-top: 2px; }
             #woopcomm .wpc-copyright a{ font-size: 9px; color: #AAAAAA; cursor:help; text-decoration:none; margin:0px; padding:0px; border:none;}
             #woopcomm .wpc-thread-wrapper{ padding:10px 0px; margin-bottom:30px;}
