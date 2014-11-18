@@ -5,7 +5,7 @@
     validator.message['email'] = '<?php echo $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_error_email_text']; ?>';
 
     jQuery(document).ready(function ($) {
-        $('.wpc-toggle').live('click', function () {
+        $(document).delegate('.wpc-toggle', click', function () {
             var toggleID = $(this).attr('id');
             var uniqueID = toggleID.substring(toggleID.lastIndexOf('-') + 1);
             $('#wpc-comm-' + uniqueID + ' .wpc-reply').slideToggle(500, function () {
