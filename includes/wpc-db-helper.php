@@ -55,10 +55,10 @@ class WPC_DB_Helper {
     public function get_comment_count($product_id = null) {
         if ($product_id) {
             // get all comments count by product id
-            $where = "WHERE c.`comment_type` LIKE 'woodiscuz' AND `c`.`comment_post_ID` = %d;";
+            $where = "WHERE c.`comment_type` LIKE 'woodiscuz' AND `c`.`comment_approved` = 1 AND `c`.`comment_post_ID` = %d;";
         } else {
             // get all comments count 
-            $where = "WHERE c.`comment_type` LIKE 'woodiscuz';";
+            $where = "WHERE c.`comment_type` LIKE 'woodiscuz' AND `c`.`comment_approved` = 1;";
         }
         $select_query = $this->db->prepare("SELECT COUNT(comment_ID) FROM `" . $this->dbprefix . "comments` AS c INNER JOIN `" . $this->dbprefix . "posts` AS p ON p.`ID` = c.`comment_post_ID` AND p.`post_status` LIKE 'publish' " . $where, $product_id);
         return $this->db->get_var($select_query);
