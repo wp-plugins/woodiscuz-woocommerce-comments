@@ -102,4 +102,12 @@ jQuery(document).ready(function ($) {
             $(this).val('0');
         }
     });
+
+    $('#wpc_request_for_comment').change(function () {
+        if ($(this).is(':checked')) {
+            $(this).val('1');
+        } else {
+            $(this).val('0');
+        }
+    });
 });

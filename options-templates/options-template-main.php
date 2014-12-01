@@ -6,7 +6,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_tab_on_off">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_tab_on_off == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_tab_on_off; ?>" name="wpc_tab_on_off" id="wpc_tab_on_off" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_tab_on_off == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_tab_on_off; ?>" name="wpc_tab_on_off" id="wpc_tab_on_off" />
         </label>
     </td>
 </tr>
@@ -17,7 +17,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_comment_tab_priority">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_comment_tab_priority == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_comment_tab_priority; ?>" name="wpc_comment_tab_priority" id="wpc_comment_tab_priority" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_comment_tab_priority == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_comment_tab_priority; ?>" name="wpc_comment_tab_priority" id="wpc_comment_tab_priority" />
         </label>
     </td>
 </tr>
@@ -28,7 +28,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_tab_show_hide">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_tab_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_tab_show_hide; ?>" name="wpc_tab_show_hide" id="wpc_tab_show_hide" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_tab_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_tab_show_hide; ?>" name="wpc_tab_show_hide" id="wpc_tab_show_hide" />
         </label>
     </td>
 </tr>
@@ -39,7 +39,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_voting_buttons_show_hide">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_voting_buttons_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_voting_buttons_show_hide; ?>" name="wpc_voting_buttons_show_hide" id="wpc_voting_buttons_show_hide" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_voting_buttons_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_voting_buttons_show_hide; ?>" name="wpc_voting_buttons_show_hide" id="wpc_voting_buttons_show_hide" />
         </label>
     </td>
 </tr>
@@ -50,7 +50,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_share_buttons_show_hide">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_share_buttons_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_share_buttons_show_hide; ?>" name="wpc_share_buttons_show_hide" id="wpc_share_buttons_show_hide" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_share_buttons_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_share_buttons_show_hide; ?>" name="wpc_share_buttons_show_hide" id="wpc_share_buttons_show_hide" />
         </label>
     </td>
 </tr>
@@ -61,7 +61,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_captcha_show_hide">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_captcha_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_captcha_show_hide; ?>" name="wpc_captcha_show_hide" id="wpc_captcha_show_hide" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_captcha_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_captcha_show_hide; ?>" name="wpc_captcha_show_hide" id="wpc_captcha_show_hide" />
         </label>
     </td>
 </tr>
@@ -73,11 +73,11 @@
     <td colspan="3">
         <fieldset>
             <label title="Yes">
-                <input type="radio" value="1" <?php checked('1' == $this->wpc_options_serialize->wpc_user_must_be_registered); ?> name="wpc_user_must_be_registered" id="wpc_user_must_be_registered_yes" /> 
+                <input type="radio" value="1" <?php checked('1' == $this->wpc_options_serialized->wpc_user_must_be_registered); ?> name="wpc_user_must_be_registered" id="wpc_user_must_be_registered_yes" /> 
                 <span>Yes</span>
             </label> &nbsp;
             <label title="No">
-                <input type="radio" value="0" <?php checked('0' == $this->wpc_options_serialize->wpc_user_must_be_registered); ?> name="wpc_user_must_be_registered" id="wpc_user_must_be_registered_no" /> 
+                <input type="radio" value="0" <?php checked('0' == $this->wpc_options_serialized->wpc_user_must_be_registered); ?> name="wpc_user_must_be_registered" id="wpc_user_must_be_registered_no" /> 
                 <span>No</span>
             </label><br>                                    
         </fieldset>
@@ -90,7 +90,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_held_comment_to_moderate">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_held_comment_to_moderate == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_held_comment_to_moderate; ?>" name="wpc_held_comment_to_moderate" id="wpc_held_comment_to_moderate" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_held_comment_to_moderate == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_held_comment_to_moderate; ?>" name="wpc_held_comment_to_moderate" id="wpc_held_comment_to_moderate" />
         </label>
     </td>
 </tr>
@@ -101,7 +101,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_reply_button_guests_show_hide">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_reply_button_guests_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_reply_button_guests_show_hide; ?>" name="wpc_reply_button_guests_show_hide" id="wpc_reply_button_guests_show_hide" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_reply_button_guests_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_reply_button_guests_show_hide; ?>" name="wpc_reply_button_guests_show_hide" id="wpc_reply_button_guests_show_hide" />
         </label>
     </td>
 </tr>
@@ -112,7 +112,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_reply_button_customers_show_hide">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_reply_button_customers_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_reply_button_customers_show_hide; ?>" name="wpc_reply_button_customers_show_hide" id="wpc_reply_button_customers_show_hide" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_reply_button_customers_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_reply_button_customers_show_hide; ?>" name="wpc_reply_button_customers_show_hide" id="wpc_reply_button_customers_show_hide" />
         </label>
     </td>
 </tr>
@@ -123,7 +123,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_author_titles_show_hide">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_author_titles_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_author_titles_show_hide; ?>" name="wpc_author_titles_show_hide" id="wpc_author_titles_show_hide" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_author_titles_show_hide == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_author_titles_show_hide; ?>" name="wpc_author_titles_show_hide" id="wpc_author_titles_show_hide" />
         </label>
     </td>
 </tr>
@@ -138,7 +138,7 @@
             if ($key != 'subscriber') {
                 ?>
                 <label for="<?php echo $key; ?>">
-                    <input type="checkbox" <?php checked(in_array($key, $this->wpc_options_serialize->wpc_usergroups_for_support_title)); ?> value="<?php echo $key; ?>" name="wpc_usergroups_for_support_title[]" id="<?php echo $key; ?>" />
+                    <input type="checkbox" <?php checked(in_array($key, $this->wpc_options_serialized->wpc_usergroups_for_support_title)); ?> value="<?php echo $key; ?>" name="wpc_usergroups_for_support_title[]" id="<?php echo $key; ?>" />
                     <span><?php echo $role; ?></span>
                 </label><br/>
                 <?php
@@ -155,7 +155,7 @@
     </th>
     <td colspan="3">
         <label for="wpc_comment_count">
-            <input type="number" value="<?php echo $this->wpc_options_serialize->wpc_comment_count; ?>" name="wpc_comment_count" id="wpc_comment_count" />
+            <input type="number" value="<?php echo $this->wpc_options_serialized->wpc_comment_count; ?>" name="wpc_comment_count" id="wpc_comment_count" />
         </label><br/>
     </td>
 </tr>
@@ -166,7 +166,7 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_notify_moderator">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_notify_moderator == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_notify_moderator; ?>" name="wpc_notify_moderator" id="wpc_notify_moderator" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_notify_moderator == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_notify_moderator; ?>" name="wpc_notify_moderator" id="wpc_notify_moderator" />
         </label>
     </td>
 </tr>
@@ -177,7 +177,18 @@
     </th>
     <td colspan="3">                                
         <label for="wpc_notify_comment_author">
-            <input type="checkbox" <?php checked($this->wpc_options_serialize->wpc_notify_comment_author == 1) ?> value="<?php echo $this->wpc_options_serialize->wpc_notify_comment_author; ?>" name="wpc_notify_comment_author" id="wpc_notify_comment_author" />
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_notify_comment_author == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_notify_comment_author; ?>" name="wpc_notify_comment_author" id="wpc_notify_comment_author" />
+        </label>
+    </td>
+</tr>
+
+<tr valign="top" class="wpc-row-dark">
+    <th scope="row">
+        <?php _e('Requesting for comment on purchased product', 'woodiscuz'); ?> 
+    </th>
+    <td colspan="3">                                
+        <label for="wpc_request_for_comment">
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_request_for_comment == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_request_for_comment; ?>" name="wpc_request_for_comment" id="wpc_request_for_comment" />
         </label>
     </td>
 </tr>
@@ -186,8 +197,8 @@
     <th scope="row">
         <label for="wpc_comment_bg_color"><?php _e('Comment Background Color', 'woodiscuz'); ?></label>
     </th>
-    <td>
-        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialize->wpc_comment_bg_color; ?>" id="wpc_comment_bg_color" name="wpc_comment_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
+    <td width="1">
+        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_bg_color; ?>" id="wpc_comment_bg_color" name="wpc_comment_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
     </td>
 
     <td class="picker_img_cell">
@@ -211,7 +222,7 @@
         <label for="wpc_reply_bg_color"><?php _e('Reply Background Color', 'woodiscuz'); ?></label>
     </th>
     <td>
-        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialize->wpc_reply_bg_color; ?>" id="wpc_reply_bg_color" name="wpc_reply_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
+        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_reply_bg_color; ?>" id="wpc_reply_bg_color" name="wpc_reply_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
     </td>
 
     <td class="picker_img_cell">
@@ -235,7 +246,7 @@
         <label for="wpc_comment_text_color"><?php _e('Comment Text Color', 'woodiscuz'); ?></label>
     </th>
     <td>
-        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialize->wpc_comment_text_color; ?>" id="wpc_comment_text_color" name="wpc_comment_text_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
+        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_text_color; ?>" id="wpc_comment_text_color" name="wpc_comment_text_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
     </td>
 
     <td class="picker_img_cell">

@@ -128,6 +128,14 @@ class WPC_Options_Serialize {
     public $wpc_notify_comment_author;
 
     /*
+     * Type - Checkbox
+     * Available Values - Checked/Unchecked
+     * Description - Request for comment 
+     * Default Value - Checked
+     */
+    public $wpc_request_for_comment;
+
+    /*
      * Type - Input
      * Available Values - color codes
      * Description - Comment Background Color
@@ -185,6 +193,7 @@ class WPC_Options_Serialize {
         $this->wpc_comment_count = $options['wpc_comment_count'];
         $this->wpc_notify_moderator = $options['wpc_notify_moderator'];
         $this->wpc_notify_comment_author = $options['wpc_notify_comment_author'];
+        $this->wpc_request_for_comment = $options['wpc_request_for_comment'];
         $this->wpc_comment_bg_color = $options['wpc_comment_bg_color'];
         $this->wpc_reply_bg_color = $options['wpc_reply_bg_color'];
         $this->wpc_comment_text_color = $options['wpc_comment_text_color'];
@@ -216,14 +225,16 @@ class WPC_Options_Serialize {
             'wpc_user_title_customer_text' => 'Customer',
             'wpc_user_title_support_text' => 'Support',
             'wpc_email_subject' => 'New Comment',
-            'wpc_email_message' => 'New comment on the product discussion section you\'ve been interested in',
+            'wpc_email_message' => 'New comment on the product discussion section you\'ve been interested in',            
+            'wpc_request_reply_subject' => 'Leave a Reply',
+            'wpc_request_reply_message' => 'Please, leave a reply on',            
             'wpc_error_empty_text' => 'please fill out this field to comment',
             'wpc_error_email_text' => 'email address is invalid',
             'wpc_year_text' => array('datetime' => array('year', 1)),
             'wpc_month_text' => array('datetime' => array('month', 2)),
             'wpc_day_text' => array('datetime' => array('day', 3)),
             'wpc_hour_text' => array('datetime' => array('hour', 4)),
-            'wpc_minute_text' => array('datetime' => array('minute',  5)),
+            'wpc_minute_text' => array('datetime' => array('minute', 5)),
             'wpc_second_text' => array('datetime' => array('second', 6)),
             'wpc_plural_text' => 's',
             'wpc_right_now_text' => 'right now',
@@ -261,6 +272,7 @@ class WPC_Options_Serialize {
             'wpc_comment_count' => $this->wpc_comment_count,
             'wpc_notify_moderator' => $this->wpc_notify_moderator,
             'wpc_notify_comment_author' => $this->wpc_notify_comment_author,
+            'wpc_request_for_comment' => $this->wpc_request_for_comment,
             'wpc_comment_bg_color' => $this->wpc_comment_bg_color,
             'wpc_reply_bg_color' => $this->wpc_reply_bg_color,
             'wpc_comment_text_color' => $this->wpc_comment_text_color
@@ -290,6 +302,7 @@ class WPC_Options_Serialize {
             'wpc_comment_count' => '5',
             'wpc_notify_moderator' => '1',
             'wpc_notify_comment_author' => '1',
+            'wpc_request_for_comment' => '0',
             'wpc_comment_bg_color' => '#fefefe',
             'wpc_reply_bg_color' => '#f8f8f8',
             'wpc_comment_text_color' => '#555'

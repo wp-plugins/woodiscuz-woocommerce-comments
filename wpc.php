@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 1.0.6
+  Version: 1.0.7
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -40,9 +40,9 @@ class WPC {
         register_activation_hook(__FILE__, array($this, 'db_operations'));
 
 
-        $this->wpc_helper = new WPC_Helper($this->wpc_options->wpc_options_serialize);
+        $this->wpc_helper = new WPC_Helper($this->wpc_options->wpc_options_serialized);
         $this->wpc_css = new WPC_CSS($this->wpc_options);
-        $this->comment_tpl_builder = new Comment_Template_Builder($this->wpc_helper, $this->wpc_db_helper, $this->wpc_options);
+        $this->comment_tpl_builder = new WPC_Comment_Template_Builder($this->wpc_helper, $this->wpc_db_helper, $this->wpc_options);
 
         add_action('init', array(&$this, 'register_session'), 2);
         add_action('admin_notices', array($this, 'woop_disscus_requirements'));
@@ -53,31 +53,35 @@ class WPC {
 
         add_action('admin_menu', array(&$this, 'add_plugin_options_page'), -191);
 
-        add_action('wp_ajax_comms_via_ajax', array(&$this, 'comment_submit_via_ajax'));
-        add_action('wp_ajax_nopriv_comms_via_ajax', array(&$this, 'comment_submit_via_ajax'));
+        add_action('wp_ajax_wpc_comms_via_ajax', array(&$this, 'comment_submit_via_ajax'));
+        add_action('wp_ajax_nopriv_wpc_comms_via_ajax', array(&$this, 'comment_submit_via_ajax'));
 
-        add_action('wp_ajax_load_more_comments', array(&$this, 'load_more_comments'));
-        add_action('wp_ajax_nopriv_load_more_comments', array(&$this, 'load_more_comments'));
+        add_action('wp_ajax_wpc_load_more_comments', array(&$this, 'load_more_comments'));
+        add_action('wp_ajax_nopriv_wpc_load_more_comments', array(&$this, 'load_more_comments'));
 
-        add_action('wp_ajax_vote_via_ajax', array(&$this, 'vote_on_comment'));
-        add_action('wp_ajax_nopriv_vote_via_ajax', array(&$this, 'vote_on_comment'));
+        add_action('wp_ajax_wpc_vote_via_ajax', array(&$this, 'vote_on_comment'));
+        add_action('wp_ajax_nopriv_wpc_vote_via_ajax', array(&$this, 'vote_on_comment'));
 
         add_action('wp_ajax_email_notification', array(&$this, 'email_notification'));
         add_action('wp_ajax_nopriv_email_notification', array(&$this, 'email_notification'));
 
         add_action('get_avatar_comment_types', array(&$this, 'woodiscuz_review_avatar'));
 
-        if (!$this->wpc_options->wpc_options_serialize->wpc_tab_on_off) {
+        if (!$this->wpc_options->wpc_options_serialized->wpc_tab_on_off) {
             add_filter('woocommerce_product_tabs', array(&$this, 'add_comment_tab'));
         }
-        if ($this->wpc_options->wpc_options_serialize->wpc_tab_show_hide) {
+        if ($this->wpc_options->wpc_options_serialized->wpc_tab_show_hide) {
             add_filter('woocommerce_product_tabs', array(&$this, 'woo_hide_reviews_tab'), 98);
         }
         add_filter('admin_comment_types_dropdown', array(&$this, 'add_comment_type'));
-        add_filter('wp_list_comments_args', array(&$this, 'wpc_list_comments_args'));
+        add_filter('wp_list_comments_args', array(&$this, 'wpc_list_comments_args'), 15);
         add_filter('preprocess_comment', array(&$this, 'wpc_new_comment'));
 
         add_filter('woocommerce_product_reviews_tab_title', array(&$this, 'wpc_rename_reviews_tab'));
+
+        if ($this->wpc_options->wpc_options_serialized->wpc_request_for_comment) {
+            add_action('woocommerce_order_status_completed', array(&$this, 'email_request_for_comment'));
+        }
     }
 
     public function woop_disscus_requirements() {
@@ -125,9 +129,9 @@ class WPC {
         global $post;
         $this->commetns_count = $this->wpc_db_helper->get_comment_count($post->ID);
         $this->comment_count_text = ($this->commetns_count > 0) ? "(" . $this->commetns_count . ")" : "";
-        $priority = ($this->wpc_options->wpc_options_serialize->wpc_comment_tab_priority) ? 1 : 100;
+        $priority = ($this->wpc_options->wpc_options_serialized->wpc_comment_tab_priority) ? 1 : 100;
         $tabs['comment_tab'] = array(
-            'title' => $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_discuss_tab'] . $this->comment_count_text,
+            'title' => $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_discuss_tab'] . $this->comment_count_text,
             'priority' => $priority,
             'callback' => array(&$this, 'wpc_comment_tab_content')
         );
@@ -208,7 +212,7 @@ class WPC {
         }
 
         wp_register_style('modal-box-css', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box.css'));
-        wp_enqueue_style('modal-box-css');        
+        wp_enqueue_style('modal-box-css');
 
         wp_enqueue_script('form-validator-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/validator.js'), array('jquery'), '1.0.0', false);
 
@@ -267,13 +271,13 @@ class WPC {
         $message_array = array();
         $comment_post_ID = intval(filter_input(INPUT_POST, 'comment_post_ID'));
         $comment_parent = intval(filter_input(INPUT_POST, 'comment_parent'));
-        if (!$this->wpc_options->wpc_options_serialize->wpc_captcha_show_hide) {
+        if (!$this->wpc_options->wpc_options_serialized->wpc_captcha_show_hide) {
             if (!is_user_logged_in()) {
                 $sess_captcha = $_SESSION['wpc_captcha'][$comment_post_ID . '-' . $comment_parent];
                 $captcha = filter_input(INPUT_POST, 'captcha');
                 if (md5(strtolower($captcha)) !== $sess_captcha) {
                     $message_array['code'] = -1;
-                    $message_array['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_invalid_captcha'];
+                    $message_array['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_invalid_captcha'];
                     echo json_encode($message_array);
                     exit;
                 }
@@ -299,7 +303,7 @@ class WPC {
         if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $comment && filter_var($comment_post_ID)) {
 
             $held_moderate = 1;
-            if ($this->wpc_options->wpc_options_serialize->wpc_held_comment_to_moderate) {
+            if ($this->wpc_options->wpc_options_serialized->wpc_held_comment_to_moderate) {
                 $held_moderate = 0;
             }
 
@@ -319,7 +323,7 @@ class WPC {
 
             if (!$held_moderate) {
                 $message_array['code'] = -2;
-                $message_array['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_held_for_moderate'];
+                $message_array['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_held_for_moderate'];
             } else {
                 $message_array['code'] = 1;
                 $message_array['message'] = $this->comment_tpl_builder->get_comment_template($new_comment);
@@ -328,7 +332,7 @@ class WPC {
         } else {
             $message_array['code'] = -1;
             $message_array['wpc_new_comment_id'] = -1;
-            $message_array['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_invalid_field'];
+            $message_array['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_invalid_field'];
         }
         echo json_encode($message_array);
         exit;
@@ -342,16 +346,16 @@ class WPC {
         $wpc_new_comment_id = isset($_POST['wpc_new_comment_id']) ? intval($_POST['wpc_new_comment_id']) : -1;
         $wpc_comment_parent = isset($_POST['wpc_comment_parent']) ? intval($_POST['wpc_comment_parent']) : -1;
         if ($wpc_new_comment_id !== -1 && $wpc_comment_parent !== -1) {
-            if ($this->wpc_options->wpc_options_serialize->wpc_notify_moderator) {
+            if ($this->wpc_options->wpc_options_serialized->wpc_notify_moderator) {
                 wp_notify_postauthor($wpc_new_comment_id);
             }
-            if ($this->wpc_options->wpc_options_serialize->wpc_notify_comment_author && $wpc_comment_parent) {
+            if ($this->wpc_options->wpc_options_serialized->wpc_notify_comment_author && $wpc_comment_parent) {
                 $wpc_new_comment_content = get_comment($wpc_new_comment_id)->comment_content;
                 $comment = get_comment($wpc_comment_parent);
                 $to = $comment->comment_author_email;
-                $subject = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_email_subject'];
+                $subject = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_email_subject'];
                 $permalink = get_comment_link($wpc_comment_parent);
-                $message = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_email_message'];
+                $message = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_email_message'];
                 $message .= "<br/><br/><a href='$permalink'>$permalink</a>";
                 $message .= "<br/><br/>$wpc_new_comment_content";
                 $headers = array();
@@ -363,6 +367,30 @@ class WPC {
     }
 
     /**
+     * request customer for comment on purchased product
+     */
+    public function email_request_for_comment($order_id) {
+        $comment_author_email = get_post_meta($order_id, '_billing_email');
+        if ($comment_author_email) {
+            $request_subject = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_request_reply_subject'];
+            $request_message = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_request_reply_message'];
+            $product_link = get_permalink($order_id);
+
+            $wpc_order = new WC_Order($order_id);
+            $wpc_order_items = $wpc_order->get_items();
+            $wpc_items_links = "<br/>";
+            foreach ($wpc_order_items as $wpc_item) {
+                $wpc_items_links .= "<a href='" . get_permalink($wpc_item['product_id']) . "'>" . $wpc_item['name'] . "</a><br/>";
+            }
+            $request_message .= $wpc_items_links;
+            $headers = array();
+            $headers[] = "Content-Type: text/html; charset=UTF-8";
+            $headers[] = "From: " . get_bloginfo('name') . "\r\n";
+            wp_mail($comment_author_email, $request_subject, $request_message, $headers);
+        }
+    }
+
+    /**
      * vote on comment via ajax
      */
     public function vote_on_comment() {
@@ -370,7 +398,7 @@ class WPC {
         $messageArray['code'] = -1;
         $comment_id = '';
         if (!is_user_logged_in()) {
-            $messageArray['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_login_to_vote'];
+            $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_login_to_vote'];
             echo json_encode($messageArray);
             exit();
         }
@@ -382,7 +410,7 @@ class WPC {
             $is_user_voted = $this->wpc_db_helper->is_user_voted($user_id, $comment_id);
             $comment = get_comment($comment_id);
             if ($comment->user_id == $user_id) {
-                $messageArray['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_self_vote'];
+                $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_self_vote'];
                 echo json_encode($messageArray);
                 exit();
             }
@@ -394,9 +422,9 @@ class WPC {
                     $vote_count = intval(get_comment_meta($comment_id, 'woodiscuz_votes', true)) + intval($vote_type);
                     update_comment_meta($comment_id, 'woodiscuz_votes', '' . $vote_count);
                     $messageArray['code'] = 1;
-                    $messageArray['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_vote_counted'];
+                    $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_vote_counted'];
                 } else {
-                    $messageArray['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_vote_only_one_time'];
+                    $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_vote_only_one_time'];
                 }
             } else {
                 $this->wpc_db_helper->add_vote_type($user_id, $comment_id, $vote_type);
@@ -408,10 +436,10 @@ class WPC {
                     update_comment_meta($comment_id, 'woodiscuz_votes', '' . $vote_count);
                 }
                 $messageArray['code'] = 1;
-                $messageArray['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_vote_counted'];
+                $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_vote_counted'];
             }
         } else {
-            $messageArray['message'] = $this->wpc_options->wpc_options_serialize->wpc_phrases['wpc_voting_error'];
+            $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_voting_error'];
         }
 
         echo json_encode($messageArray);
@@ -427,7 +455,7 @@ class WPC {
         if (!$post_id) {
             $post_id = $post->ID;
         }
-        $wpc_comment_count = $this->wpc_options->wpc_options_serialize->wpc_comment_count;
+        $wpc_comment_count = $this->wpc_options->wpc_options_serialized->wpc_comment_count;
 
         $comm_list_args = array(
             'callback' => array(&$this, 'wpc_comment_callback'),
@@ -480,8 +508,7 @@ class WPC {
     }
 
     public function wpc_list_comments_args($args) {
-        global $post;
-        if ($args['type'] == 'all' && $post->post_type == 'product') {
+        if ($args['type'] == 'all' && get_post_type() == 'product') {
             $args['type'] = 'woodiscuz_review';
         }
         return $args;
@@ -494,7 +521,7 @@ class WPC {
 
     public function is_guest_can_comment() {
         $user_can_comment = TRUE;
-        if ($this->wpc_options->wpc_options_serialize->wpc_user_must_be_registered) {
+        if ($this->wpc_options->wpc_options_serialized->wpc_user_must_be_registered) {
             if (!is_user_logged_in()) {
                 $user_can_comment = FALSE;
             }

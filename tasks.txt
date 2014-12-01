@@ -1,1 +1,2 @@
-User role issue - multisite
+1. User role issue - multisite
+2. UsersUltra profile page integration

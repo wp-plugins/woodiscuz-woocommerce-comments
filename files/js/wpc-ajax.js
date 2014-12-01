@@ -80,7 +80,7 @@ jQuery(document).ready(function ($) {
                     captcha: wpc_captcha,
                     comment_post_ID: wpc_comment_post_ID,
                     comment_parent: wpc_comment_parent,
-                    action: 'comms_via_ajax'
+                    action: 'wpc_comms_via_ajax'
                 }
             }).done(function (response) {
                 $("#wpc_captcha_img-" + uniqueID).attr("src", wpc_home_url + "/" + wpc_plugin_dir_url + "/captcha/captcha.php?comm_id=" + wpc_comment_post_ID + '-' + wpc_comment_parent + '&r=' + Math.random());
@@ -166,7 +166,7 @@ jQuery(document).ready(function ($) {
             data: {
                 comment_ID: commentID,
                 vote_type: voteType,
-                action: 'vote_via_ajax'
+                action: 'wpc_vote_via_ajax'
             }
         }).done(function (response) {
             var obj = $.parseJSON(response);
@@ -203,7 +203,7 @@ jQuery(document).ready(function ($) {
             data: {
                 comments_offset: wpc_comments_offset_value,
                 wpc_post_id: wpc_post_id,
-                action: 'load_more_comments'
+                action: 'wpc_load_more_comments'
             }
         }).done(function (response) {
             wpc_comments_offset.val(wpc_comments_offset_value);

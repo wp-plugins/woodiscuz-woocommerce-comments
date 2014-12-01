@@ -1,7 +1,7 @@
 /* ===== Options Form CSS ===== */
 
-.wpc-form tr.wpc-row-light{background: #fff;}
-.wpc-form tr.wpc-row-dark{background: #fbfbfb;}
+.wc-form tr:nth-child(even) {background: #fff}
+.wc-form tr:nth-child(odd) {background: #fbfbfb}
 
 .woodiscuz_options_page .wpc-phrases-settings-form input[type="text"],
 .woodiscuz_options_page .wpc-phrases-settings-form textarea {
