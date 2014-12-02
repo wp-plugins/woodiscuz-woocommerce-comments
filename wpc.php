@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 1.0.7
+  Version: 1.0.8
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -88,10 +88,9 @@ class WPC {
         if (!is_plugin_active('woocommerce/woocommerce.php')) {
             echo "<div class='error'><p>" . __('WooDiscuz requires Woocommerce to be installed!', 'woodiscuz') . "</p></div>";
         }
-
         if ($this->wpc_db_helper->get_empty_comment_types()) {
             echo "<div class='update-nag woocommerce-message wc-connect' style='width:95%'>
-						Please click on this button to start using WooDiscuz&nbsp; -&nbsp; <a class='woodiscuz_update_reviews button-primary' href='" . $_SERVER['PHP_SELF'] . "?woodiscuz_update_reviews=s3wc8fs4x1erg5'>Synchronize with WooCommerce</a>
+						Please click on this button to start using WooDiscuz&nbsp; -&nbsp; <a class='woodiscuz_update_reviews button-primary' href='" . admin_url() . "admin.php?page=woodiscuz_options_page&woodiscuz_update_reviews=s3wc8fs4x1erg5'>Synchronize with WooCommerce</a>
 				  		<br /><span style=\"font-size:12px;\">WooCommerce doesn't have its own comment type for product reviews, this synchronization will not allow any conflicts with WooDiscuz comments.</span>
 				  </div>";
         }

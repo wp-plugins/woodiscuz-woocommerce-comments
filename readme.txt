@@ -8,9 +8,9 @@ Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Produc
 
 Requires at least: 3.0
 
-Tested up to: 4.0
+Tested up to: 4.0.1
 
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 
 License: GPLv2 or later
 
@@ -127,6 +127,9 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+= 1.0.8 =
+* Fixed Bug : Problem with options page redirection on Wordpress multi-sites
+
 = 1.0.7 =
 * Added : Comment author names are link to their profile page (BuddyPress).
 * Added : Sends email to customer after purchase with a request to comment on the product page.

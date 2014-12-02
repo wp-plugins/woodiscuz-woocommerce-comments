@@ -71,7 +71,7 @@ class WPC_Options {
             </div>
             <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz General Settings', 'woodiscuz'); ?></h2>
             <br style="clear:both" />
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>?page=woodiscuz_options_page&updated=true" method="post" name="woodiscuz_options_page" class="wpc-main-settings-form wpc-form">
+            <form action="<?php echo admin_url(); ?>admin.php?page=woodiscuz_options_page&updated=true" method="post" name="woodiscuz_options_page" class="wpc-main-settings-form wpc-form">
                 <?php
                 if (function_exists('wp_nonce_field')) {
                     wp_nonce_field('wpc_options_form');
@@ -181,7 +181,7 @@ class WPC_Options {
             </div>
             <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz Front-end Phrases', 'woodiscuz'); ?></h2>
             <br style="clear:both" />
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>?page=woodiscuz_phrases_page&updated=true" method="post" name="woodiscuz_phrases_page" class="wpc-phrases-settings-form wpc-form">
+            <form action="<?php echo admin_url(); ?>admin.php?page=woodiscuz_phrases_page&updated=true" method="post" name="woodiscuz_phrases_page" class="wpc-phrases-settings-form wpc-form">
                 <?php
                 if (function_exists('wp_nonce_field')) {
                     wp_nonce_field('wpc_phrases_form');

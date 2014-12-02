@@ -2,7 +2,7 @@
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-class WPC_DB_Helper {    
+class WPC_DB_Helper {
 
     private $db;
     private $dbprefix;
@@ -48,7 +48,7 @@ class WPC_DB_Helper {
             $this->db->query($update_query);
         }
     }
-    
+
     /**
      * get woodiscuz comments count 
      */
@@ -130,7 +130,7 @@ class WPC_DB_Helper {
         $phrases = $this->db->get_results($sql, ARRAY_A);
         $tmp_phrases = array();
         foreach ($phrases as $phrase) {
-           $tmp_phrases[$phrase['phrase_key']] = WPC_Helper::init_phrase_key_value($phrase);
+            $tmp_phrases[$phrase['phrase_key']] = WPC_Helper::init_phrase_key_value($phrase);
         }
         return $tmp_phrases;
     }
