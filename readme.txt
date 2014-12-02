@@ -1,19 +1,12 @@
 === WooDiscuz - WooCommerce Comments ===
 
 Contributors: gVectors Team
-
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JD86QPWM6QUXW
-
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support
-
 Requires at least: 3.0
-
 Tested up to: 4.0.1
-
 Stable tag: 1.0.8
-
 License: GPLv2 or later
-
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WooCommerce comments and discussion Tab. Allows your customers discuss about your products, vote for comments and share. 
