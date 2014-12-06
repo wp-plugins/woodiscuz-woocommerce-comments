@@ -31,11 +31,11 @@ class WPC_Comment_Template_Builder {
         $wpc_comment_wrapper_class = ($comment->comment_parent) ? 'wpc-comment wpc-reply' : 'wpc-comment';
         $textarea_placeholder = $this->get_textarea_placeholder($comment);
         $wpc_author_name = $comment->comment_author;
-                
+
         $wpc_comm_author_avatar = $this->wpc_helper->get_comment_author_avatar($comment);
         $wpc_profile_url = $this->get_profile_url($user);
-        
-        
+
+
         if ($wpc_profile_url) {
             $wpc_comm_author_avatar = "<a target='_blank' href='$wpc_profile_url'>" . $this->wpc_helper->get_comment_author_avatar($comment) . "</a>";
             $wpc_author_name = "<a target='_blank' href='$wpc_profile_url'>" . $wpc_author_name . "</a>";
@@ -210,12 +210,15 @@ class WPC_Comment_Template_Builder {
 
     /**
      * 
-     *get profile url 
+     * get profile url 
      */
     private function get_profile_url($user) {
         $wpc_profile_url = '';
         if ($user && class_exists('BuddyPress')) {
             $wpc_profile_url = bp_core_get_user_domain($user->ID);
+        } else if (class_exists('XooUserUltra')) {
+            global $xoouserultra;
+            $wpc_profile_url = $xoouserultra->userpanel->get_user_profile_permalink($user->ID);
         }
         return $wpc_profile_url;
     }

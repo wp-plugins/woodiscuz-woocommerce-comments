@@ -18,7 +18,7 @@ class WPC_CSS {
         ?>
         <style type="text/css">
             #woopcomm form .item {display: block;} .item input {}
-			#woopcomm { margin:10px auto; width:99%; padding:15px; border:#CCCCCC dotted 1px; }
+			#woopcomm { margin:10px auto; width:97%; padding:15px; border:#CCCCCC dotted 1px; }
             #woopcomm form { margin:0px; padding:0px; background:none; border:none; }
             #woopcomm form div{ margin:0px; }
             #woopcomm .wpc-form-wrapper{ padding:10px; background:#F9F9F9; margin-top:10px; border:1px solid #F1F1F1; }
@@ -53,10 +53,11 @@ class WPC_CSS {
             #woopcomm .wpc-comment-title{ margin:0px; font-size:18px; line-height:18px; font-weight:bold; padding:10px; margin-bottom:10px; }
             #woopcomm .wpc-must-login{  margin:0px; font-size:14px; line-height:16px; padding:10px }
             #woopcomm hr{ background-color: rgba(0, 0, 0, 0.1); border: 0 none; height: 1px; margin:10px 0px; }
-            #woopcomm .avatar{ border: 1px solid rgba(0, 0, 0, 0.1); padding: 2px; margin:0px; float:none; }
+            #woopcomm .avatar{ border: 1px solid rgba(0, 0, 0, 0.1); padding: 2px; margin:0px auto; float:none; }
             #woopcomm .wpc-comment-text{ font-size:13px; text-align:left; color:<?php echo $this->wpc_options->wpc_options_serialized->wpc_comment_text_color; ?>; }
             #woopcomm .wpc-comment-header{ margin-bottom:7px; font-family:Lato,sans-serif; }
             #woopcomm .wpc-comment-author{ color:<?php echo $this->primary_color; ?>; font-size:16px; width:40%; float:left; white-space:nowrap; }
+			#woopcomm .wpc-comment-author a{ color:<?php echo $this->primary_color; ?>; font-size:16px; white-space:nowrap; text-decoration:none; }
             #woopcomm .wpc-comment-label{ background:<?php echo $this->primary_color; ?>; color:#FFFFFF; padding:2px 5px; font-size:12px; margin:4px auto; text-align:center; display:table; line-height:16px; }
             #woopcomm .wpc-comment-date{ font-size:12px; color:#999999; width:59%; float:right; text-align:right; white-space:nowrap; line-height:27px; }
             #woopcomm .wpc-comment-footer { font-size:12px; font-weight:normal; color:#999999; margin-top:10px; min-height: 28px; font-family:Lato,sans-serif; }
