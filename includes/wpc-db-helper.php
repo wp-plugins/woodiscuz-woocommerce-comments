@@ -118,7 +118,7 @@ class WPC_DB_Helper {
     }
 
     public function is_phrase_exists($phrase_key) {
-        $sql = $this->db->prepare("SELECT `phrase_value` FROM `" . $this->phrases . "` WHERE `phrase_key` LIKE %s", $phrase_key);
+        $sql = $this->db->prepare("SELECT `phrase_key` FROM `" . $this->phrases . "` WHERE `phrase_key` LIKE %s", $phrase_key);
         return $this->db->get_var($sql);
     }
 

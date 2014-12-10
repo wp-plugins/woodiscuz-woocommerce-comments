@@ -10,7 +10,7 @@ Requires at least: 3.0
 
 Tested up to: 4.0.1
 
-Stable tag: 1.0.9
+Stable tag: 1.1.1
 
 License: GPLv2 or later
 
@@ -31,10 +31,6 @@ WooCommerce product comments and discussion Tab. Allows your customers to discus
 - *Lets your shop visitors see all customers' activity*
 - *Allows you to provide an excellent customer support on product page*
 - *As a result you have a ready and product specific FAQ under each Product separately*
-
-
-[youtube https://www.youtube.com/watch?v=umtFm20haRA /]
-
 
 **WooDiscuz Features:**
 
@@ -71,6 +67,8 @@ WooCommerce product comments and discussion Tab. Allows your customers to discus
 * | Option to manage font color and comment/reply background colors
 * | Front-end phrase managing options, you'll be able to translate or change all phrases
 
+
+[youtube https://www.youtube.com/watch?v=umtFm20haRA /]
 
 
 If your Wordpress is not 4.x please read the note below.
@@ -127,6 +125,10 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+
+= 1.1.1 =
+* Fixed Bug : Layout and Style Issues
+
 = 1.0.9 =
 * Added : Comment author names are links to their profile page (BuddyPress, Users Ultra)
 * Fixed Bug : CSS Issues

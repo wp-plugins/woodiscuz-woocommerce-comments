@@ -29,13 +29,13 @@ class WPC_CSS {
             #woopcomm .wpc-field-comment{ margin:5px auto 10px auto; }
             #woopcomm .wpc-field-captcha{ width:55%; float:left; margin:0px; }
             #woopcomm .wpc-field-submit{ width:45%; float:right; text-align:right; margin:0px; }
-            #woopcomm .wpc-field-name input[type="text"]{ width:95%; max-width:100%; padding:5px; font-size:14px; margin:0px; }
-            #woopcomm .wpc-field-email input[type="email"]{ width:100%; max-width:100%; padding:5px; font-size:14px; margin:0px; }
-            #woopcomm .wpc-field-captcha input[type="text"]{ width:40%; padding:5px; font-size:14px; margin:0px; }
+            #woopcomm .wpc-field-name input[type="text"]{ width:95%; max-width:100%; padding:5px; font-size:14px; margin:0px; height:29px; }
+            #woopcomm .wpc-field-email input[type="email"]{ width:100%; max-width:100%; padding:5px; font-size:14px; margin:0px; height:29px; }
+            #woopcomm .wpc-field-captcha input[type="text"]{ width:40%; padding:5px; font-size:14px; margin:0px; height:29px; }
             #woopcomm .wpc-field-submit input[type="submit"]{ margin:1px; }
             #woopcomm .wpc-field-submit input[type="button"]{ margin:1px; }
             #woopcomm .captcha_msg{ color: #aaaaaa; font-family: Lato,sans-serif; font-size: 12px; line-height: 18px; display:block; clear:both; }
-            #woopcomm .wpc-field-comment textarea{ width:100%; max-width:100%; height:43px; min-height: 43px !important; padding:5px; box-sizing: border-box; }
+            #woopcomm .wpc-field-comment textarea{ width:100%; max-width:100%; height:46px; min-height: 46px !important; padding:5px; box-sizing: border-box; }
             #woopcomm .wpc-label{ display:block; font-size:14px; padding:5px; }
             #woopcomm .wpc-field-captcha .wpc-label{ font-size:18px; padding:5px; text-align:center; display:inline; }
             #woopcomm input[type="text"], #woopcomm input[type="email"], #woopcomm textarea{ font-size:14px; color:#666666; font-family:Lato,sans-serif; box-sizing: border-box; margin:0px; }
@@ -53,8 +53,8 @@ class WPC_CSS {
             #woopcomm .wpc-comment-title{ margin:0px; font-size:18px; line-height:18px; font-weight:bold; padding:10px; margin-bottom:10px; }
             #woopcomm .wpc-must-login{  margin:0px; font-size:14px; line-height:16px; padding:10px }
             #woopcomm hr{ background-color: rgba(0, 0, 0, 0.1); border: 0 none; height: 1px; margin:10px 0px; }
-            #woopcomm .avatar{ border: 1px solid rgba(0, 0, 0, 0.1); padding: 2px; margin:0px auto; float:none; }
-            #woopcomm .wpc-comment-text{ font-size:13px; text-align:left; color:<?php echo $this->wpc_options->wpc_options_serialized->wpc_comment_text_color; ?>; }
+            #woopcomm .avatar{ border: 1px solid rgba(0, 0, 0, 0.1); padding: 2px; margin:0px auto; float:none; display:inline; }
+            #woopcomm .wpc-comment-text{ font-size:14px; text-align:left; color:<?php echo $this->wpc_options->wpc_options_serialized->wpc_comment_text_color; ?>; line-height:20px; }
             #woopcomm .wpc-comment-header{ margin-bottom:7px; font-family:Lato,sans-serif; }
             #woopcomm .wpc-comment-author{ color:<?php echo $this->primary_color; ?>; font-size:16px; width:40%; float:left; white-space:nowrap; }
 			#woopcomm .wpc-comment-author a{ color:<?php echo $this->primary_color; ?>; font-size:16px; white-space:nowrap; text-decoration:none; }
@@ -65,11 +65,11 @@ class WPC_CSS {
             #woopcomm .wpc-comment-footer .share_buttons_box img{ vertical-align:middle; }
             #woopcomm .wpc-comment-footer .wpc-voted{ color:#666666; cursor:default; }
             #woopcomm .wpc-comment-footer .wpc-vote-result{ padding:2px 6px 2px 5px; background:<?php echo $this->highlight_color; ?>; color:#FFFFFF; font-size:12px; font-weight:bold; display:inline; margin-right:5px;}
-            #woopcomm .wpc-toggle{ float:right; text-align:right; padding-right:0px; margin-right:0px; color:#999999; cursor:pointer; font-size:12px; }
+            #woopcomm .wpc-toggle{ float:right; text-align:right; padding-right:0px; margin-right:0px; color:#999999; cursor:pointer; font-size:12px; white-space:nowrap; }
             #woopcomm .item { background: none; border-radius: 0px; box-shadow: none; }
             #wpc_response_info img{ margin: 0px auto 0px auto; }
             #woopcomm .share_buttons_box img { display:inline!important; width:16px; height:16px; }
-            #woopcomm .wpc-captcha-label img{ display: inline!important; border:none; padding:0px 1px; margin:0px; }
+            #woopcomm .wpc-captcha-label img{ display: inline!important; border:none; padding:0px 1px; margin:0px; vertical-align:middle; }
 			#woopcomm .wpc-reply-link, #woopcomm .wpc-vote-link, #woopcomm .wpc-share-link { cursor: pointer; font-size:13px; font-weight:bold; color: <?php echo $this->highlight_color; ?>; }
 			#woopcomm .wpc-form-footer, #woopcomm .wpc-secondary-forms-wrapper {display: none;}
 			#woopcomm .wpc-field-captcha .wpc-captcha-label { margin-left: 5px; padding: 0; display: inline-block; }
@@ -82,7 +82,11 @@ class WPC_CSS {
             #wpc_openModalFormAction > div#wpc_response_info { width: 200px; background: none repeat scroll 0 0 #EDEDED; color:#444444; font-size: 18px; font-weight: normal; padding: 45px 10px 50px 10px!important; text-align: center; line-height:25px;}
 			#wpc_openModalFormAction > div#wpc_response_info { /*z-index: 10000;*/ }
             #wpc_openModalFormAction > div#wpc_response_info a.close {  background: url("<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/x.png'); ?>") no-repeat;  background-position-x: right; background-position-y: top; }
-		</style>
+			#woopcomm #bywoodiscuz{ display:none; }
+			#woopcomm .by-woodiscuz{ text-align:right; border-top:#DDDDDD solid 1px; padding:1px 1px 1px 1px; }
+            #woopcomm .by-woodiscuz a{ font-size:11px; font-weight:bold; text-align:right; color:#CCCCCC; padding:1px; margin:0px; line-height:12px; border:none; text-decoration:none; }
+			#woopcomm .woodimg{ border:none; padding:0px; margin:0px; height:12px; cursor:pointer; display:inline; clear:both; }
+        </style>
         <?php
     }
 

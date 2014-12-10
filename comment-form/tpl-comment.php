@@ -130,8 +130,7 @@ class WPC_Comment_Template_Builder {
             }
 
             $output .= '<div class="wpc-field-submit"><input type="button" name="submit" value="' . $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_submit_text'] . '" id="wpc_comm-' . $unique_id . '" class="wpc_comm_submit button alt"/>
-							<div class="wpc-copyright"><a href="http://www.woodiscuz.com/" target="_blank">by WooDiscuz </a></div>
-								</div>';
+							</div>';
             $output .= '<div style="clear:both"></div>';
             $output .= '</div>';
             $output .= '</div>';

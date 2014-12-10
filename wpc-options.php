@@ -59,9 +59,7 @@ class WPC_Options {
             $this->wpc_options_serialized->wpc_comment_text_color = isset($_POST['wpc_comment_text_color']) ? $_POST['wpc_comment_text_color'] : '#555';
 
             $this->wpc_options_serialized->update_options();
-            
-            
-        }            
+        }
         ?>
 
         <div class="wrap woodiscuz_options_page">
@@ -119,54 +117,54 @@ class WPC_Options {
                 check_admin_referer('wpc_phrases_form');
             }
 
-            $this->wpc_options_serialized->wpc_phrases['wpc_discuss_tab'] = isset($_POST['wpc_discuss_tab']) ? $_POST['wpc_discuss_tab'] : 'Discussions';
-            $this->wpc_options_serialized->wpc_phrases['wpc_header_text'] = isset($_POST['wpc_header_text']) ? $_POST['wpc_header_text'] : 'Got something to discuss?';
-            $this->wpc_options_serialized->wpc_phrases['wpc_comment_start_text'] = isset($_POST['wpc_comment_start_text']) ? $_POST['wpc_comment_start_text'] : 'Start the discussion';
-            $this->wpc_options_serialized->wpc_phrases['wpc_comment_join_text'] = isset($_POST['wpc_comment_join_text']) ? $_POST['wpc_comment_join_text'] : 'Join the discussion';
-            $this->wpc_options_serialized->wpc_phrases['wpc_email_text'] = isset($_POST['wpc_email_text']) ? $_POST['wpc_email_text'] : 'Email';
-            $this->wpc_options_serialized->wpc_phrases['wpc_name_text'] = isset($_POST['wpc_name_text']) ? $_POST['wpc_name_text'] : 'Name';
-            $this->wpc_options_serialized->wpc_phrases['wpc_captcha_text'] = isset($_POST['wpc_captcha_text']) ? $_POST['wpc_captcha_text'] : 'Please insert the code above to comment';
-            $this->wpc_options_serialized->wpc_phrases['wpc_submit_text'] = isset($_POST['wpc_submit_text']) ? $_POST['wpc_submit_text'] : 'Post Comment';
-            $this->wpc_options_serialized->wpc_phrases['wpc_load_more_submit_text'] = isset($_POST['wpc_load_more_submit_text']) ? $_POST['wpc_load_more_submit_text'] : 'Load More';
-            $this->wpc_options_serialized->wpc_phrases['wpc_reply_text'] = isset($_POST['wpc_reply_text']) ? $_POST['wpc_reply_text'] : 'Reply';
-            $this->wpc_options_serialized->wpc_phrases['wpc_share_text'] = isset($_POST['wpc_share_text']) ? $_POST['wpc_share_text'] : 'Share';
-            $this->wpc_options_serialized->wpc_phrases['wpc_share_facebook'] = isset($_POST['wpc_share_facebook']) ? $_POST['wpc_share_facebook'] : 'Share On Facebook';
-            $this->wpc_options_serialized->wpc_phrases['wpc_share_twitter'] = isset($_POST['wpc_share_twitter']) ? $_POST['wpc_share_twitter'] : 'Share On Twitter';
-            $this->wpc_options_serialized->wpc_phrases['wpc_share_google'] = isset($_POST['wpc_share_google']) ? $_POST['wpc_share_google'] : 'Share On Google';
-            $this->wpc_options_serialized->wpc_phrases['wpc_hide_replies_text'] = isset($_POST['wpc_hide_replies_text']) ? $_POST['wpc_hide_replies_text'] : 'Hide Replies';
-            $this->wpc_options_serialized->wpc_phrases['wpc_show_replies_text'] = isset($_POST['wpc_show_replies_text']) ? $_POST['wpc_show_replies_text'] : 'Show Replies';
-            $this->wpc_options_serialized->wpc_phrases['wpc_user_title_guest_text'] = isset($_POST['wpc_user_title_guest_text']) ? $_POST['wpc_user_title_guest_text'] : 'Guest';
-            $this->wpc_options_serialized->wpc_phrases['wpc_user_title_member_text'] = isset($_POST['wpc_user_title_member_text']) ? $_POST['wpc_user_title_member_text'] : 'Member';
-            $this->wpc_options_serialized->wpc_phrases['wpc_user_title_customer_text'] = isset($_POST['wpc_user_title_customer_text']) ? $_POST['wpc_user_title_customer_text'] : 'Customer';
-            $this->wpc_options_serialized->wpc_phrases['wpc_user_title_support_text'] = isset($_POST['wpc_user_title_support_text']) ? $_POST['wpc_user_title_support_text'] : 'Support';
-            $this->wpc_options_serialized->wpc_phrases['wpc_email_subject'] = isset($_POST['wpc_email_subject']) ? $_POST['wpc_email_subject'] : 'New Comment';
-            $this->wpc_options_serialized->wpc_phrases['wpc_email_message'] = isset($_POST['wpc_email_message']) ? $_POST['wpc_email_message'] : 'New comment on the product discussion section you\'ve been interested in';
-            $this->wpc_options_serialized->wpc_phrases['wpc_error_empty_text'] = isset($_POST['wpc_error_empty_text']) ? $_POST['wpc_error_empty_text'] : 'please fill out this field to comment';
-            $this->wpc_options_serialized->wpc_phrases['wpc_error_email_text'] = isset($_POST['wpc_error_email_text']) ? $_POST['wpc_error_email_text'] : 'email address is invalid';
+            $this->wpc_options_serialized->wpc_phrases['wpc_discuss_tab'] = $_POST['wpc_discuss_tab'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_header_text'] = $_POST['wpc_header_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_comment_start_text'] = $_POST['wpc_comment_start_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_comment_join_text'] = $_POST['wpc_comment_join_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_email_text'] = $_POST['wpc_email_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_name_text'] = $_POST['wpc_name_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_captcha_text'] = $_POST['wpc_captcha_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_submit_text'] = $_POST['wpc_submit_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_load_more_submit_text'] = $_POST['wpc_load_more_submit_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_reply_text'] = $_POST['wpc_reply_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_share_text'] = $_POST['wpc_share_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_share_facebook'] = $_POST['wpc_share_facebook'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_share_twitter'] = $_POST['wpc_share_twitter'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_share_google'] = $_POST['wpc_share_google'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_hide_replies_text'] = $_POST['wpc_hide_replies_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_show_replies_text'] = $_POST['wpc_show_replies_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_user_title_guest_text'] = $_POST['wpc_user_title_guest_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_user_title_member_text'] = $_POST['wpc_user_title_member_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_user_title_customer_text'] = $_POST['wpc_user_title_customer_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_user_title_support_text'] = $_POST['wpc_user_title_support_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_email_subject'] = $_POST['wpc_email_subject'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_email_message'] = $_POST['wpc_email_message'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_error_empty_text'] = $_POST['wpc_error_empty_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_error_email_text'] = $_POST['wpc_error_email_text'];
 
-            $this->wpc_options_serialized->wpc_phrases['wpc_year_text']['datetime'][0] = isset($_POST['wpc_year_text']) ? $_POST['wpc_year_text'] : 'year';
-            $this->wpc_options_serialized->wpc_phrases['wpc_month_text']['datetime'][0] = isset($_POST['wpc_month_text']) ? $_POST['wpc_month_text'] : 'month';
-            $this->wpc_options_serialized->wpc_phrases['wpc_day_text']['datetime'][0] = isset($_POST['wpc_day_text']) ? $_POST['wpc_day_text'] : 'day';
-            $this->wpc_options_serialized->wpc_phrases['wpc_hour_text']['datetime'][0] = isset($_POST['wpc_hour_text']) ? $_POST['wpc_hour_text'] : 'hour';
-            $this->wpc_options_serialized->wpc_phrases['wpc_minute_text']['datetime'][0] = isset($_POST['wpc_minute_text']) ? $_POST['wpc_minute_text'] : 'minute';
-            $this->wpc_options_serialized->wpc_phrases['wpc_second_text']['datetime'][0] = isset($_POST['wpc_second_text']) ? $_POST['wpc_second_text'] : 'second';
-            $this->wpc_options_serialized->wpc_phrases['wpc_plural_text'] = isset($_POST['wpc_plural_text']) ? $_POST['wpc_plural_text'] : 's';
-            $this->wpc_options_serialized->wpc_phrases['wpc_right_now_text'] = isset($_POST['wpc_right_now_text']) ? $_POST['wpc_right_now_text'] : 'right now';
-            $this->wpc_options_serialized->wpc_phrases['wpc_ago_text'] = isset($_POST['wpc_ago_text']) ? $_POST['wpc_ago_text'] : 'ago';
+            $this->wpc_options_serialized->wpc_phrases['wpc_year_text']['datetime'][0] = $_POST['wpc_year_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_month_text']['datetime'][0] = $_POST['wpc_month_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_day_text']['datetime'][0] = $_POST['wpc_day_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_hour_text']['datetime'][0] = $_POST['wpc_hour_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_minute_text']['datetime'][0] = $_POST['wpc_minute_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_second_text']['datetime'][0] = $_POST['wpc_second_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_plural_text'] = $_POST['wpc_plural_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_right_now_text'] = $_POST['wpc_right_now_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_ago_text'] = $_POST['wpc_ago_text'];
 
-            $this->wpc_options_serialized->wpc_phrases['wpc_you_must_be_text'] = isset($_POST['wpc_you_must_be_text']) ? $_POST['wpc_you_must_be_text'] : 'You must be';
-            $this->wpc_options_serialized->wpc_phrases['wpc_logged_in_text'] = isset($_POST['wpc_logged_in_text']) ? $_POST['wpc_logged_in_text'] : 'logged in';
-            $this->wpc_options_serialized->wpc_phrases['wpc_to_post_comment_text'] = isset($_POST['wpc_to_post_comment_text']) ? $_POST['wpc_to_post_comment_text'] : 'to post a comment';
-            $this->wpc_options_serialized->wpc_phrases['wpc_vote_counted'] = isset($_POST['wpc_vote_counted']) ? $_POST['wpc_vote_counted'] : 'Vote Counted';
-            $this->wpc_options_serialized->wpc_phrases['wpc_vote_up'] = isset($_POST['wpc_vote_up']) ? $_POST['wpc_vote_up'] : 'Vote Up';
-            $this->wpc_options_serialized->wpc_phrases['wpc_vote_down'] = isset($_POST['wpc_vote_down']) ? $_POST['wpc_vote_down'] : 'Vote Down';
-            $this->wpc_options_serialized->wpc_phrases['wpc_held_for_moderate'] = isset($_POST['wpc_held_for_moderate']) ? $_POST['wpc_held_for_moderate'] : 'Your Comment waiting moderation';
-            $this->wpc_options_serialized->wpc_phrases['wpc_vote_only_one_time'] = isset($_POST['wpc_vote_only_one_time']) ? $_POST['wpc_vote_only_one_time'] : 'You\'ve already voted for this comment';
-            $this->wpc_options_serialized->wpc_phrases['wpc_voting_error'] = isset($_POST['wpc_voting_error']) ? $_POST['wpc_voting_error'] : 'Voting Error';
-            $this->wpc_options_serialized->wpc_phrases['wpc_self_vote'] = isset($_POST['wpc_self_vote']) ? $_POST['wpc_self_vote'] : 'You cannot vote for your comment';
-            $this->wpc_options_serialized->wpc_phrases['wpc_login_to_vote'] = isset($_POST['wpc_login_to_vote']) ? $_POST['wpc_login_to_vote'] : 'You Must Be Logged In To Vote';
-            $this->wpc_options_serialized->wpc_phrases['wpc_invalid_captcha'] = isset($_POST['wpc_invalid_captcha']) ? $_POST['wpc_invalid_captcha'] : 'Invalid Captcha Code';
-            $this->wpc_options_serialized->wpc_phrases['wpc_invalid_field'] = isset($_POST['wpc_invalid_field']) ? $_POST['wpc_invalid_field'] : 'Some of field value is invalid';
+            $this->wpc_options_serialized->wpc_phrases['wpc_you_must_be_text'] = $_POST['wpc_you_must_be_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_logged_in_text'] = $_POST['wpc_logged_in_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_to_post_comment_text'] = $_POST['wpc_to_post_comment_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_vote_counted'] = $_POST['wpc_vote_counted'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_vote_up'] = $_POST['wpc_vote_up'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_vote_down'] = $_POST['wpc_vote_down'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_held_for_moderate'] = $_POST['wpc_held_for_moderate'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_vote_only_one_time'] = $_POST['wpc_vote_only_one_time'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_voting_error'] = $_POST['wpc_voting_error'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_self_vote'] = $_POST['wpc_self_vote'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_login_to_vote'] = $_POST['wpc_login_to_vote'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_invalid_captcha'] = $_POST['wpc_invalid_captcha'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_invalid_field'] = $_POST['wpc_invalid_field'];
 
             $this->wpc_db_helper->update_phrases($this->wpc_options_serialized->wpc_phrases);
         }
