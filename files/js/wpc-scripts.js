@@ -24,4 +24,11 @@ jQuery(document).ready(function ($) {
             $('#wpc_comment_text_color').val('#' + hex);
         }
     });
+
+    $('#wpc_colorpickerHolder4').ColorPicker({
+        flat: true,
+        onChange: function (hsb, hex, rgb) {
+            $('#wpc_form_bg_color').val('#' + hex);
+        }
+    });
 });

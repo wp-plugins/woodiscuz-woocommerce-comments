@@ -21,17 +21,17 @@ class WPC_CSS {
 			#woopcomm { margin:10px auto; width:97%; padding:15px; border:#CCCCCC dotted 1px; }
             #woopcomm form { margin:0px; padding:0px; background:none; border:none; }
             #woopcomm form div{ margin:0px; }
-            #woopcomm .wpc-form-wrapper{ padding:10px; background:#F9F9F9; margin-top:10px; border:1px solid #F1F1F1; }
+            #woopcomm .wpc-form-wrapper{ padding:10px; background:<?php echo isset($this->wpc_options->wpc_options_serialized->wpc_form_bg_color) ? $this->wpc_options->wpc_options_serialized->wpc_form_bg_color : '#f9f9f9'; ?>; margin-top:10px; border:1px solid #F1F1F1; }
             #woopcomm .wpc-author-data{ margin-bottom:10px; }
             #woopcomm .wpc-field-submit{ padding:5px 0px 13px 0px; }
             #woopcomm .wpc-field-name{ width:49%; float:left; }
             #woopcomm .wpc-field-email{ width:49%; float:right; text-align:right; }
             #woopcomm .wpc-field-comment{ margin:5px auto 10px auto; }
-            #woopcomm .wpc-field-captcha{ width:55%; float:left; margin:0px; }
+            #woopcomm .wpc-field-captcha{ width:55%; float:left; margin:0px; height:auto!important; }
             #woopcomm .wpc-field-submit{ width:45%; float:right; text-align:right; margin:0px; }
             #woopcomm .wpc-field-name input[type="text"]{ width:95%; max-width:100%; padding:5px; font-size:14px; margin:0px; height:29px; }
             #woopcomm .wpc-field-email input[type="email"]{ width:100%; max-width:100%; padding:5px; font-size:14px; margin:0px; height:29px; }
-            #woopcomm .wpc-field-captcha input[type="text"]{ width:40%; padding:5px; font-size:14px; margin:0px; height:29px; }
+            #woopcomm .wpc-field-captcha input[type="text"]{ width:40%; padding:5px; font-size:14px; margin:0px 5px 0px 0px; height:29px; }
             #woopcomm .wpc-field-submit input[type="submit"]{ margin:1px; }
             #woopcomm .wpc-field-submit input[type="button"]{ margin:1px; }
             #woopcomm .captcha_msg{ color: #aaaaaa; font-family: Lato,sans-serif; font-size: 12px; line-height: 18px; display:block; clear:both; }
@@ -54,12 +54,12 @@ class WPC_CSS {
             #woopcomm .wpc-must-login{  margin:0px; font-size:14px; line-height:16px; padding:10px }
             #woopcomm hr{ background-color: rgba(0, 0, 0, 0.1); border: 0 none; height: 1px; margin:10px 0px; }
             #woopcomm .avatar{ border: 1px solid rgba(0, 0, 0, 0.1); padding: 2px; margin:0px auto; float:none; display:inline; }
-            #woopcomm .wpc-comment-text{ font-size:14px; text-align:left; color:<?php echo $this->wpc_options->wpc_options_serialized->wpc_comment_text_color; ?>; line-height:20px; }
+            #woopcomm .wpc-comment-text{ font-size:<?php echo isset($this->wpc_options->wpc_options_serialized->wpc_comment_text_size) ? $this->wpc_options->wpc_options_serialized->wpc_comment_text_size : '14px'; ?>;; text-align:left; color:<?php echo $this->wpc_options->wpc_options_serialized->wpc_comment_text_color; ?>; line-height:20px; }
             #woopcomm .wpc-comment-header{ margin-bottom:7px; font-family:Lato,sans-serif; }
             #woopcomm .wpc-comment-author{ color:<?php echo $this->primary_color; ?>; font-size:16px; width:40%; float:left; white-space:nowrap; }
 			#woopcomm .wpc-comment-author a{ color:<?php echo $this->primary_color; ?>; font-size:16px; white-space:nowrap; text-decoration:none; }
             #woopcomm .wpc-comment-label{ background:<?php echo $this->primary_color; ?>; color:#FFFFFF; padding:2px 5px; font-size:12px; margin:4px auto; text-align:center; display:table; line-height:16px; }
-            #woopcomm .wpc-comment-date{ font-size:12px; color:#999999; width:59%; float:right; text-align:right; white-space:nowrap; line-height:27px; }
+            #woopcomm .wpc-comment-date{ font-size:12px; color:#999999; float:right; text-align:right; white-space:nowrap; line-height:27px; }
             #woopcomm .wpc-comment-footer { font-size:12px; font-weight:normal; color:#999999; margin-top:10px; min-height: 28px; font-family:Lato,sans-serif; }
             #woopcomm .wpc-comment-footer a{ text-decoration:none; font-size:13px; font-weight:bold; color:<?php echo $this->highlight_color; ?>; }
             #woopcomm .wpc-comment-footer .share_buttons_box img{ vertical-align:middle; }
@@ -72,7 +72,7 @@ class WPC_CSS {
             #woopcomm .wpc-captcha-label img{ display: inline!important; border:none; padding:0px 1px; margin:0px; vertical-align:middle; }
 			#woopcomm .wpc-reply-link, #woopcomm .wpc-vote-link, #woopcomm .wpc-share-link { cursor: pointer; font-size:13px; font-weight:bold; color: <?php echo $this->highlight_color; ?>; }
 			#woopcomm .wpc-form-footer, #woopcomm .wpc-secondary-forms-wrapper {display: none;}
-			#woopcomm .wpc-field-captcha .wpc-captcha-label { margin-left: 5px; padding: 0; display: inline-block; }
+			#woopcomm .wpc-field-captcha .wpc-captcha-label { padding: 0; display: inline-block; }
 			#woopcomm .wpc_captcha_refresh_img {cursor: pointer; margin-left: 3px;}
             #woopcomm .share_buttons_box {display: none;/*position: absolute;left: 40%;*/}
 			#woopcomm .wpc-no-left-margin {margin-left: 0 !important;}

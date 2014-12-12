@@ -53,7 +53,8 @@ class WPC_Options {
             $this->wpc_options_serialized->wpc_notify_moderator = isset($_POST['wpc_notify_moderator']) ? $_POST['wpc_notify_moderator'] : 0;
             $this->wpc_options_serialized->wpc_notify_comment_author = isset($_POST['wpc_notify_comment_author']) ? $_POST['wpc_notify_comment_author'] : 0;
             $this->wpc_options_serialized->wpc_request_for_comment = isset($_POST['wpc_request_for_comment']) ? $_POST['wpc_request_for_comment'] : 0;
-
+            $this->wpc_options_serialized->wpc_comment_text_size = isset($_POST['wpc_comment_text_size']) ? $_POST['wpc_comment_text_size'] : '14px';
+            $this->wpc_options_serialized->wpc_form_bg_color = isset($_POST['wpc_form_bg_color']) ? $_POST['wpc_form_bg_color'] : '#f9f9f9';            
             $this->wpc_options_serialized->wpc_comment_bg_color = isset($_POST['wpc_comment_bg_color']) ? $_POST['wpc_comment_bg_color'] : '#fefefe';
             $this->wpc_options_serialized->wpc_reply_bg_color = isset($_POST['wpc_reply_bg_color']) ? $_POST['wpc_reply_bg_color'] : '#f8f8f8';
             $this->wpc_options_serialized->wpc_comment_text_color = isset($_POST['wpc_comment_text_color']) ? $_POST['wpc_comment_text_color'] : '#555';
@@ -69,6 +70,71 @@ class WPC_Options {
             </div>
             <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz General Settings', 'woodiscuz'); ?></h2>
             <br style="clear:both" />
+            
+            <link rel="stylesheet" href="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/'); ?>bxslider/jquery.bxslider.css" type="text/css" />
+            <script src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/'); ?>bxslider/jquery.min.js"></script>
+            <script src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/'); ?>bxslider/jquery.bxslider.js"></script>
+            <table width="100%" border="0" cellspacing="1" class="widefat">
+                <tr>
+                    <td style="padding:10px; padding-left:0px; vertical-align:top; width:500px;">
+                        <div class="slider">
+                            <ul class="bxslider">
+                                <li><a href="https://wordpress.org/plugins/wpdiscuz/screenshots/"><img src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/'); ?>files/img/gc/3.png" title="Free Download from Wordpress.org" style="padding:0px 0px 20px 20px;" /></a></li>
+                                <li><a href="https://wordpress.org/plugins/woocommerce-pdf-print/"><img src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/'); ?>files/img/gc/4.png" title="Free Download from Wordpress.org" style="padding:0px 0px 20px 20px;" /></a></li>
+                                <li><a href="https://wordpress.org/plugins/advanced-content-pagination/screenshots/"><img src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/'); ?>files/img/gc/1.png" title="Free Download from Wordpress.org" style="padding:0px 0px 20px 20px;" /></a></li>
+                                <li><a href="https://wordpress.org/plugins/author-and-post-statistic-widgets/"><img src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/'); ?>files/img/gc/2.png" title="Free Download from Wordpress.org" style="padding:0px 0px 20px 20px;" /></a></li>
+                            </ul>
+                        </div>
+                        <div style="clear:both"></div>
+                    </td>
+                    <td valign="top" style="padding:20px;">
+
+                        <table width="100%" border="0" cellspacing="1" class="widefat">
+                            <thead>
+                                <tr>
+                                    <th style="font-size:18px;">&nbsp;Information</th>
+                                </tr>
+                            </thead>
+                            <tr valign="top">
+                                <td style="background:#FFF; text-align:left; font-size:14px;">
+                                    WooDiscuz is alsow available for simple Wordpress Posts and other content types. The WordPress Post Comments plugin name is <a href="https://wordpress.org/plugins/wpdiscuz/" style="color:#07B290; text-decoration:underline;"><strong>wpDiscuz</strong></a>. It's a new interactive, AJAX comment system. WordPress post comments and discussion plugin. Allows your visitors discuss, vote for comments and share.  
+                                </td>
+                            </tr>
+                        </table><br />
+
+                        <table width="100%" border="0" cellspacing="1" class="widefat">
+                            <thead>
+                                <tr>
+                                    <th>&nbsp;Like WooDiscuz plugin?</th>
+                                </tr>
+                            </thead>
+                            <tr valign="top">
+                                <td style="background:#FFF; text-align:left; font-size:12px;">
+                                    <ul>
+                                        <li>If you like WooDiscuz and want to encourage us to develop and maintain it,why not do any or all of the following:</li>
+                                        <li>- Link to it so other folks can find out about it.</li>
+                                        <li>- Give it a good rating on <a href="https://wordpress.org/plugins/woodiscuz-woocommerce-comments/" target="_blank">WordPress.org.</a></li>
+                                        <li>- We spend as much of my spare time as possible working on WooDiscuz and any donation is appreciated. Donations play a crucial role in supporting Free and Open Source Software projects. 
+                                        <div style="width:200px; float:right;">
+                                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="JD86QPWM6QUXW"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>
+                                                </div>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+            <script>
+                $('.bxslider').bxSlider({
+                    mode: 'fade',
+                    captions: false,
+                    auto: true
+                });
+            </script>
+            <br />
+            
             <form action="<?php echo admin_url(); ?>admin.php?page=woodiscuz_options_page&updated=true" method="post" name="woodiscuz_options_page" class="wpc-main-settings-form wpc-form">
                 <?php
                 if (function_exists('wp_nonce_field')) {

@@ -1,19 +1,12 @@
 === WooDiscuz - WooCommerce Comments ===
 
 Contributors: gVectors Team
-
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JD86QPWM6QUXW
-
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support
-
 Requires at least: 3.0
-
 Tested up to: 4.0.1
-
-Stable tag: 1.1.1
-
+Stable tag: 1.1.2
 License: GPLv2 or later
-
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WooCommerce comments and discussion Tab. Allows your customers discuss about your products, vote for comments and share. 
@@ -125,6 +118,13 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+
+= 1.1.2 =
+* Added : Option to set comment text font size
+* Added : Option to set form background color
+* Added : Better responsively on mobile devices
+* Added : better CAPTCHA image with colors and lines
+* Fixed Bug: Undefined loader spinner image source.
 
 = 1.1.1 =
 * Fixed Bug : Layout and Style Issues

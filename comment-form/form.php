@@ -5,7 +5,7 @@
     validator.message['email'] = '<?php echo $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_error_email_text']; ?>';
 
     jQuery(document).ready(function ($) {
-        $(document).delegate('.wpc-toggle', 'click', function() {
+        $(document).delegate('.wpc-toggle', 'click', function () {
             var toggleID = $(this).attr('id');
             var uniqueID = toggleID.substring(toggleID.lastIndexOf('-') + 1);
             $('#wpc-comm-' + uniqueID + ' .wpc-reply').slideToggle(500, function () {
@@ -73,15 +73,15 @@ $unique_id = $post->ID . '_' . 0;
                         <div class="wpc-field-submit"><input type="button" name="submit" value="<?php echo $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_submit_text']; ?>" id="wpc_comm-<?php echo $unique_id; ?>" class="wpc_comm_submit button alt"/></div>
                         <div style="clear:both"></div>
                     </div>
-                </div>           
-                <input type="hidden" name="wpc_home_url" value="<?php echo plugins_url(); ?>" id="wpc_home_url" />
-                <input type="hidden" name="wpc_plugin_dir_url" value="<?php echo WPC::$PLUGIN_DIRECTORY; ?>" id="wpc_plugin_dir_url" />
+                </div>                           
                 <input type="hidden" name="wpc_comment_post_ID" value="<?php echo $post->ID; ?>" id="wpc_comment_post_ID-<?php echo $unique_id; ?>" />
                 <input type="hidden" name="wpc_comment_parent"  value="0" id="wpc_comment_parent-<?php echo $unique_id; ?>" />
             </form>
         <?php } else { ?>
             <p class="wpc-must-login"><?php echo $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_you_must_be_text']; ?> <a href="<?php echo wp_login_url(); ?>"><?php echo $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_logged_in_text']; ?></a> <?php echo $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_to_post_comment_text']; ?></p>
         <?php } ?>
+        <input type="hidden" name="wpc_home_url" value="<?php echo plugins_url(); ?>" id="wpc_home_url" />
+        <input type="hidden" name="wpc_plugin_dir_url" value="<?php echo WPC::$PLUGIN_DIRECTORY; ?>" id="wpc_plugin_dir_url" />
     </div>
     <hr/>
 
@@ -97,10 +97,11 @@ $unique_id = $post->ID . '_' . 0;
             <input type="hidden" name="wpc_parent_comments_count" id="wpc_parent_comments_count" value="<?php echo $wpc_parent_comments_count; ?>" />
         </div>
     <?php } ?>
-    
+
     <div style="clear:both"></div>
-    <div class="by-woodiscuz"><span id="awoodiscuz" onclick='javascript:document.getElementById("bywoodiscuz").style.display = "inline";document.getElementById("awoodiscuz").style.display = "none";'><img src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/icon_info.png'); ?>" align="absmiddle" class="woodimg"/></span>&nbsp;<a href="http://woodiscuz.com/" id="bywoodiscuz" title="WooDIscuz - Interactive Comment System for eCommerce Platforms">WooDiscuz</a></div>
-    
+    <div class="by-woodiscuz"><span id="awoodiscuz" onclick='javascript:document.getElementById("bywoodiscuz").style.display = "inline";
+            document.getElementById("awoodiscuz").style.display = "none";'><img src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/icon_info.png'); ?>" align="absmiddle" class="woodimg"/></span>&nbsp;<a href="http://woodiscuz.com/" id="bywoodiscuz" title="WooDIscuz - Interactive Comment System for eCommerce Platforms">WooDiscuz</a></div>
+
     <div id="wpc_openModalFormAction" class="modalDialog">
         <div id="wpc_response_info" class="wpc_modal">
             <div id="wpc_response_info_box">

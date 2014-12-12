@@ -135,6 +135,22 @@ class WPC_Options_Serialize {
      */
     public $wpc_request_for_comment;
 
+    /**
+     * Type - Select
+     * Available Values - 12px-16px
+     * Description - Comment Text Size
+     * Default Value - 14px
+     */
+    public $wpc_comment_text_size;
+
+    /**
+     * Type - Input
+     * Available Values - color codes
+     * Description - Form Background Color
+     * Default Value - #F9F9F9
+     */
+    public $wpc_form_bg_color;
+
     /*
      * Type - Input
      * Available Values - color codes
@@ -194,6 +210,10 @@ class WPC_Options_Serialize {
         $this->wpc_notify_moderator = $options['wpc_notify_moderator'];
         $this->wpc_notify_comment_author = $options['wpc_notify_comment_author'];
         $this->wpc_request_for_comment = $options['wpc_request_for_comment'];
+        
+        $this->wpc_comment_text_size = $options['wpc_comment_text_size'];
+        $this->wpc_form_bg_color = $options['wpc_form_bg_color'];
+        
         $this->wpc_comment_bg_color = $options['wpc_comment_bg_color'];
         $this->wpc_reply_bg_color = $options['wpc_reply_bg_color'];
         $this->wpc_comment_text_color = $options['wpc_comment_text_color'];
@@ -225,9 +245,9 @@ class WPC_Options_Serialize {
             'wpc_user_title_customer_text' => 'Customer',
             'wpc_user_title_support_text' => 'Support',
             'wpc_email_subject' => 'New Comment',
-            'wpc_email_message' => 'New comment on the product discussion section you\'ve been interested in',            
+            'wpc_email_message' => 'New comment on the product discussion section you\'ve been interested in',
             'wpc_request_reply_subject' => 'Leave a Reply',
-            'wpc_request_reply_message' => 'Please, leave a reply on',            
+            'wpc_request_reply_message' => 'Please, leave a reply on',
             'wpc_error_empty_text' => 'please fill out this field to comment',
             'wpc_error_email_text' => 'email address is invalid',
             'wpc_year_text' => array('datetime' => array('year', 1)),
@@ -272,7 +292,9 @@ class WPC_Options_Serialize {
             'wpc_comment_count' => $this->wpc_comment_count,
             'wpc_notify_moderator' => $this->wpc_notify_moderator,
             'wpc_notify_comment_author' => $this->wpc_notify_comment_author,
-            'wpc_request_for_comment' => $this->wpc_request_for_comment,
+            'wpc_request_for_comment' => $this->wpc_request_for_comment,            
+            'wpc_comment_text_size' => $this->wpc_comment_text_size,
+            'wpc_form_bg_color' => $this->wpc_form_bg_color,            
             'wpc_comment_bg_color' => $this->wpc_comment_bg_color,
             'wpc_reply_bg_color' => $this->wpc_reply_bg_color,
             'wpc_comment_text_color' => $this->wpc_comment_text_color
@@ -302,7 +324,9 @@ class WPC_Options_Serialize {
             'wpc_comment_count' => '5',
             'wpc_notify_moderator' => '1',
             'wpc_notify_comment_author' => '1',
-            'wpc_request_for_comment' => '0',
+            'wpc_request_for_comment' => '0',            
+            'wpc_comment_text_size' => '14px',
+            'wpc_form_bg_color' => '#f9f9f9',            
             'wpc_comment_bg_color' => '#fefefe',
             'wpc_reply_bg_color' => '#f8f8f8',
             'wpc_comment_text_color' => '#555'
