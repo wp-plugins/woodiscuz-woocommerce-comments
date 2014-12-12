@@ -218,7 +218,7 @@ class WPC {
         wp_register_style('validator-style', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/css/fv.css'));
         wp_enqueue_style('validator-style');
 
-        wp_enqueue_script('wpc-ajax-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), '1.1.1', false);
+        wp_enqueue_script('wpc-ajax-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), '1.1.2', false);
         wp_localize_script('wpc-ajax-js', 'wpc_ajax_obj', array('url' => admin_url('admin-ajax.php')));
 
         wp_enqueue_script('wpc-cookie-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
