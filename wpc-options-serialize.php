@@ -87,6 +87,15 @@ class WPC_Options_Serialize {
      */
     public $wpc_reply_button_customers_show_hide;
 
+
+    /*
+     * Type - Checkbox
+     * Available Values - Checked/Unchecked
+     * Description - Show Reply button only for product author
+     * Default Value - Unchecked
+     */
+    public $wpc_reply_button_only_author_show;
+
     /*
      * Type - Checkbox
      * Available Values - Checked/Unchecked
@@ -107,9 +116,17 @@ class WPC_Options_Serialize {
      * Type - Input
      * Available Values - Integer
      * Description - Comment count per click
-     * Default Value - 10
+     * Default Value - 5
      */
     public $wpc_comment_count;
+
+    /**
+     * Type - Radio Button
+     * Available Values - Top / Bottom
+     * Description - Comment list order
+     * Default Value - Top
+     */
+    public $wpc_comment_list_order;
 
     /*
      * Type - Checkbox
@@ -125,7 +142,7 @@ class WPC_Options_Serialize {
      * Description - Notify comment author on new reply
      * Default Value - Checked
      */
-    public $wpc_notify_comment_author;
+    public $wpc_notify_comment_author;    
 
     /*
      * Type - Checkbox
@@ -204,16 +221,18 @@ class WPC_Options_Serialize {
         $this->wpc_held_comment_to_moderate = $options['wpc_held_comment_to_moderate'];
         $this->wpc_reply_button_guests_show_hide = $options['wpc_reply_button_guests_show_hide'];
         $this->wpc_reply_button_customers_show_hide = $options['wpc_reply_button_customers_show_hide'];
+        $this->wpc_reply_button_only_author_show = $options['wpc_reply_button_only_author_show'];
         $this->wpc_author_titles_show_hide = $options['wpc_author_titles_show_hide'];
         $this->wpc_usergroups_for_support_title = $options['wpc_usergroups_for_support_title'];
         $this->wpc_comment_count = $options['wpc_comment_count'];
+        $this->wpc_comment_list_order = $options['wpc_comment_list_order'];
         $this->wpc_notify_moderator = $options['wpc_notify_moderator'];
         $this->wpc_notify_comment_author = $options['wpc_notify_comment_author'];
         $this->wpc_request_for_comment = $options['wpc_request_for_comment'];
-        
+
         $this->wpc_comment_text_size = $options['wpc_comment_text_size'];
         $this->wpc_form_bg_color = $options['wpc_form_bg_color'];
-        
+
         $this->wpc_comment_bg_color = $options['wpc_comment_bg_color'];
         $this->wpc_reply_bg_color = $options['wpc_reply_bg_color'];
         $this->wpc_comment_text_color = $options['wpc_comment_text_color'];
@@ -287,14 +306,16 @@ class WPC_Options_Serialize {
             'wpc_held_comment_to_moderate' => $this->wpc_held_comment_to_moderate,
             'wpc_reply_button_guests_show_hide' => $this->wpc_reply_button_guests_show_hide,
             'wpc_reply_button_customers_show_hide' => $this->wpc_reply_button_customers_show_hide,
+            'wpc_reply_button_only_author_show' => $this->wpc_reply_button_only_author_show,
             'wpc_author_titles_show_hide' => $this->wpc_author_titles_show_hide,
             'wpc_usergroups_for_support_title' => $this->wpc_usergroups_for_support_title,
             'wpc_comment_count' => $this->wpc_comment_count,
+            'wpc_comment_list_order' => $this->wpc_comment_list_order,
             'wpc_notify_moderator' => $this->wpc_notify_moderator,
             'wpc_notify_comment_author' => $this->wpc_notify_comment_author,
-            'wpc_request_for_comment' => $this->wpc_request_for_comment,            
+            'wpc_request_for_comment' => $this->wpc_request_for_comment,
             'wpc_comment_text_size' => $this->wpc_comment_text_size,
-            'wpc_form_bg_color' => $this->wpc_form_bg_color,            
+            'wpc_form_bg_color' => $this->wpc_form_bg_color,
             'wpc_comment_bg_color' => $this->wpc_comment_bg_color,
             'wpc_reply_bg_color' => $this->wpc_reply_bg_color,
             'wpc_comment_text_color' => $this->wpc_comment_text_color
@@ -319,14 +340,16 @@ class WPC_Options_Serialize {
             'wpc_held_comment_to_moderate' => '0',
             'wpc_reply_button_guests_show_hide' => '0',
             'wpc_reply_button_customers_show_hide' => '0',
+            'wpc_reply_button_only_author_show' => '0',
             'wpc_author_titles_show_hide' => '0',
             'wpc_usergroups_for_support_title' => $this->wpc_usergroups_for_support_title,
             'wpc_comment_count' => '5',
+            'wpc_comment_list_order' => 'desc',
             'wpc_notify_moderator' => '1',
             'wpc_notify_comment_author' => '1',
-            'wpc_request_for_comment' => '0',            
+            'wpc_request_for_comment' => '0',
             'wpc_comment_text_size' => '14px',
-            'wpc_form_bg_color' => '#f9f9f9',            
+            'wpc_form_bg_color' => '#f9f9f9',
             'wpc_comment_bg_color' => '#fefefe',
             'wpc_reply_bg_color' => '#f8f8f8',
             'wpc_comment_text_color' => '#555'

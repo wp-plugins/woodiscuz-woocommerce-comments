@@ -117,6 +117,17 @@
     </td>
 </tr>
 
+<tr valign="top" class="wpc-row-light">
+    <th scope="row">
+        <?php _e('Show Reply button only for product author and users which has topics', 'woodiscuz'); ?> 
+    </th>
+    <td colspan="3">                                
+        <label for="wpc_reply_button_only_author_show">
+            <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_reply_button_only_author_show == 1) ?> value="<?php echo $this->wpc_options_serialized->wpc_reply_button_only_author_show; ?>" name="wpc_reply_button_only_author_show" id="wpc_reply_button_only_author_show" />
+        </label>
+    </td>
+</tr>
+
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
         <?php _e('Hide Author Titles', 'woodiscuz'); ?>
@@ -160,9 +171,28 @@
     </td>
 </tr>
 
+
+<tr valign="top">
+    <th scope="row">
+        <?php _e('Show the latest comments on', 'woodiscuz'); ?>
+    </th>
+    <td colspan="3">
+        <fieldset class="wpc_comment_list_order">
+            <label title="<?php _e('the top of the list', 'woodiscuz') ?>">
+                <input type="radio" value="desc" <?php checked('desc' == $this->wpc_options_serialized->wpc_comment_list_order); ?> name="wpc_comment_list_order" id="wpc_comment_list_order" /> 
+                <span><?php _e('top of the threads', 'woodiscuz') ?></span>
+            </label> &nbsp;<br/>
+            <label title="<?php _e('bottom of the threads', 'woodiscuz') ?>">
+                <input type="radio" value="asc" <?php checked('asc' == $this->wpc_options_serialized->wpc_comment_list_order); ?> name="wpc_comment_list_order" id="wpc_comment_list_order" /> 
+                <span><?php _e('the bottom of the list', 'woodiscuz') ?></span>
+            </label><br>                                    
+        </fieldset>
+    </td>
+</tr>
+
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Notify moderator on new comment', 'woodiscuz'); ?> 
+        <?php _e('Notify post author on new comment', 'woodiscuz'); ?> 
     </th>
     <td colspan="3">                                
         <label for="wpc_notify_moderator">

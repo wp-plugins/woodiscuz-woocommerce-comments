@@ -46,10 +46,12 @@ class WPC_Options {
             $this->wpc_options_serialized->wpc_user_must_be_registered = isset($_POST['wpc_user_must_be_registered']) ? $_POST['wpc_user_must_be_registered'] : 0;
             $this->wpc_options_serialized->wpc_held_comment_to_moderate = isset($_POST['wpc_held_comment_to_moderate']) ? $_POST['wpc_held_comment_to_moderate'] : 0;
             $this->wpc_options_serialized->wpc_reply_button_guests_show_hide = isset($_POST['wpc_reply_button_guests_show_hide']) ? $_POST['wpc_reply_button_guests_show_hide'] : 0;
-            $this->wpc_options_serialized->wpc_reply_button_customers_show_hide = isset($_POST['wpc_reply_button_customers_show_hide']) ? $_POST['wpc_reply_button_customers_show_hide'] : 0;
+            $this->wpc_options_serialized->wpc_reply_button_customers_show_hide = isset($_POST['wpc_reply_button_customers_show_hide']) ? $_POST['wpc_reply_button_customers_show_hide'] : 0;            
+            $this->wpc_options_serialized->wpc_reply_button_only_author_show = isset($_POST['wpc_reply_button_only_author_show']) ? $_POST['wpc_reply_button_only_author_show'] : 0;            
             $this->wpc_options_serialized->wpc_author_titles_show_hide = isset($_POST['wpc_author_titles_show_hide']) ? $_POST['wpc_author_titles_show_hide'] : 0;
             $this->wpc_options_serialized->wpc_usergroups_for_support_title = isset($_POST['wpc_usergroups_for_support_title']) ? $_POST['wpc_usergroups_for_support_title'] : array('administrator');
             $this->wpc_options_serialized->wpc_comment_count = isset($_POST['wpc_comment_count']) ? $_POST['wpc_comment_count'] : 10;
+            $this->wpc_options_serialized->wpc_comment_list_order = isset($_POST['wpc_comment_list_order']) ? $_POST['wpc_comment_list_order'] : 'desc';
             $this->wpc_options_serialized->wpc_notify_moderator = isset($_POST['wpc_notify_moderator']) ? $_POST['wpc_notify_moderator'] : 0;
             $this->wpc_options_serialized->wpc_notify_comment_author = isset($_POST['wpc_notify_comment_author']) ? $_POST['wpc_notify_comment_author'] : 0;
             $this->wpc_options_serialized->wpc_request_for_comment = isset($_POST['wpc_request_for_comment']) ? $_POST['wpc_request_for_comment'] : 0;

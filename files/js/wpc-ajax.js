@@ -89,7 +89,9 @@ jQuery(document).ready(function ($) {
                 if (obj.code === -1) {
                     $('#wpc_response_info').html(obj.message);
                 } else if (obj.code === -2) {
-                    $('#wpc_response_info').html(obj.message);
+                    var html = "<a href='#close' title='Close' class='close'>&nbsp;</a>";
+                    $('#wpc_response_info').html(html + obj.message);
+                    $('#wpc_openModalFormAction .close').css('display', 'block');
                     $('#wpc_comment-' + uniqueID).val('');
                     $('.wpc_comm_form textarea').css('height', '46px');
 
@@ -103,6 +105,9 @@ jQuery(document).ready(function ($) {
                     }
                     $.cookie('wpc_author_name', wpc_name);
                     $.cookie('wpc_author_email', wpc_email);
+
+                    $.cookie('wpc_poster', wpc_email, 60 * 60 * 24 * 365 * 10);
+
                 } else {
                     $('#wpc_comment-' + uniqueID).val('');
                     $('.wpc_comm_form textarea').css('height', '46px');
@@ -127,6 +132,9 @@ jQuery(document).ready(function ($) {
                         $('#woopcomm .wpc_name').val(wpc_name);
                         $('#woopcomm .wpc_email').val(wpc_email);
                     }
+                    
+                    $.cookie('wpc_poster', wpc_email, 60 * 60 * 24 * 365 * 10);
+                    
                     if (wpc_new_comment_id !== -1) {
                         emailNotification(wpc_comment_parent, wpc_new_comment_id);
                     }

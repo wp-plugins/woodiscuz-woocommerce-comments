@@ -63,6 +63,14 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    $('#wpc_reply_button_only_author_show').change(function () {
+        if ($(this).is(':checked')) {
+            $(this).val('1');
+        } else {
+            $(this).val('0');
+        }
+    });
+
     $('#wpc_author_titles_show_hide').change(function () {
         if ($(this).is(':checked')) {
             $(this).val('1');

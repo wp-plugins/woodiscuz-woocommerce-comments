@@ -4,8 +4,8 @@ Contributors: gVectors Team
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JD86QPWM6QUXW
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support
 Requires at least: 3.0
-Tested up to: 4.0.1
-Stable tag: 1.1.2
+Tested up to: 4.1
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,9 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+= 1.1.3 =
+* Added : Option to show reply button only for product author and users which has topics
+* Fixed Bug: "Close" dialog image does not showing
 
 = 1.1.2 =
 * Added : Option to set comment text font size

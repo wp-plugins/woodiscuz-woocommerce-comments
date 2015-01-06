@@ -77,9 +77,26 @@ class WPC_Comment_Template_Builder {
             $output .= '<span id="wpc-up-' . $unique_id . '" class="wpc-vote-link wpc-up ' . $vote_cls . '" title="' . $vote_up . '">&and;</span> | <span id="wpc-down-' . $unique_id . '" class="wpc-vote-link wpc-down ' . $vote_cls . '" title="' . $vote_down . '">&or;</span> &nbsp;&nbsp;';
         }
 
-        if ($this->is_guest_can_reply() && $this->is_customer_can_reply()) {
-            $output .= '&nbsp;&nbsp;<span id="wpc-comm-reply-' . $unique_id . '" class="wpc-reply-link" title="' . $wpc_reply_text . '">' . $wpc_reply_text . '</span> &nbsp;&nbsp;';
+        $wpc_post = get_post($comment->comment_post_ID);
+        $wpc_poster = isset($_COOKIE['wpc_poster']) ? $_COOKIE['wpc_poster'] : '';
+        $wpc_is_logged_in_poster = (get_current_user_id() == WPC_Helper::get_comment_root($comment->comment_ID)->user_id) ? 1 : 0;
+        $wpc_is_poster_guest = ($wpc_poster == WPC_Helper::get_comment_root($comment->comment_ID)->comment_author_email) ? 1 : 0;
+        $wpc_is_author = (get_current_user_id() == $wpc_post->post_author) ? 1 : 0;
+
+        if ($this->wpc_options->wpc_options_serialized->wpc_reply_button_only_author_show && ($wpc_is_author || $wpc_is_logged_in_poster || $wpc_is_poster_guest)) {
+            if ($this->is_guest_can_reply() && !get_current_user_id()) {
+                $output .= '&nbsp;&nbsp;<span id="wpc-comm-reply-' . $unique_id . '" class="wpc-reply-link" title="' . $wpc_reply_text . '">' . $wpc_reply_text . '</span> &nbsp;&nbsp;';
+            } elseif ($this->is_customer_can_reply()) {
+                $output .= '&nbsp;&nbsp;<span id="wpc-comm-reply-' . $unique_id . '" class="wpc-reply-link" title="' . $wpc_reply_text . '">' . $wpc_reply_text . '</span> &nbsp;&nbsp;';
+            }
+        } else {
+            if ($this->is_guest_can_reply() && !$this->wpc_options->wpc_options_serialized->wpc_reply_button_only_author_show && !get_current_user_id()) {
+                $output .= '&nbsp;&nbsp;<span id="wpc-comm-reply-' . $unique_id . '" class="wpc-reply-link" title="' . $wpc_reply_text . '">' . $wpc_reply_text . '</span> &nbsp;&nbsp;';
+            } elseif ($this->is_customer_can_reply() && !$this->wpc_options->wpc_options_serialized->wpc_reply_button_only_author_show) {
+                $output .= '&nbsp;&nbsp;<span id="wpc-comm-reply-' . $unique_id . '" class="wpc-reply-link" title="' . $wpc_reply_text . '">' . $wpc_reply_text . '</span> &nbsp;&nbsp;';
+            }
         }
+
 
 
         if (!$this->wpc_options->wpc_options_serialized->wpc_share_buttons_show_hide) {
@@ -110,7 +127,7 @@ class WPC_Comment_Template_Builder {
         $output .= '</div>';
         $output .= '<div style="clear:both"></div>';
 
-        if ($this->is_guest_can_reply() && $this->is_customer_can_reply()) {
+        if ($this->is_form_visible()) {
             $output .= '<div class="wpc-form-wrapper wpc-secondary-forms-wrapper" id="wpc-secondary-forms-wrapper-' . $unique_id . '">';
             $output .= '<form action="" method="post" id="wpc_comm_form-' . $unique_id . '" class="wpc_comm_form">';
             $output .= '<div class="wpc-field-comment"><div style="width:60px; float:left; position:absolute;">' . $this->wpc_helper->get_comment_author_avatar() . '</div><div style="margin-left:65px;" class="item"><textarea id="wpc_comment-' . $unique_id . '" class="wpc_comment" name="wpc_comment" required="required" placeholder="' . $textarea_placeholder . '"></textarea></div><div style="clear:both"></div></div>';
@@ -146,25 +163,28 @@ class WPC_Comment_Template_Builder {
     }
 
     public function is_guest_can_reply() {
-        $user_can_comment = TRUE;
+        $user_can_comment = true;
         if (!$this->wpc_options->wpc_options_serialized->wpc_user_must_be_registered) {
             if ($this->wpc_options->wpc_options_serialized->wpc_reply_button_guests_show_hide) {
                 if (!is_user_logged_in()) {
-                    $user_can_comment = FALSE;
+                    $user_can_comment = false;
                 }
             }
         } else {
             if (!is_user_logged_in()) {
-                $user_can_comment = FALSE;
+                $user_can_comment = false;
             }
         }
         return $user_can_comment;
     }
 
     public function is_customer_can_reply() {
-        $user_can_comment = TRUE;
-        if ($this->wpc_options->wpc_options_serialized->wpc_reply_button_customers_show_hide) {
+        $user_can_comment = true;
+        if ($this->wpc_options->wpc_options_serialized->wpc_reply_button_customers_show_hide && is_user_logged_in()) {
             $user_can_comment = $this->is_user_can_reply_by_role('customer');
+        }
+        if (!is_user_logged_in()) {
+            $user_can_comment = false;
         }
         return $user_can_comment;
     }
@@ -173,15 +193,30 @@ class WPC_Comment_Template_Builder {
      * User can comment in product  by role
      */
     private function is_user_can_reply_by_role($role) {
-        $user_can_comment = FALSE;
+        $user_can_comment = false;
         if (is_user_logged_in()) {
             $current_user = wp_get_current_user();
             $roles = $current_user->roles;
             if (!in_array($role, $roles)) {
-                $user_can_comment = TRUE;
+                $user_can_comment = true;
             }
         }
         return $user_can_comment;
+    }
+
+    /**
+     * Check if form visible or not
+     */
+    private function is_form_visible() {
+        global $current_user;
+        get_currentuserinfo();
+        $is_from_visible = false;
+        if ($current_user->ID) {
+            $is_from_visible = $this->is_customer_can_reply();
+        } else {
+            $is_from_visible = $this->is_guest_can_reply();
+        }
+        return $is_from_visible;
     }
 
     /**

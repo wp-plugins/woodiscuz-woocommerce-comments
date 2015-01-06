@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 1.1.2
+  Version: 1.1.3
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -218,7 +218,7 @@ class WPC {
         wp_register_style('validator-style', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/css/fv.css'));
         wp_enqueue_style('validator-style');
 
-        wp_enqueue_script('wpc-ajax-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), '1.1.2', false);
+        wp_enqueue_script('wpc-ajax-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), '1.1.3', false);
         wp_localize_script('wpc-ajax-js', 'wpc_ajax_obj', array('url' => admin_url('admin-ajax.php')));
 
         wp_enqueue_script('wpc-cookie-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
@@ -455,22 +455,23 @@ class WPC {
             $post_id = $post->ID;
         }
         $wpc_comment_count = $this->wpc_options->wpc_options_serialized->wpc_comment_count;
+        $wpc_comment_list_order = $this->wpc_options->wpc_options_serialized->wpc_comment_list_order ? $this->wpc_options->wpc_options_serialized->wpc_comment_list_order : 'desc';
 
         $comm_list_args = array(
             'callback' => array(&$this, 'wpc_comment_callback'),
             'style' => 'div',
             'type' => 'woodiscuz',
             'per_page' => $comments_offset * $wpc_comment_count,
-            'max_depth' => 2
+            'max_depth' => 2,
+            'reverse_top_level' => false,
         );
 
-        $comments = get_comments(
-                array(
-                    'type' => 'woodiscuz',
-                    'post_id' => $post_id,
-                    'status' => 'approve'
-                )
-        );
+        $comments = get_comments(array(
+            'type' => 'woodiscuz',
+            'post_id' => $post_id,
+            'status' => 'approve',
+            'order' => $wpc_comment_list_order
+        ));
 
         $wpc_comments = $this->init_wpc_comments($comments);
         wp_list_comments($comm_list_args, $wpc_comments);

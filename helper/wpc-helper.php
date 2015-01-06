@@ -115,7 +115,7 @@ class WPC_Helper {
             }
         }
         return $comm_auth_avatar;
-    }    
+    }
 
     public static function init_phrase_key_value($phrase) {
         $phrase_value = stripslashes($phrase['phrase_value']);
@@ -168,6 +168,20 @@ class WPC_Helper {
                 return $this->wpc_options_serialize->wpc_phrases['wpc_minute_text']['datetime'][0];
             case 'second':
                 return $this->wpc_options_serialize->wpc_phrases['wpc_second_text']['datetime'][0];
+        }
+    }
+
+    public static function get_comment_root($comment_id) {
+        $comment = get_comment($comment_id);
+
+        if (!$comment) {
+            return -1;
+        }
+
+        if ($comment->comment_parent) {
+            return WPC_Helper::get_comment_root($comment->comment_parent);
+        } else {
+            return $comment;
         }
     }
 
