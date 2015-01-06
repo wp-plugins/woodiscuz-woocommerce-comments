@@ -119,7 +119,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Show Reply button only for product author and users which has topics', 'woodiscuz'); ?> 
+        <?php _e("Keep comment threads private for product author and thread starter. <br/> This option will not allow users reply in other users' threads, however those will be readable for all.", 'woodiscuz'); ?> 
     </th>
     <td colspan="3">                                
         <label for="wpc_reply_button_only_author_show">
