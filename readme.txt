@@ -119,9 +119,10 @@ There will not be any additional changes on Wordpress update. If you update your
 
 == Changelog ==
 = 1.1.3 =
-* Added : Option to show reply button only for product author and users which has topics
+* Added : Option to keep comment threads private for product author and thread starter. This option will not allow users reply in other users' threads, however those will be readable for all.
 * Added : Option to sort comments by comment date with ascending or descending order
-* Fixed Bug: "Close" dialog image does not showing
+* Fixed Bug: Problem with popup window [close] button.
+
 
 = 1.1.2 =
 * Added : Option to set comment text font size
