@@ -120,6 +120,7 @@ There will not be any additional changes on Wordpress update. If you update your
 == Changelog ==
 = 1.1.3 =
 * Added : Option to show reply button only for product author and users which has topics
+* Added : Option to sort comments by comment date with ascending or descending order
 * Fixed Bug: "Close" dialog image does not showing
 
 = 1.1.2 =
