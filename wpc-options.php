@@ -207,6 +207,9 @@ class WPC_Options {
             $this->wpc_options_serialized->wpc_phrases['wpc_user_title_support_text'] = $_POST['wpc_user_title_support_text'];
             $this->wpc_options_serialized->wpc_phrases['wpc_email_subject'] = $_POST['wpc_email_subject'];
             $this->wpc_options_serialized->wpc_phrases['wpc_email_message'] = $_POST['wpc_email_message'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_request_reply_subject'] = $_POST['wpc_request_reply_subject'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_request_reply_message'] = $_POST['wpc_request_reply_message'];
+            
             $this->wpc_options_serialized->wpc_phrases['wpc_error_empty_text'] = $_POST['wpc_error_empty_text'];
             $this->wpc_options_serialized->wpc_phrases['wpc_error_email_text'] = $_POST['wpc_error_email_text'];
 

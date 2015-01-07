@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,9 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+= 1.1.4 =
+* Fixed Bug: Problem with phrase saving.
+
 = 1.1.3 =
 * Added : Option to keep comment threads private for product author and thread starter. This option will not allow users reply in other users' threads, however those will be readable for all.
 * Added : Option to sort comments by comment date with ascending or descending order
