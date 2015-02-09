@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 1.1.4
+  Version: 1.1.5
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -29,9 +29,11 @@ class WPC {
     public $commetns_count = 0;
     private $comment_count_text;
     public static $PLUGIN_DIRECTORY;
+    public static $TEXT_DOMAIN = 'woodiscuz';
+    public $woodiscuz_version = 'woodiscuz_version';
 
     function __construct() {
-        global $post;
+        add_action('plugins_loaded', array(&$this, 'load_woodiscuz_text_domain'));
         add_action('init', array(&$this, 'init_plugin_dir_name'), 1);
 
         $this->wpc_options = new WPC_Options();
@@ -39,10 +41,11 @@ class WPC {
 
         register_activation_hook(__FILE__, array($this, 'db_operations'));
 
-
         $this->wpc_helper = new WPC_Helper($this->wpc_options->wpc_options_serialized);
         $this->wpc_css = new WPC_CSS($this->wpc_options);
         $this->comment_tpl_builder = new WPC_Comment_Template_Builder($this->wpc_helper, $this->wpc_db_helper, $this->wpc_options);
+
+        add_action('admin_init', array(&$this, 'wpc_plugin_new_version'), 2);
 
         add_action('init', array(&$this, 'register_session'), 2);
         add_action('admin_notices', array($this, 'woop_disscus_requirements'));
@@ -78,15 +81,21 @@ class WPC {
         add_filter('preprocess_comment', array(&$this, 'wpc_new_comment'));
 
         add_filter('woocommerce_product_reviews_tab_title', array(&$this, 'wpc_rename_reviews_tab'));
+        $plugin = plugin_basename(__FILE__);
+        add_filter("plugin_action_links_$plugin", array(&$this, 'wpc_add_plugin_settings_link'));
 
         if ($this->wpc_options->wpc_options_serialized->wpc_request_for_comment) {
             add_action('woocommerce_order_status_completed', array(&$this, 'email_request_for_comment'));
         }
     }
+    
+    public function load_woodiscuz_text_domain() {
+        load_plugin_textdomain('woodiscuz', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+    }
 
     public function woop_disscus_requirements() {
         if (!is_plugin_active('woocommerce/woocommerce.php')) {
-            echo "<div class='error'><p>" . __('WooDiscuz requires Woocommerce to be installed!', 'woodiscuz') . "</p></div>";
+            echo "<div class='error'><p>" . __('WooDiscuz requires Woocommerce to be installed!', WPC::$TEXT_DOMAIN) . "</p></div>";
         }
         if ($this->wpc_db_helper->get_empty_comment_types()) {
             echo "<div class='update-nag woocommerce-message wc-connect' style='width:95%'>
@@ -102,6 +111,36 @@ class WPC {
      */
     public function db_operations() {
         $this->wpc_db_helper->create_tables();
+    }
+
+    public function wpc_plugin_new_version() {
+        $wpc_version = (!get_option($this->woodiscuz_version) ) ? '1.0.0' : get_option($this->woodiscuz_version);
+        $wpc_plugin_data = get_plugin_data(__FILE__);
+        if (version_compare($wpc_plugin_data['Version'], $wpc_version, '>')) {
+            $this->wpc_add_new_options();
+            $this->wpc_add_new_phrases();
+            if ($wpc_version === '1.0.0') {
+                add_option($this->woodiscuz_version, $wpc_plugin_data['Version']);
+            } else {
+                update_option($this->woodiscuz_version, $wpc_plugin_data['Version']);
+            }
+        }
+    }
+
+    private function wpc_add_new_options() {
+        $this->wpc_options->wpc_options_serialized->init_options(get_option($this->wpc_options->wpc_options_serialized->wpc_options_slug));
+        $wpc_new_options = $this->wpc_options->wpc_options_serialized->to_array();
+        update_option($this->wpc_options->wpc_options_serialized->wpc_options_slug, serialize($wpc_new_options));
+    }
+
+    private function wpc_add_new_phrases() {
+        if ($this->wpc_db_helper->is_phrase_exists('wpc_discuss_tab')) {
+            $wpc_saved_phrases = $this->wpc_db_helper->get_phrases();
+            $this->wpc_options->wpc_options_serialized->init_phrases();
+            $wpc_phrases = $this->wpc_options->wpc_options_serialized->wpc_phrases;
+            $wpc_new_phrases = array_merge($wpc_phrases, $wpc_saved_phrases);
+            $this->wpc_db_helper->update_phrases($wpc_new_phrases);
+        }
     }
 
     /*
@@ -156,8 +195,8 @@ class WPC {
 
     public function add_comment_type($args) {
         $this->comment_types = $args;
-        $args['woodiscuz'] = __('WooDiscuz', 'woodiscuz');
-        $args['woodiscuz_review'] = __('Woocomerce Review', 'woodiscuz');
+        $args['woodiscuz'] = __('WooDiscuz', WPC::$TEXT_DOMAIN);
+        $args['woodiscuz_review'] = __('Woocomerce Review', WPC::$TEXT_DOMAIN);
         return $args;
     }
 
@@ -218,7 +257,7 @@ class WPC {
         wp_register_style('validator-style', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/css/fv.css'));
         wp_enqueue_style('validator-style');
 
-        wp_enqueue_script('wpc-ajax-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), '1.1.4', false);
+        wp_enqueue_script('wpc-ajax-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), get_option($this->woodiscuz_version), false);
         wp_localize_script('wpc-ajax-js', 'wpc_ajax_obj', array('url' => admin_url('admin-ajax.php')));
 
         wp_enqueue_script('wpc-cookie-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
@@ -297,7 +336,18 @@ class WPC {
             $user_url = '';
         }
 
-        $comment = preg_replace('|[\n]+|', '<br />', wp_kses($comment, 'default'));
+        $comment = wp_kses($comment, array(
+            'br' => array(),
+            'a' => array('href' => array(), 'title' => array()),
+            'i' => array(),
+            'b' => array(),
+            'u' => array(),
+            'strong' => array(),
+            'p' => array(),
+            'img' => array('src' => array(), 'width' => array(), 'height' => array(), 'alt' => array())
+        ));
+
+        $comment = $this->wpc_helper->make_clickable($comment);
 
         if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $comment && filter_var($comment_post_ID)) {
 
@@ -456,13 +506,14 @@ class WPC {
         }
         $wpc_comment_count = $this->wpc_options->wpc_options_serialized->wpc_comment_count;
         $wpc_comment_list_order = $this->wpc_options->wpc_options_serialized->wpc_comment_list_order ? $this->wpc_options->wpc_options_serialized->wpc_comment_list_order : 'desc';
+        $wpc_comments_max_depth = $this->wpc_options->wpc_options_serialized->wpc_comments_max_depth ? $this->wpc_options->wpc_options_serialized->wpc_comments_max_depth : 3;
 
         $comm_list_args = array(
             'callback' => array(&$this, 'wpc_comment_callback'),
             'style' => 'div',
             'type' => 'woodiscuz',
             'per_page' => $comments_offset * $wpc_comment_count,
-            'max_depth' => 2,
+            'max_depth' => $wpc_comments_max_depth,
             'reverse_top_level' => false,
         );
 
@@ -547,6 +598,14 @@ class WPC {
     public function woodiscuz_review_avatar($args) {
         $args[] = 'woodiscuz_review';
         return $args;
+    }
+
+// Add settings link on plugin page
+    public function wpc_add_plugin_settings_link($links) {
+        $settings_link = '<a href="' . admin_url() . 'admin.php?page=woodiscuz_options_page">' . __('Settings', 'default') . '</a> |';
+        $settings_link .= '<a href="' . admin_url() . 'admin.php?page=woodiscuz_phrases_page">' . __('Phrases', 'default') . '</a>';
+        array_unshift($links, $settings_link);
+        return $links;
     }
 
 }

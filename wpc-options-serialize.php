@@ -121,6 +121,22 @@ class WPC_Options_Serialize {
     public $wpc_comment_count;
 
     /**
+     * Type - Dropdown menu
+     * Available Values - 1, 2, 3, 4, 5
+     * Description - Define comments depth value in comment list
+     * Default Value - 3
+     */
+    public $wpc_comments_max_depth;
+
+    /**
+     * Type - Checkbox
+     * Available Values - Checked/Unchecked
+     * Description - Comment date format - 20-01-2015
+     * Default Value - Checked
+     */
+    public $wpc_simple_comment_date;
+
+    /**
      * Type - Radio Button
      * Available Values - Top / Bottom
      * Description - Comment list order
@@ -142,7 +158,7 @@ class WPC_Options_Serialize {
      * Description - Notify comment author on new reply
      * Default Value - Checked
      */
-    public $wpc_notify_comment_author;    
+    public $wpc_notify_comment_author;
 
     /*
      * Type - Checkbox
@@ -225,6 +241,8 @@ class WPC_Options_Serialize {
         $this->wpc_author_titles_show_hide = $options['wpc_author_titles_show_hide'];
         $this->wpc_usergroups_for_support_title = $options['wpc_usergroups_for_support_title'];
         $this->wpc_comment_count = $options['wpc_comment_count'];
+        $this->wpc_comments_max_depth = isset($options['wpc_comments_max_depth']) ? $options['wpc_comments_max_depth'] : 3;
+        $this->wpc_simple_comment_date = isset($options['wpc_simple_comment_date']) ? $options['wpc_simple_comment_date'] : 0;
         $this->wpc_comment_list_order = $options['wpc_comment_list_order'];
         $this->wpc_notify_moderator = $options['wpc_notify_moderator'];
         $this->wpc_notify_comment_author = $options['wpc_notify_comment_author'];
@@ -278,6 +296,7 @@ class WPC_Options_Serialize {
             'wpc_plural_text' => 's',
             'wpc_right_now_text' => 'right now',
             'wpc_ago_text' => 'ago',
+            'wpc_posted_today_text' => 'today',
             'wpc_you_must_be_text' => 'You must be',
             'wpc_logged_in_text' => 'logged in',
             'wpc_to_post_comment_text' => 'to post a comment.',
@@ -310,6 +329,8 @@ class WPC_Options_Serialize {
             'wpc_author_titles_show_hide' => $this->wpc_author_titles_show_hide,
             'wpc_usergroups_for_support_title' => $this->wpc_usergroups_for_support_title,
             'wpc_comment_count' => $this->wpc_comment_count,
+            'wpc_comments_max_depth' => $this->wpc_comments_max_depth,
+            'wpc_simple_comment_date' => $this->wpc_simple_comment_date,
             'wpc_comment_list_order' => $this->wpc_comment_list_order,
             'wpc_notify_moderator' => $this->wpc_notify_moderator,
             'wpc_notify_comment_author' => $this->wpc_notify_comment_author,
@@ -344,6 +365,8 @@ class WPC_Options_Serialize {
             'wpc_author_titles_show_hide' => '0',
             'wpc_usergroups_for_support_title' => $this->wpc_usergroups_for_support_title,
             'wpc_comment_count' => '5',
+            'wpc_comments_max_depth' => '3',
+            'wpc_simple_comment_date' => '0',
             'wpc_comment_list_order' => 'desc',
             'wpc_notify_moderator' => '1',
             'wpc_notify_comment_author' => '1',

@@ -54,7 +54,8 @@ class WPC_CSS {
             #woopcomm .wpc-must-login{  margin:0px; font-size:14px; line-height:16px; padding:10px }
             #woopcomm hr{ background-color: rgba(0, 0, 0, 0.1); border: 0 none; height: 1px; margin:10px 0px; }
             #woopcomm .avatar{ border: 1px solid rgba(0, 0, 0, 0.1); padding: 2px; margin:0px auto; float:none; display:inline; }
-            #woopcomm .wpc-comment-text{ font-size:<?php echo isset($this->wpc_options->wpc_options_serialized->wpc_comment_text_size) ? $this->wpc_options->wpc_options_serialized->wpc_comment_text_size : '14px'; ?>;; text-align:left; color:<?php echo $this->wpc_options->wpc_options_serialized->wpc_comment_text_color; ?>; line-height:20px; }
+            #woopcomm .wpc-comment-text{ font-size:<?php echo isset($this->wpc_options->wpc_options_serialized->wpc_comment_text_size) ? $this->wpc_options->wpc_options_serialized->wpc_comment_text_size : '14px'; ?>;; text-align:left; color:<?php echo $this->wpc_options->wpc_options_serialized->wpc_comment_text_color; ?>; line-height:20px; }           
+            #woopcomm .wpc-comment-text img {max-width: 90%; height: auto;}            
             #woopcomm .wpc-comment-header{ margin-bottom:7px; font-family:Lato,sans-serif; }
             #woopcomm .wpc-comment-author{ color:<?php echo $this->primary_color; ?>; font-size:16px; width:40%; float:left; white-space:nowrap; }
 			#woopcomm .wpc-comment-author a{ color:<?php echo $this->primary_color; ?>; font-size:16px; white-space:nowrap; text-decoration:none; }

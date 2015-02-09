@@ -1,7 +1,7 @@
-<th colspan="3" scope="col" style="margin-bottom: 5px;"><h2><?php _e('Front-end phrases', 'woodiscuz'); ?></h2></th>
+<th colspan="3" scope="col" style="margin-bottom: 5px;"><h2><?php _e('Front-end phrases', WPC::$TEXT_DOMAIN); ?></h2></th>
 <tr valign="top">
     <th scope="row">
-        <?php _e('Disscussion Tab Title', 'woodiscuz'); ?>
+        <?php _e('Disscussion Tab Title', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_discuss_tab">
@@ -12,7 +12,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Header', 'woodiscuz'); ?>
+        <?php _e('Header', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_header_text">
@@ -23,7 +23,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Comment Field Start', 'woodiscuz'); ?>
+        <?php _e('Comment Field Start', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_comment_start_text">
@@ -34,7 +34,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Comment Field Join', 'woodiscuz'); ?>
+        <?php _e('Comment Field Join', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_comment_join_text">
@@ -45,7 +45,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Email Field', 'woodiscuz'); ?>
+        <?php _e('Email Field', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_email_text">
@@ -56,7 +56,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Name Field', 'woodiscuz'); ?>
+        <?php _e('Name Field', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_name_text">
@@ -67,7 +67,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('CAPTCHA Field', 'woodiscuz'); ?>
+        <?php _e('CAPTCHA Field', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_captcha_text">
@@ -78,7 +78,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Submit Button', 'woodiscuz'); ?>
+        <?php _e('Submit Button', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_submit_text">
@@ -89,7 +89,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Load More Button', 'woodiscuz'); ?>
+        <?php _e('Load More Button', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_load_more_submit_text">
@@ -100,7 +100,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Reply', 'woodiscuz'); ?>
+        <?php _e('Reply', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_reply_text">
@@ -111,7 +111,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Share', 'woodiscuz'); ?>
+        <?php _e('Share', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_share_text">
@@ -122,7 +122,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Share On Facebook', 'woodiscuz'); ?>
+        <?php _e('Share On Facebook', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_share_facebook">
@@ -133,7 +133,7 @@
 
 <tr valign="top" >
     <th scope="row">
-        <?php _e('Share On Twitter', 'woodiscuz'); ?>
+        <?php _e('Share On Twitter', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_share_twitter">
@@ -144,7 +144,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Share On Google', 'woodiscuz'); ?>
+        <?php _e('Share On Google', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_share_google">
@@ -155,7 +155,7 @@
 
 <tr valign="top" >
     <th scope="row">
-        <?php _e('Hide Replies', 'woodiscuz'); ?>
+        <?php _e('Hide Replies', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_hide_replies_text">
@@ -166,7 +166,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Show Replies', 'woodiscuz'); ?>
+        <?php _e('Show Replies', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_show_replies_text">
@@ -177,7 +177,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Title For Guests', 'woodiscuz'); ?>
+        <?php _e('Title For Guests', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_user_title_guest_text">
@@ -188,7 +188,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Title For Members', 'woodiscuz'); ?>
+        <?php _e('Title For Members', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_user_title_member_text">
@@ -199,7 +199,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Title For Customers', 'woodiscuz'); ?>
+        <?php _e('Title For Customers', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_user_title_customer_text">
@@ -210,7 +210,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Title For Support', 'woodiscuz'); ?>
+        <?php _e('Title For Support', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_user_title_support_text">
@@ -221,7 +221,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Email Subject', 'woodiscuz'); ?>
+        <?php _e('Email Subject', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_email_subject">
@@ -232,7 +232,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Email Message', 'woodiscuz'); ?>
+        <?php _e('Email Message', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_email_message">
@@ -247,7 +247,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Request for reply on purchased product ["subject"]', 'woodiscuz'); ?>
+        <?php _e('Request for reply on purchased product ["subject"]', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_request_reply_subject">
@@ -258,7 +258,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Request for reply on purchased product ["message"]', 'woodiscuz'); ?>
+        <?php _e('Request for reply on purchased product ["message"]', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_request_reply_message">
@@ -272,7 +272,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Error message for empty field', 'woodiscuz'); ?>
+        <?php _e('Error message for empty field', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_error_empty_text">
@@ -283,7 +283,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Error message for invalid email field', 'woodiscuz'); ?>
+        <?php _e('Error message for invalid email field', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_error_email_text">
@@ -294,7 +294,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Year', 'woodiscuz'); ?>
+        <?php _e('Year', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_year_text">
@@ -305,7 +305,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Month', 'woodiscuz'); ?>
+        <?php _e('Month', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_month_text">
@@ -316,7 +316,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Day', 'woodiscuz'); ?>
+        <?php _e('Day', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_day_text">
@@ -327,7 +327,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Hour', 'woodiscuz'); ?>
+        <?php _e('Hour', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_hour_text">
@@ -338,7 +338,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Minute', 'woodiscuz'); ?>
+        <?php _e('Minute', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_minute_text">
@@ -349,7 +349,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Second', 'woodiscuz'); ?>
+        <?php _e('Second', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_second_text">
@@ -360,7 +360,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Plural (Ex. user -> user + s)', 'woodiscuz'); ?>
+        <?php _e('Plural (Ex. user -> user + s)', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_plural_text">
@@ -371,7 +371,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Commented "right now" text', 'woodiscuz'); ?>
+        <?php _e('Commented "right now" text', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_right_now_text">
@@ -382,7 +382,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Ago text', 'woodiscuz'); ?>
+        <?php _e('Ago text', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_ago_text">
@@ -393,7 +393,18 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('You must be', 'woodiscuz'); ?>
+        <?php _e('"Today" text', WPC::$TEXT_DOMAIN); ?>
+    </th>
+    <td colspan="3">                                
+        <label for="wpc_posted_today_text">
+            <input type="text" value="<?php echo $this->wpc_options_serialized->wpc_phrases['wpc_posted_today_text']; ?>" name="wpc_posted_today_text" id="wpc_posted_today_text" />
+        </label>
+    </td>
+</tr>
+
+<tr valign="top">
+    <th scope="row">
+        <?php _e('You must be', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_you_must_be_text">
@@ -404,7 +415,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Logged In', 'woodiscuz'); ?>
+        <?php _e('Logged In', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_logged_in_text">
@@ -415,7 +426,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('To post a comment', 'woodiscuz'); ?>
+        <?php _e('To post a comment', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_to_post_comment_text">
@@ -426,7 +437,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Vote Up', 'woodiscuz'); ?>
+        <?php _e('Vote Up', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_vote_up">
@@ -437,7 +448,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Vote Down', 'woodiscuz'); ?>
+        <?php _e('Vote Down', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_vote_down">
@@ -448,7 +459,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Vote Counted', 'woodiscuz'); ?>
+        <?php _e('Vote Counted', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_vote_counted">
@@ -459,7 +470,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('You can vote only 1 time', 'woodiscuz'); ?>
+        <?php _e('You can vote only 1 time', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_vote_only_one_time">
@@ -470,7 +481,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Voting Error', 'woodiscuz'); ?>
+        <?php _e('Voting Error', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_voting_error">
@@ -481,7 +492,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Login To Vote', 'woodiscuz'); ?>
+        <?php _e('Login To Vote', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_login_to_vote">
@@ -492,7 +503,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('You Cannot Vote On Your Comment', 'woodiscuz'); ?>
+        <?php _e('You Cannot Vote On Your Comment', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_self_vote">
@@ -503,7 +514,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Invalid Captcha Code', 'woodiscuz'); ?>
+        <?php _e('Invalid Captcha Code', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_invalid_captcha">
@@ -514,7 +525,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Some of field value is invalid', 'woodiscuz'); ?>
+        <?php _e('Some of field value is invalid', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_invalid_field">
@@ -525,7 +536,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Comment waiting moderation', 'woodiscuz'); ?>
+        <?php _e('Comment waiting moderation', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_held_for_moderate">

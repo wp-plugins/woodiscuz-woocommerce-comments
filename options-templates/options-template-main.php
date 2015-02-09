@@ -1,8 +1,8 @@
-<th colspan="3" scope="col" style="margin-bottom: 5px;"><h2><?php _e('General settings', 'woodiscuz'); ?></h2></th>
+<th colspan="3" scope="col" style="margin-bottom: 5px;"><h2><?php _e('General settings', WPC::$TEXT_DOMAIN); ?></h2></th>
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('Turn Off WooDiscuz Tab', 'woodiscuz'); ?>
+        <?php _e('Turn Off WooDiscuz Tab', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_tab_on_off">
@@ -13,7 +13,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Set the Discussion Tab as the first opened Tab', 'woodiscuz'); ?>
+        <?php _e('Set the Discussion Tab as the first opened Tab', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_comment_tab_priority">
@@ -24,7 +24,7 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('Hide WooCommerce Review Tab', 'woodiscuz'); ?>
+        <?php _e('Hide WooCommerce Review Tab', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_tab_show_hide">
@@ -35,7 +35,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Hide Voting buttons', 'woodiscuz'); ?>
+        <?php _e('Hide Voting buttons', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_voting_buttons_show_hide">
@@ -46,7 +46,7 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('Hide Share Button', 'woodiscuz'); ?>
+        <?php _e('Hide Share Button', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_share_buttons_show_hide">
@@ -57,7 +57,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Hide the  CAPTCHA field', 'woodiscuz'); ?>
+        <?php _e('Hide the  CAPTCHA field', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_captcha_show_hide">
@@ -68,7 +68,7 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('User Must be registered to comment', 'woodiscuz'); ?>
+        <?php _e('User Must be registered to comment', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">
         <fieldset>
@@ -86,7 +86,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Held new comments for moderation', 'woodiscuz'); ?>
+        <?php _e('Held new comments for moderation', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_held_comment_to_moderate">
@@ -97,7 +97,7 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('Hide Reply button for Guests', 'woodiscuz'); ?>
+        <?php _e('Hide Reply button for Guests', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_reply_button_guests_show_hide">
@@ -108,7 +108,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Hide Reply button for Customers', 'woodiscuz'); ?> 
+        <?php _e('Hide Reply button for Customers', WPC::$TEXT_DOMAIN); ?> 
     </th>
     <td colspan="3">                                
         <label for="wpc_reply_button_customers_show_hide">
@@ -119,7 +119,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e("Keep comment threads private for product author and thread starter. <br/> This option will not allow users reply in other users' threads, however those will be readable for all.", 'woodiscuz'); ?> 
+        <?php _e("Keep comment threads private for product author and thread starter. <br/> This option will not allow users reply in other users' threads, however those will be readable for all.", WPC::$TEXT_DOMAIN); ?> 
     </th>
     <td colspan="3">                                
         <label for="wpc_reply_button_only_author_show">
@@ -130,7 +130,7 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('Hide Author Titles', 'woodiscuz'); ?>
+        <?php _e('Hide Author Titles', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">                                
         <label for="wpc_author_titles_show_hide">
@@ -141,7 +141,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Usergroups for User Title "Support"', 'woodiscuz'); ?> 
+        <?php _e('Usergroups for User Title "Support"', WPC::$TEXT_DOMAIN); ?> 
     </th>
     <td colspan="3">
         <?php
@@ -162,7 +162,7 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('Comment Threads Per Page', 'woodiscuz'); ?> 
+        <?php _e('Comment Threads Per Page', WPC::$TEXT_DOMAIN); ?> 
     </th>
     <td colspan="3">
         <label for="wpc_comment_count">
@@ -174,17 +174,46 @@
 
 <tr valign="top">
     <th scope="row">
-        <?php _e('Show the latest comments on', 'woodiscuz'); ?>
+        <label for="wpc_comments_max_depth"><?php _e('Comments max depth', WPC::$TEXT_DOMAIN); ?></label>
+    </th>
+    <td colspan="3">
+        <select id="wpc_comments_max_depth" name="wpc_comments_max_depth">
+            <?php $wpc_comments_max_depth = isset($this->wpc_options_serialized->wpc_comments_max_depth) ? $this->wpc_options_serialized->wpc_comments_max_depth : 3; ?>
+            <option value="1" <?php selected($wpc_comments_max_depth, '1'); ?>>1 <?php _e('Level', WPC::$TEXT_DOMAIN); ?></option>
+            <option value="2" <?php selected($wpc_comments_max_depth, '2'); ?>>2 <?php _e('Levels', WPC::$TEXT_DOMAIN); ?></option>
+            <option value="3" <?php selected($wpc_comments_max_depth, '3'); ?>>3 <?php _e('Levels', WPC::$TEXT_DOMAIN); ?></option>
+            <option value="4" <?php selected($wpc_comments_max_depth, '4'); ?>>4 <?php _e('Levels', WPC::$TEXT_DOMAIN); ?></option>
+            <option value="5" <?php selected($wpc_comments_max_depth, '5'); ?>>5 <?php _e('Levels', WPC::$TEXT_DOMAIN); ?></option>            
+        </select>
+    </td>
+</tr>
+
+<tr valign="top" class="wpc-row-dark">
+    <th scope="row">
+        <?php _e('Use WordPress Date/Time format', WPC::$TEXT_DOMAIN); ?> 
+<p style="font-size:13px; color:#999999; width:80%; padding-left:0px; margin-left:0px;"><?php _e('WooDiscuz shows Human Readable date format. If you check this option it\'ll show the date/time format set in WordPress General Settings.', WPC::$TEXT_DOMAIN); ?></p>
+</th>
+<td colspan="3">
+    <label for="wpc_simple_comment_date">
+        <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_simple_comment_date == 1) ?> value="1" name="wpc_simple_comment_date" id="wpc_simple_comment_date" />
+    </label><br/>
+</td>
+</tr>
+
+
+<tr valign="top">
+    <th scope="row">
+        <?php _e('Show the latest comments on', WPC::$TEXT_DOMAIN); ?>
     </th>
     <td colspan="3">
         <fieldset class="wpc_comment_list_order">
-            <label title="<?php _e('the top of the list', 'woodiscuz') ?>">
+            <label title="<?php _e('the top of the list', WPC::$TEXT_DOMAIN) ?>">
                 <input type="radio" value="desc" <?php checked('desc' == $this->wpc_options_serialized->wpc_comment_list_order); ?> name="wpc_comment_list_order" id="wpc_comment_list_order" /> 
-                <span><?php _e('top of the threads', 'woodiscuz') ?></span>
+                <span><?php _e('top of the threads', WPC::$TEXT_DOMAIN) ?></span>
             </label> &nbsp;<br/>
-            <label title="<?php _e('bottom of the threads', 'woodiscuz') ?>">
+            <label title="<?php _e('bottom of the threads', WPC::$TEXT_DOMAIN) ?>">
                 <input type="radio" value="asc" <?php checked('asc' == $this->wpc_options_serialized->wpc_comment_list_order); ?> name="wpc_comment_list_order" id="wpc_comment_list_order" /> 
-                <span><?php _e('the bottom of the list', 'woodiscuz') ?></span>
+                <span><?php _e('the bottom of the list', WPC::$TEXT_DOMAIN) ?></span>
             </label><br>                                    
         </fieldset>
     </td>
@@ -192,7 +221,7 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <?php _e('Notify post author on new comment', 'woodiscuz'); ?> 
+        <?php _e('Notify post author on new comment', WPC::$TEXT_DOMAIN); ?> 
     </th>
     <td colspan="3">                                
         <label for="wpc_notify_moderator">
@@ -203,7 +232,7 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('Notify comment author on new reply', 'woodiscuz'); ?> 
+        <?php _e('Notify comment author on new reply', WPC::$TEXT_DOMAIN); ?> 
     </th>
     <td colspan="3">                                
         <label for="wpc_notify_comment_author">
@@ -214,7 +243,7 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <?php _e('Requesting for comment on purchased product', 'woodiscuz'); ?> 
+        <?php _e('Requesting for comment on purchased product', WPC::$TEXT_DOMAIN); ?> 
     </th>
     <td colspan="3">                                
         <label for="wpc_request_for_comment">
@@ -226,7 +255,7 @@
 
 <tr valign="top">
     <th scope="row">
-        <label for="wpc_comment_text_size"><?php _e('Comment text size in pixels', 'woodiscuz'); ?></label>
+        <label for="wpc_comment_text_size"><?php _e('Comment text size in pixels', WPC::$TEXT_DOMAIN); ?></label>
     </th>
     <td colspan="3">
         <select id="wpc_comment_text_size" name="wpc_comment_text_size">
@@ -243,10 +272,10 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <label for="wpc_form_bg_color"><?php _e('Comment Form Background Color', 'woodiscuz'); ?></label>
+        <label for="wpc_form_bg_color"><?php _e('Comment Form Background Color', WPC::$TEXT_DOMAIN); ?></label>
     </th>
     <td width="1">
-        <input type="text" class="regular-text" value="<?php echo isset($this->wpc_options_serialized->wpc_form_bg_color) ? $this->wpc_options_serialized->wpc_form_bg_color : '#f9f9f9'; ?>" id="wpc_form_bg_color" name="wpc_form_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
+        <input type="text" class="regular-text" value="<?php echo isset($this->wpc_options_serialized->wpc_form_bg_color) ? $this->wpc_options_serialized->wpc_form_bg_color : '#f9f9f9'; ?>" id="wpc_form_bg_color" name="wpc_form_bg_color" placeholder="<?php _e('Example: #00ff00', WPC::$TEXT_DOMAIN); ?>"/>
     </td>
 
     <td class="picker_img_cell">
@@ -267,10 +296,10 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <label for="wpc_comment_bg_color"><?php _e('Comment Background Color', 'woodiscuz'); ?></label>
+        <label for="wpc_comment_bg_color"><?php _e('Comment Background Color', WPC::$TEXT_DOMAIN); ?></label>
     </th>
     <td width="1">
-        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_bg_color; ?>" id="wpc_comment_bg_color" name="wpc_comment_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
+        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_bg_color; ?>" id="wpc_comment_bg_color" name="wpc_comment_bg_color" placeholder="<?php _e('Example: #00ff00', WPC::$TEXT_DOMAIN); ?>"/>
     </td>
 
     <td class="picker_img_cell">
@@ -291,10 +320,10 @@
 
 <tr valign="top" class="wpc-row-dark">
     <th scope="row">
-        <label for="wpc_reply_bg_color"><?php _e('Reply Background Color', 'woodiscuz'); ?></label>
+        <label for="wpc_reply_bg_color"><?php _e('Reply Background Color', WPC::$TEXT_DOMAIN); ?></label>
     </th>
     <td>
-        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_reply_bg_color; ?>" id="wpc_reply_bg_color" name="wpc_reply_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
+        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_reply_bg_color; ?>" id="wpc_reply_bg_color" name="wpc_reply_bg_color" placeholder="<?php _e('Example: #00ff00', WPC::$TEXT_DOMAIN); ?>"/>
     </td>
 
     <td class="picker_img_cell">
@@ -315,10 +344,10 @@
 
 <tr valign="top" class="wpc-row-light">
     <th scope="row">
-        <label for="wpc_comment_text_color"><?php _e('Comment Text Color', 'woodiscuz'); ?></label>
+        <label for="wpc_comment_text_color"><?php _e('Comment Text Color', WPC::$TEXT_DOMAIN); ?></label>
     </th>
     <td>
-        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_text_color; ?>" id="wpc_comment_text_color" name="wpc_comment_text_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
+        <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_text_color; ?>" id="wpc_comment_text_color" name="wpc_comment_text_color" placeholder="<?php _e('Example: #00ff00', WPC::$TEXT_DOMAIN); ?>"/>
     </td>
 
     <td class="picker_img_cell">

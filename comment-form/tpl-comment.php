@@ -20,11 +20,39 @@ class WPC_Comment_Template_Builder {
     public function get_comment_template($comment) {
         $comment_content = $comment->comment_content;
 
+        $comment_content = wp_kses($comment_content, array(
+            'br' => array(),
+            'a' => array('href' => array(), 'title' => array()),
+            'i' => array(),
+            'b' => array(),
+            'u' => array(),
+            'strong' => array(),
+            'p' => array(),
+            'img' => array('src' => array(), 'width' => array(), 'height' => array(), 'alt' => array())
+        ));
+
+        $comment_content = $this->wpc_helper->make_clickable($comment_content);
+        $comment_content = apply_filters('comment_text', $comment_content);
+
         $vote_cls = '';
         $vote_title_text = '';
         $user = get_user_by('id', $comment->user_id);
         $author_title = $this->get_author_title_by_user($user);
-        $posted_date = $this->wpc_helper->dateDiff(time(), strtotime($comment->comment_date_gmt), 2);
+        
+        $serial = $this->wpc_options->wpc_options_serialized;
+
+        if ($this->wpc_options->wpc_options_serialized->wpc_simple_comment_date) {
+            $date_format = get_option('date_format');
+            $time_format = get_option('time_format');
+            if (WPC_Helper::isPostedToday(strtotime($comment->comment_date_gmt))) {
+                $posted_date = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_posted_today_text'] . ' ' . mysql2date($time_format, $comment->comment_date_gmt);
+            } else {
+                $posted_date = get_comment_date($date_format, $comment->comment_ID);
+            }
+        } else {
+            $posted_date = $this->wpc_helper->dateDiff(time(), strtotime($comment->comment_date_gmt), 2);
+        }
+        
 
         $wpc_reply_text = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_reply_text'];
         $wpc_share_text = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_share_text'];
@@ -112,7 +140,7 @@ class WPC_Comment_Template_Builder {
         }
 
         if (current_user_can('edit_comment', $comment->comment_ID)) {
-            $output .= '-&nbsp;&nbsp; <a href="' . get_edit_comment_link($comment->comment_ID) . '">' . __('Edit', 'woodiscuz') . '</a>';
+            $output .= '-&nbsp;&nbsp; <a href="' . get_edit_comment_link($comment->comment_ID) . '">' . __('Edit', WPC::$TEXT_DOMAIN) . '</a>';
         }
 
 
@@ -248,11 +276,17 @@ class WPC_Comment_Template_Builder {
      */
     private function get_profile_url($user) {
         $wpc_profile_url = '';
-        if ($user && class_exists('BuddyPress')) {
-            $wpc_profile_url = bp_core_get_user_domain($user->ID);
-        } else if (class_exists('XooUserUltra')) {
-            global $xoouserultra;
-            $wpc_profile_url = $xoouserultra->userpanel->get_user_profile_permalink($user->ID);
+        if ($user) {
+            if (class_exists('BuddyPress')) {
+                $wpc_profile_url = bp_core_get_user_domain($user->ID);
+            } else if (class_exists('XooUserUltra')) {
+                global $xoouserultra;
+                $wpc_profile_url = $xoouserultra->userpanel->get_user_profile_permalink($user->ID);
+            } else {
+                if (count_user_posts($user->ID)) {
+                    $wpc_profile_url = get_author_posts_url($user->ID);
+                }
+            }
         }
         return $wpc_profile_url;
     }

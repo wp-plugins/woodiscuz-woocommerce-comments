@@ -30,7 +30,7 @@ class WPC_Options {
         if (isset($_POST['wpc_submit_options'])) {
 
             if (function_exists('current_user_can') && !current_user_can('manage_options')) {
-                die(_e('Hacker?', 'woodiscuz'));
+                die(_e('Hacker?', WPC::$TEXT_DOMAIN));
             }
 
             if (function_exists('check_admin_referer')) {
@@ -50,7 +50,9 @@ class WPC_Options {
             $this->wpc_options_serialized->wpc_reply_button_only_author_show = isset($_POST['wpc_reply_button_only_author_show']) ? $_POST['wpc_reply_button_only_author_show'] : 0;            
             $this->wpc_options_serialized->wpc_author_titles_show_hide = isset($_POST['wpc_author_titles_show_hide']) ? $_POST['wpc_author_titles_show_hide'] : 0;
             $this->wpc_options_serialized->wpc_usergroups_for_support_title = isset($_POST['wpc_usergroups_for_support_title']) ? $_POST['wpc_usergroups_for_support_title'] : array('administrator');
-            $this->wpc_options_serialized->wpc_comment_count = isset($_POST['wpc_comment_count']) ? $_POST['wpc_comment_count'] : 10;
+            $this->wpc_options_serialized->wpc_comment_count = isset($_POST['wpc_comment_count']) ? $_POST['wpc_comment_count'] : 10;            
+            $this->wpc_options_serialized->wpc_comments_max_depth = isset($_POST['wpc_comments_max_depth']) ? $_POST['wpc_comments_max_depth'] : 3;
+            $this->wpc_options_serialized->wpc_simple_comment_date = isset($_POST['wpc_simple_comment_date']) ? $_POST['wpc_simple_comment_date'] : 0;            
             $this->wpc_options_serialized->wpc_comment_list_order = isset($_POST['wpc_comment_list_order']) ? $_POST['wpc_comment_list_order'] : 'desc';
             $this->wpc_options_serialized->wpc_notify_moderator = isset($_POST['wpc_notify_moderator']) ? $_POST['wpc_notify_moderator'] : 0;
             $this->wpc_options_serialized->wpc_notify_comment_author = isset($_POST['wpc_notify_comment_author']) ? $_POST['wpc_notify_comment_author'] : 0;
@@ -70,7 +72,7 @@ class WPC_Options {
             <div style="float:left; width:50px; height:55px; margin:10px 10px 20px 0px;">
                 <img src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/plugin-icon-48.png'); ?>" style="height:43px;"/>
             </div>
-            <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz General Settings', 'woodiscuz'); ?></h2>
+            <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz General Settings', WPC::$TEXT_DOMAIN); ?></h2>
             <br style="clear:both" />
             
             <link rel="stylesheet" href="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/'); ?>bxslider/jquery.bxslider.css" type="text/css" />
@@ -159,7 +161,7 @@ class WPC_Options {
                         <tr valign="top" >
                             <td colspan="4">
                                 <p class="submit">
-                                    <input type="submit" class="button button-primary" name="wpc_submit_options" value="<?php _e('Save Changes', 'woodiscuz'); ?>" />
+                                    <input type="submit" class="button button-primary" name="wpc_submit_options" value="<?php _e('Save Changes', WPC::$TEXT_DOMAIN); ?>" />
                                 </p>
                             </td>
                         </tr>
@@ -178,7 +180,7 @@ class WPC_Options {
         if (isset($_POST['wpc_submit_phrases'])) {
 
             if (function_exists('current_user_can') && !current_user_can('manage_options')) {
-                die(_e('Hacker?', 'woodiscuz'));
+                die(_e('Hacker?', WPC::$TEXT_DOMAIN));
             }
 
             if (function_exists('check_admin_referer')) {
@@ -222,6 +224,7 @@ class WPC_Options {
             $this->wpc_options_serialized->wpc_phrases['wpc_plural_text'] = $_POST['wpc_plural_text'];
             $this->wpc_options_serialized->wpc_phrases['wpc_right_now_text'] = $_POST['wpc_right_now_text'];
             $this->wpc_options_serialized->wpc_phrases['wpc_ago_text'] = $_POST['wpc_ago_text'];
+            $this->wpc_options_serialized->wpc_phrases['wpc_posted_today_text'] = $_POST['wpc_posted_today_text'];
 
             $this->wpc_options_serialized->wpc_phrases['wpc_you_must_be_text'] = $_POST['wpc_you_must_be_text'];
             $this->wpc_options_serialized->wpc_phrases['wpc_logged_in_text'] = $_POST['wpc_logged_in_text'];
@@ -248,7 +251,7 @@ class WPC_Options {
             <div style="float:left; width:50px; height:55px; margin:10px 10px 20px 0px;">
                 <img src="<?php echo plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/plugin-icon-48.png'); ?>" style="height:43px;"/>
             </div>
-            <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz Front-end Phrases', 'woodiscuz'); ?></h2>
+            <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz Front-end Phrases', WPC::$TEXT_DOMAIN); ?></h2>
             <br style="clear:both" />
             <form action="<?php echo admin_url(); ?>admin.php?page=woodiscuz_phrases_page&updated=true" method="post" name="woodiscuz_phrases_page" class="wpc-phrases-settings-form wpc-form">
                 <?php
@@ -273,7 +276,7 @@ class WPC_Options {
                         <tr valign="top">
                             <td colspan="4">
                                 <p class="submit">
-                                    <input type="submit" class="button button-primary" name="wpc_submit_phrases" value="<?php _e('Save Changes', 'woodiscuz'); ?>" />
+                                    <input type="submit" class="button button-primary" name="wpc_submit_phrases" value="<?php _e('Save Changes', WPC::$TEXT_DOMAIN); ?>" />
                                 </p>
                             </td>
                         </tr>

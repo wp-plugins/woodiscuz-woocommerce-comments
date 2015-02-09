@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,14 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+= 1.1.5 =
+* Added : Language translation support with .mo and .po files
+* Added : Different comment date formats, reflects WordPress date format settings
+* Added : Ability to insert image in comment content using image source URL
+* Added : URLs to link auto-conversion in comment texts
+* Added : Option to set nested comments maximum depth level
+* Fixed Bug: Problem with large space between the paragraphs
+
 = 1.1.4 =
 * Fixed Bug: Problem with phrase saving.
 
