@@ -600,7 +600,7 @@ class WPC {
         return $args;
     }
 
-// Add settings link on plugin page
+	// Add settings link on plugin page
     public function wpc_add_plugin_settings_link($links) {
         $settings_link = '<a href="' . admin_url() . 'admin.php?page=woodiscuz_options_page">' . __('Settings', 'default') . '</a> |';
         $settings_link .= '<a href="' . admin_url() . 'admin.php?page=woodiscuz_phrases_page">' . __('Phrases', 'default') . '</a>';
