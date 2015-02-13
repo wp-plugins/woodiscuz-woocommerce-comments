@@ -118,6 +118,10 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+= 1.1.6 =
+* Fixed Bug: Adapted with some themes ( Fatal error: Cannot redeclare add_user() )
+* Fixed Bug: Incorrect comment date/time if the default Wordpress date format is on
+
 = 1.1.5 =
 * Added : Language translation support with .mo and .po files
 * Added : Different comment date formats, reflects WordPress date format settings

@@ -1,7 +1,5 @@
 <?php
 
-require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
 class WPC_DB_Helper {
 
     private $db;
@@ -21,6 +19,7 @@ class WPC_DB_Helper {
      * create table in db on activation if not exists
      */
     public function create_tables() {
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         if ($this->db->get_var("SHOW TABLES LIKE '$this->users_voted'") != $this->users_voted) {
             $sql = "CREATE TABLE `" . $this->users_voted . "`(`id` INT(11) NOT NULL AUTO_INCREMENT,`user_id` INT(11) NOT NULL, `comment_id` INT(11) NOT NULL, `vote_type` INT(11) DEFAULT NULL, PRIMARY KEY (`id`), KEY `user_id` (`user_id`), KEY `comment_id` (`comment_id`),  KEY `vote_type` (`vote_type`)) ENGINE=MyISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;";
             dbDelta($sql);
