@@ -190,8 +190,8 @@ class WPC_Options {
                         <tr valign="top">
                             <td colspan="4">                                
                                 <p class="submit">
-                                    <input type="submit" class="button button-primary" name="wpc_submit_options" value="<?php _e('Save Changes', WPC_Core::$TEXT_DOMAIN); ?>" />
-                                    <a style="float: right;" class="button button-secondary" href="<?php echo admin_url(); ?>admin.php?page=woodiscuz_options_page&woodiscuz_reset_options=1"><?php _e('Reset Options', WPC_Core::$TEXT_DOMAIN); ?></a>
+									<a style="float: left;" class="button button-secondary" href="<?php echo admin_url(); ?>admin.php?page=woodiscuz_options_page&woodiscuz_reset_options=1"><?php _e('Reset Options', WPC_Core::$TEXT_DOMAIN); ?></a>
+                                    <input type="submit" style="float:right;" class="button button-primary" name="wpc_submit_options" value="<?php _e('Save Changes', WPC_Core::$TEXT_DOMAIN); ?>" />
                                 </p>
                             </td>
                         </tr>
