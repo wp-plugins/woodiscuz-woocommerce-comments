@@ -7,21 +7,20 @@ input[type=checkbox]{ width:auto; border:none; bottom:-1px; cursor:pointer; marg
 button[type=submit]{ font-size:1.1em; padding:5px 25px; }*/
 
 /* Tooltips helpers */
-.item .tooltip{ float:left; top:2px; left:7px; position:relative; z-index:2; }
-.item .tooltip:hover{ z-index:3; }
-.item .tooltip > span{ display:inline-block; width:15px; height:15px; line-height:15px; font-size:0.9em; font-weight:bold; text-align:center; color:#FFF; cursor:help; background-color:#00AEEF; position:relative; border-radius:10px; }
-.item .tooltip .content{ opacity:0; width:200px; background-color:#333; color:#FFF; font-size:0.9em; position:absolute; top:0; left:20px; padding:8px; border-radius:6px; pointer-events:none; transition:0.2s cubic-bezier(0.1, 0.1, 0.25, 2); -webkit-transition:0.3s cubic-bezier(0.1, 0.2, 0.5, 2.2); -moz-transition:0.3s cubic-bezier(0.1, 0.2, 0.5, 2.2); }
-.item .tooltip p{ padding:0; }
-.item .tooltip.down .content{ left:auto; right:0; top:30px; }
-.item .tooltip:hover .content{ opacity:1; left:36px; }
-.item .tooltip .content b{ height:0; width:0; border-color:#333 #333 transparent transparent; border-style:solid; border-width:9px 7px; position:absolute; left:-14px; top:8px; }
-.item .tooltip.down .content b{ left:auto; right:6px; top:-10px; border-width:5px; border-color:transparent #333 #333 transparent; }
+.woodiscuz-item .tooltip{ float:left; top:2px; left:7px; position:relative; z-index:2; }
+.woodiscuz-item .tooltip:hover{ z-index:3; }
+.woodiscuz-item .tooltip > span{ display:inline-block; width:15px; height:15px; line-height:15px; font-size:0.9em; font-weight:bold; text-align:center; color:#FFF; cursor:help; background-color:#00AEEF; position:relative; border-radius:10px; }
+.woodiscuz-item .tooltip .content{ opacity:0; width:200px; background-color:#333; color:#FFF; font-size:0.9em; position:absolute; top:0; left:20px; padding:8px; border-radius:6px; pointer-events:none; transition:0.2s cubic-bezier(0.1, 0.1, 0.25, 2); -webkit-transition:0.3s cubic-bezier(0.1, 0.2, 0.5, 2.2); -moz-transition:0.3s cubic-bezier(0.1, 0.2, 0.5, 2.2); }
+.woodiscuz-item .tooltip p{ padding:0; }
+.woodiscuz-item .tooltip.down .content{ left:auto; right:0; top:30px; }
+.woodiscuz-item .tooltip:hover .content{ opacity:1; left:36px; }
+.woodiscuz-item .tooltip .content b{ height:0; width:0; border-color:#333 #333 transparent transparent; border-style:solid; border-width:9px 7px; position:absolute; left:-14px; top:8px; }
+.woodiscuz-item .tooltip.down .content b{ left:auto; right:6px; top:-10px; border-width:5px; border-color:transparent #333 #333 transparent; }
 
 /* alerts (when validation fails) */
-.item .alert{ float:left; margin:0px; padding:2px 10px; color:#DD0000; border-radius:3px 4px 4px 3px; background-color:#FFE8E8; white-space:pre; position:relative; left:-15px; opacity:0; z-index:1; transition:0.15s ease-out; }
-.item .alert {max-width: 100%;position: absolute;top: -50%;font-size: 12px;}
-/*.item .alert::after{ content:''; display:block; height:0; width:0; border-color:transparent #CE5454 transparent transparent; border-style:solid; border-width:11px 7px; position:absolute; left:-13px; top:1px; }*/
-.item.bad .alert{ left:0; opacity:1; }
+.woodiscuz-item .alert{float:left;margin:0;padding:2px 10px;color:#d00;border-radius:3px 4px 4px 3px;background-color:#ffe8e8;white-space:pre;position:relative;left:-15px;opacity:0;z-index:1;transition:.15s ease-out}
+.woodiscuz-item .alert{max-width:100%;position:absolute;top:-15px;font-size:12px}
+.woodiscuz-item.bad .alert{left:0;opacity:1;padding:2px 4px;line-height:14px}
 
 
 @keyframes shake{
@@ -38,28 +37,28 @@ button[type=submit]{ font-size:1.1em; padding:5px 25px; }*/
 }
 
 form fieldset{ clear:both; margin:0 0 10px 0; }
-form .item{ padding:5px 0; position:relative; height:2em; font-family: Lato,sans-serif; }
-form .item.items{ height:auto; }
-.item label, .item .label{ float:left; cursor:pointer; }
-.item label span, .item .label{ float:left; width:160px; text-transform:capitalize; line-height:2em; }
-.item input, .item textarea{ float:left; padding:3px 4px; width:210px; -webkit-transition:0.2s; -moz-transition:0.2s; transition:0.2s; }
-.item input[type=checkbox]{ width:auto; }
+form .woodiscuz-item{ padding:5px 0; position:relative; height:2em; font-family: Lato,sans-serif; }
+form .woodiscuz-item.woodiscuz-items{ height:auto; }
+.woodiscuz-item label, .woodiscuz-item .label{ float:left; cursor:pointer; }
+.woodiscuz-item label span, .woodiscuz-item .label{ float:left; width:160px; text-transform:capitalize; line-height:2em; }
+.woodiscuz-item input, .woodiscuz-item textarea{ float:left; padding:3px 4px; width:210px; -webkit-transition:0.2s; -moz-transition:0.2s; transition:0.2s; }
+.woodiscuz-item input[type=checkbox]{ width:auto; }
 
 .label ~ label{ vertical-align:middle; margin:0.3em 1.2em 0 0; } 
 
-.item input.short{ width:90px; }
-.item input:focus:not([type="checkbox"]), .item textarea:focus{ box-shadow:0 0 4px #BCBCBC; border:1px solid #BCBCBC; }
+.woodiscuz-item input.short{ width:90px; }
+.woodiscuz-item input:focus:not([type="checkbox"]), .woodiscuz-item textarea:focus{ box-shadow:0 0 4px #BCBCBC; border:1px solid #BCBCBC; }
 
-.item textarea{  }
-.item select{ float:left; width:220px; padding:2px 0; margin:0; border:1px solid #CCC; text-transform:capitalize; }
-.item select option{ padding:1px; }
+.woodiscuz-item textarea{  }
+.woodiscuz-item select{ float:left; width:220px; padding:2px 0; margin:0; border:1px solid #CCC; text-transform:capitalize; }
+.woodiscuz-item select option{ padding:1px; }
 
-.item > .extra{ float:left; font-size:0.9em; color:#999; line-height:2em; margin-left:13px; }
+.woodiscuz-item > .extra{ float:left; font-size:0.9em; color:#999; line-height:2em; margin-left:13px; }
 
-.item.multi .input{ float:left; }
-.item.multi input{ float:left; margin-right:5px; width:35px; text-align:center; }
-form .item.multi input:nth-last-child(-n+2){ margin:0; }
-.item.items input{ border-top:5px solid #E1E1E1; margin:0 0 0 160px; }
+.woodiscuz-item.multi .input{ float:left; }
+.woodiscuz-item.multi input{ float:left; margin-right:5px; width:35px; text-align:center; }
+form .woodiscuz-item.multi input:nth-last-child(-n+2){ margin:0; }
+.woodiscuz-item.woodiscuz-items input{ border-top:5px solid #E1E1E1; margin:0 0 0 160px; }
 
 .bad input, 
 .bad select, 

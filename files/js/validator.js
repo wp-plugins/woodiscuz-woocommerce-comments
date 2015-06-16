@@ -6,7 +6,7 @@
  MIT-style license.
  */
 
-var validator = (function($) {
+var woodiscuzValidator = (function($) {
     var message, tests, checkField, validate, mark, unmark, field, minmax, defaults,
             validateWords, lengthRange, lengthLimit, pattern, alertTxt, data,
             email_illegalChars = /[\(\)\<\>\,\;\:\\\/\"\[\]]/,
@@ -232,7 +232,7 @@ var validator = (function($) {
 
         // check if not already marked as a 'bad' record and add the 'alert' object.
         // if already is marked as 'bad', then make sure the text is set again because it might change depending on validation
-        var item = field.parents('.item'),
+        var item = field.parents('.woodiscuz-item'),
                 warning;
 
         if (item.hasClass('bad')) {
@@ -258,7 +258,7 @@ var validator = (function($) {
             return false;
         }
 
-        field.parents('.item')
+        field.parents('.woodiscuz-item')
                 .removeClass('bad')
                 .find('.alert').remove();
     };

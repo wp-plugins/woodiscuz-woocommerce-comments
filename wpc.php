@@ -3,22 +3,28 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 1.1.6
+  Version: 2.0.0
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
  */
 
-include_once 'wpc-options.php';
-include_once 'helper/wpc-helper.php';
-include_once 'includes/wpc-db-helper.php';
-include_once 'comment-form/tpl-comment.php';
-include_once 'dto/wpc-comment.php';
-include_once 'wpc-css.php';
+define('WOODISCUZDS', DIRECTORY_SEPARATOR);
 
-class WPC {
+include_once 'options' . WOODISCUZDS . 'wpc-options.php';
+include_once 'options' . WOODISCUZDS . 'wpc-options-serialize.php';
+include_once 'includes' . WOODISCUZDS . 'wpc-helper.php';
+include_once 'includes' . WOODISCUZDS . 'wpc-db-helper.php';
+include_once 'comment-form' . WOODISCUZDS . 'tpl-comment.php';
+include_once 'dto' . WOODISCUZDS . 'wpc-comment.php';
+include_once 'wpc-css.php';
+include_once 'widgets' . WOODISCUZDS . 'widget-woocommerce-reviews.php';
+include_once 'widgets' . WOODISCUZDS . 'widget-woodiscuz-comments.php';
+
+class WPC_Core {
 
     private $wpc_options;
+    private $wpc_options_serialized;
     private $comment_types;
     private $reviews_count;
     private $wpc_db_helper;
@@ -31,23 +37,27 @@ class WPC {
     public static $PLUGIN_DIRECTORY;
     public static $TEXT_DOMAIN = 'woodiscuz';
     public $woodiscuz_version = 'woodiscuz_version';
+    public $wpc_user_agent = '';
 
     function __construct() {
+        $this->wpc_user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
         add_action('plugins_loaded', array(&$this, 'load_woodiscuz_text_domain'));
         add_action('init', array(&$this, 'init_plugin_dir_name'), 1);
 
-        $this->wpc_options = new WPC_Options();
-        $this->wpc_db_helper = $this->wpc_options->wpc_db_helper;
+        $this->wpc_db_helper = new WPC_DB_Helper();
+        $this->wpc_options_serialized = new WPC_Options_Serialize($this->wpc_db_helper);
+        $this->wpc_options = new WPC_Options($this->wpc_options_serialized, $this->wpc_db_helper);
 
         register_activation_hook(__FILE__, array($this, 'db_operations'));
 
-        $this->wpc_helper = new WPC_Helper($this->wpc_options->wpc_options_serialized);
-        $this->wpc_css = new WPC_CSS($this->wpc_options);
-        $this->comment_tpl_builder = new WPC_Comment_Template_Builder($this->wpc_helper, $this->wpc_db_helper, $this->wpc_options);
+        $this->wpc_helper = new WPC_Helper($this->wpc_options_serialized);
+        $this->wpc_css = new WPC_CSS($this->wpc_options_serialized);
+        $this->comment_tpl_builder = new WPC_Comment_Template_Builder($this->wpc_helper, $this->wpc_db_helper, $this->wpc_options_serialized);
 
         add_action('admin_init', array(&$this, 'wpc_plugin_new_version'), 2);
-
-        add_action('init', array(&$this, 'register_session'), 2);
+        if (!$this->wpc_options_serialized->wpc_captcha_show_hide) {
+            add_action('init', array(&$this, 'register_session'), 2);
+        }
         add_action('admin_notices', array($this, 'woop_disscus_requirements'));
 
         add_action('admin_enqueue_scripts', array(&$this, 'admin_page_styles_scripts'), 2315);
@@ -65,15 +75,26 @@ class WPC {
         add_action('wp_ajax_wpc_vote_via_ajax', array(&$this, 'vote_on_comment'));
         add_action('wp_ajax_nopriv_wpc_vote_via_ajax', array(&$this, 'vote_on_comment'));
 
-        add_action('wp_ajax_email_notification', array(&$this, 'email_notification'));
-        add_action('wp_ajax_nopriv_email_notification', array(&$this, 'email_notification'));
+        add_action('wp_ajax_wpc_check_notification_type', array(&$this, 'wpc_check_notification_type'));
+        add_action('wp_ajax_nopriv_wpc_check_notification_type', array(&$this, 'wpc_check_notification_type'));
+
+        add_action('wp_ajax_woodiscuz_comment_redirect', array(&$this, 'woodiscuz_comment_redirect'));
+        add_action('wp_ajax_nopriv_woodiscuz_comment_redirect', array(&$this, 'woodiscuz_comment_redirect'));
+
+        if ($this->wpc_options_serialized->wpc_comment_editable_time) {
+            add_action('wp_ajax_wpc_get_editable_comment_content', array(&$this, 'wpc_get_editable_comment_content'));
+            add_action('wp_ajax_nopriv_wpc_get_editable_comment_content', array(&$this, 'wpc_get_editable_comment_content'));
+            add_action('wp_ajax_wpc_save_edited_comment', array(&$this, 'wpc_save_edited_comment'));
+            add_action('wp_ajax_nopriv_wpc_save_edited_comment', array(&$this, 'wpc_save_edited_comment'));
+        }
 
         add_action('get_avatar_comment_types', array(&$this, 'woodiscuz_review_avatar'));
+        add_action('widgets_init', array(&$this, 'init_widgets'));
 
-        if (!$this->wpc_options->wpc_options_serialized->wpc_tab_on_off) {
-            add_filter('woocommerce_product_tabs', array(&$this, 'add_comment_tab'));
+        if (!$this->wpc_options_serialized->wpc_tab_on_off) {
+            add_filter('woocommerce_product_tabs', array(&$this, 'add_comment_tab'), 90);
         }
-        if ($this->wpc_options->wpc_options_serialized->wpc_tab_show_hide) {
+        if ($this->wpc_options_serialized->wpc_tab_show_hide) {
             add_filter('woocommerce_product_tabs', array(&$this, 'woo_hide_reviews_tab'), 98);
         }
         add_filter('admin_comment_types_dropdown', array(&$this, 'add_comment_type'));
@@ -84,18 +105,27 @@ class WPC {
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_$plugin", array(&$this, 'wpc_add_plugin_settings_link'));
 
-        if ($this->wpc_options->wpc_options_serialized->wpc_request_for_comment) {
+        if ($this->wpc_options_serialized->wpc_request_for_comment) {
             add_action('woocommerce_order_status_completed', array(&$this, 'email_request_for_comment'));
         }
+
+        add_filter('woocommerce_product_review_count', array(&$this, 'woodiscuz_get_reviews_count'), 1234);
+        add_action('transition_comment_status', array(&$this, 'wpc_notify_to_subscriber'), 265, 3);
     }
-    
+
+    public function woodiscuz_get_reviews_count() {
+        global $post;
+        $this->reviews_count = $this->wpc_db_helper->get_reviews_count('woodiscuz_review', $post->ID);
+        return $this->reviews_count;
+    }
+
     public function load_woodiscuz_text_domain() {
         load_plugin_textdomain('woodiscuz', false, dirname(plugin_basename(__FILE__)) . '/languages/');
     }
 
     public function woop_disscus_requirements() {
         if (!is_plugin_active('woocommerce/woocommerce.php')) {
-            echo "<div class='error'><p>" . __('WooDiscuz requires Woocommerce to be installed!', WPC::$TEXT_DOMAIN) . "</p></div>";
+            echo "<div class='error'><p>" . __('WooDiscuz requires Woocommerce to be installed!', WPC_Core::$TEXT_DOMAIN) . "</p></div>";
         }
         if ($this->wpc_db_helper->get_empty_comment_types()) {
             echo "<div class='update-nag woocommerce-message wc-connect' style='width:95%'>
@@ -124,20 +154,24 @@ class WPC {
             } else {
                 update_option($this->woodiscuz_version, $wpc_plugin_data['Version']);
             }
+
+            if (version_compare($wpc_version, '1.2.0', '<') && version_compare($wpc_version, '1.0.0', '!=')) {
+                $this->wpc_db_helper->wpc_alter_voting_phrases_tables();
+            }
         }
     }
 
     private function wpc_add_new_options() {
-        $this->wpc_options->wpc_options_serialized->init_options(get_option($this->wpc_options->wpc_options_serialized->wpc_options_slug));
-        $wpc_new_options = $this->wpc_options->wpc_options_serialized->to_array();
-        update_option($this->wpc_options->wpc_options_serialized->wpc_options_slug, serialize($wpc_new_options));
+        $this->wpc_options_serialized->init_options(get_option($this->wpc_options_serialized->wpc_options_slug));
+        $wpc_new_options = $this->wpc_options_serialized->to_array();
+        update_option($this->wpc_options_serialized->wpc_options_slug, serialize($wpc_new_options));
     }
 
     private function wpc_add_new_phrases() {
         if ($this->wpc_db_helper->is_phrase_exists('wpc_discuss_tab')) {
             $wpc_saved_phrases = $this->wpc_db_helper->get_phrases();
-            $this->wpc_options->wpc_options_serialized->init_phrases();
-            $wpc_phrases = $this->wpc_options->wpc_options_serialized->wpc_phrases;
+            $this->wpc_options_serialized->init_phrases();
+            $wpc_phrases = $this->wpc_options_serialized->wpc_phrases;
             $wpc_new_phrases = array_merge($wpc_phrases, $wpc_saved_phrases);
             $this->wpc_db_helper->update_phrases($wpc_new_phrases);
         }
@@ -148,14 +182,20 @@ class WPC {
      */
 
     public function register_session() {
-        if (!session_id()) {
+        if (!session_id() && !is_user_logged_in()) {
             @session_start();
         }
     }
 
+    /**
+     * Register widgets
+     */
+    public function init_widgets() {
+        register_widget('WooDiscuz_Reviews_Widget');
+        register_widget('WooDiscuz_Comments_Widget');
+    }
+
     public function wpc_rename_reviews_tab() {
-        global $post;
-        $this->reviews_count = $this->wpc_db_helper->get_reviews_count('woodiscuz_review', $post->ID);
         return _e('Reviews', 'woocommerce') . '(' . $this->reviews_count . ')';
     }
 
@@ -167,12 +207,14 @@ class WPC {
         global $post;
         $this->commetns_count = $this->wpc_db_helper->get_comment_count($post->ID);
         $this->comment_count_text = ($this->commetns_count > 0) ? "(" . $this->commetns_count . ")" : "";
-        $priority = ($this->wpc_options->wpc_options_serialized->wpc_comment_tab_priority) ? 1 : 100;
-        $tabs['comment_tab'] = array(
-            'title' => $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_discuss_tab'] . $this->comment_count_text,
+        $priority = abs(intval($this->wpc_options_serialized->wpc_comment_tab_priority)) ? abs(intval($this->wpc_options_serialized->wpc_comment_tab_priority)) : 1000;
+        $priority = $this->wpc_helper->wpc_set_priorities($tabs, $priority);
+        $wpc_comment_tab = array(
+            'title' => $this->wpc_options_serialized->wpc_phrases['wpc_discuss_tab'] . $this->comment_count_text,
             'priority' => $priority,
             'callback' => array(&$this, 'wpc_comment_tab_content')
         );
+        $tabs['wpc_comment_tab'] = $wpc_comment_tab;
         return $tabs;
     }
 
@@ -185,7 +227,9 @@ class WPC {
      */
 
     function woo_hide_reviews_tab($tabs) {
-        unset($tabs['reviews']);    // Remove the reviews tab
+        if (isset($tabs['reviews'])) {
+            unset($tabs['reviews']);    // Remove the reviews tab
+        }
         return $tabs;
     }
 
@@ -195,8 +239,8 @@ class WPC {
 
     public function add_comment_type($args) {
         $this->comment_types = $args;
-        $args['woodiscuz'] = __('WooDiscuz', WPC::$TEXT_DOMAIN);
-        $args['woodiscuz_review'] = __('Woocomerce Review', WPC::$TEXT_DOMAIN);
+        $args['woodiscuz'] = __('WooDiscuz', WPC_Core::$TEXT_DOMAIN);
+        $args['woodiscuz_review'] = __('Woocomerce Review', WPC_Core::$TEXT_DOMAIN);
         return $args;
     }
 
@@ -229,8 +273,10 @@ class WPC {
      */
     public function add_plugin_options_page() {
         if (function_exists('add_options_page')) {
-            add_menu_page('WooDiscuz', 'WooDiscuz', 'manage_options', 'woodiscuz_options_page', array(&$this->wpc_options, 'main_options_form'), plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/plugin-icon-20.png'), 1245);
-            add_submenu_page('woodiscuz_options_page', 'Phrases', 'Phrases', 'manage_options', 'woodiscuz_phrases_page', array(&$this->wpc_options, 'phrases_options_form'));
+            add_menu_page('WooDiscuz', 'WooDiscuz', 'manage_options', 'woodiscuz_options_page', array(&$this->wpc_options, 'main_options_form'), plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/plugin-icon-20.png'), 1245);
+            if (!$this->wpc_options_serialized->wpc_is_use_po_mo) {
+                add_submenu_page('woodiscuz_options_page', 'Phrases', 'Phrases', 'manage_options', 'woodiscuz_phrases_page', array(&$this->wpc_options, 'phrases_options_form'));
+            }
         }
     }
 
@@ -243,31 +289,35 @@ class WPC {
         $u_agent = $_SERVER['HTTP_USER_AGENT'];
 
         if (preg_match('/MSIE/i', $u_agent)) {
-            wp_enqueue_script('wpc-html5-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/tooltipster/js/html5.js'), array('jquery'), '1.2', false);
+            wp_enqueue_script('woodiscuz-html5-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/tooltipster/js/html5.js'), array('jquery'), '1.2', false);
 
-            wp_register_style('modal-css-ie', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box-ie.css'));
-            wp_enqueue_style('modal-css-ie');
+            wp_register_style('woodiscuz-modal-css-ie', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box-ie.css'), null, get_option($this->woodiscuz_version));
+            wp_enqueue_style('woodiscuz-modal-css-ie');
         }
 
-        wp_register_style('modal-box-css', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box.css'));
-        wp_enqueue_style('modal-box-css');
+        wp_register_style('woodiscuz-modal-box-css', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box.css'), null, get_option($this->woodiscuz_version));
+        wp_enqueue_style('woodiscuz-modal-box-css');
 
-        wp_enqueue_script('form-validator-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/validator.js'), array('jquery'), '1.0.0', false);
+        wp_enqueue_script('woodiscuz-validator-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/js/validator.js'), array('jquery'), '1.0.0', false);
 
-        wp_register_style('validator-style', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/css/fv.css'));
-        wp_enqueue_style('validator-style');
+        wp_register_style('woodiscuz-validator-style', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/css/fv.css'), null, get_option($this->woodiscuz_version));
+        wp_enqueue_style('woodiscuz-validator-style');
 
-        wp_enqueue_script('wpc-ajax-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), get_option($this->woodiscuz_version), false);
-        wp_localize_script('wpc-ajax-js', 'wpc_ajax_obj', array('url' => admin_url('admin-ajax.php')));
+        wp_enqueue_script('woodiscuz-ajax-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/js/wpc-ajax.js'), array('jquery'), get_option($this->woodiscuz_version), false);
+        wp_localize_script('woodiscuz-ajax-js', 'wpc_ajax_obj', array('url' => admin_url('admin-ajax.php')));
 
-        wp_enqueue_script('wpc-cookie-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
+        wp_enqueue_script('woodiscuz-cookie-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
 
-        wp_register_style('wpc-tooltipster-style', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/tooltipster/css/tooltipster.css'));
-        wp_enqueue_style('wpc-tooltipster-style');
+        wp_register_style('woodiscuz-tooltipster-style', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/tooltipster/css/tooltipster.css'), null, get_option($this->woodiscuz_version));
+        wp_enqueue_style('woodiscuz-tooltipster-style');
 
-        wp_enqueue_script('wpc-tooltipster-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/tooltipster/js/jquery.tooltipster.min.js'), array('jquery'), '1.2', false);
+        wp_enqueue_script('woodiscuz-tooltipster-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/tooltipster/js/jquery.tooltipster.min.js'), array('jquery'), '1.2', false);
+        wp_enqueue_script('woodiscuz-footer-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/js/wpc-footer-script.js'), array('jquery'), '1.2', true);
 
-        wp_enqueue_script('autogrowtextarea-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/jquery.autogrowtextarea.min.js'), array('jquery'), '3.0', false);
+        wp_enqueue_script('woodiscuz-autogrowtextarea-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/js/jquery.autogrowtextarea.min.js'), array('jquery'), '3.0', false);
+
+        wp_register_style('woodiscuz-frontend-css', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/css/woodiscuz-frontend.css'), null, get_option($this->woodiscuz_version));
+        wp_enqueue_style('woodiscuz-frontend-css');
     }
 
     /**
@@ -277,27 +327,31 @@ class WPC {
 
         $u_agent = $_SERVER['HTTP_USER_AGENT'];
         if (preg_match('/MSIE/i', $u_agent)) {
-            wp_register_style('modal-css-ie', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box-ie.css'));
-            wp_enqueue_style('modal-css-ie');
+            wp_register_style('woodiscuz-modal-css-ie', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box-ie.css'), null, get_option($this->woodiscuz_version));
+            wp_enqueue_style('woodiscuz-modal-css-ie');
         }
 
-        wp_register_style('modal-box-css', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box.css'));
-        wp_enqueue_style('modal-box-css');
+        wp_register_style('woodiscuz-modal-box-css', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box.css'), null, get_option($this->woodiscuz_version));
+        wp_enqueue_style('woodiscuz-modal-box-css');
 
-        wp_register_style('colorpicker-css', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/colorpicker/css/colorpicker.css'));
-        wp_enqueue_style('colorpicker-css');
+        wp_register_style('woodiscuz-colorpicker-css', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/colorpicker/css/colorpicker.css'), null, get_option($this->woodiscuz_version));
+        wp_enqueue_style('woodiscuz-colorpicker-css');
 
-        wp_register_script('wpc-colorpicker-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/third-party/colorpicker/js/colorpicker.js'), array('jquery'), '2.0.0.9', false);
-        wp_enqueue_script('wpc-colorpicker-js');
+        wp_register_script('woodiscuz-colorpicker-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/colorpicker/js/colorpicker.js'), array('jquery'), '2.0.0.9', false);
+        wp_enqueue_script('woodiscuz-colorpicker-js');
 
-        wp_register_style('wpc-options-css', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/css/options-css.css'));
-        wp_enqueue_style('wpc-options-css');
+        wp_register_style('woodiscuz-options-css', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/css/options-css.css'), null, get_option($this->woodiscuz_version));
+        wp_enqueue_style('woodiscuz-options-css');
 
-        wp_register_script('wpc-option-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/options-js.js'), array('jquery'));
-        wp_enqueue_script('wpc-option-js');
+        wp_register_script('woodiscuz-scripts-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/js/wpc-scripts.js'), array('jquery'));
+        wp_enqueue_script('woodiscuz-scripts-js');
 
-        wp_register_script('wpc-scripts-js', plugins_url(WPC::$PLUGIN_DIRECTORY . '/files/js/wpc-scripts.js'), array('jquery'));
-        wp_enqueue_script('wpc-scripts-js');
+
+        wp_register_style('woodiscuz-easy-responsive-tabs-css', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/easy-responsive-tabs/css/easy-responsive-tabs.css'), true);
+        wp_enqueue_style('woodiscuz-easy-responsive-tabs-css');
+
+        wp_register_script('woodiscuz-easy-responsive-tabs-js', plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/third-party/easy-responsive-tabs/js/easy-responsive-tabs.js'), array('jquery'), '1.0.0', true);
+        wp_enqueue_script('woodiscuz-easy-responsive-tabs-js');
     }
 
     /*
@@ -309,13 +363,21 @@ class WPC {
         $message_array = array();
         $comment_post_ID = intval(filter_input(INPUT_POST, 'comment_post_ID'));
         $comment_parent = intval(filter_input(INPUT_POST, 'comment_parent'));
-        if (!$this->wpc_options->wpc_options_serialized->wpc_captcha_show_hide) {
+        $comment_depth = intval(filter_input(INPUT_POST, 'comment_depth'));
+        $is_comment_subscribed = intval(filter_input(INPUT_POST, 'is_comment_subscribed'));
+        $is_in_same_container = 1;
+        if ($comment_depth > $this->wpc_options_serialized->wpc_comments_max_depth) {
+            $comment_depth = $this->wpc_options_serialized->wpc_comments_max_depth;
+            $is_in_same_container = 0;
+        }
+        $notification_type = isset($_POST['notification_type']) ? $_POST['notification_type'] : '';
+        if (!$this->wpc_options_serialized->wpc_captcha_show_hide) {
             if (!is_user_logged_in()) {
                 $sess_captcha = $_SESSION['wpc_captcha'][$comment_post_ID . '-' . $comment_parent];
                 $captcha = filter_input(INPUT_POST, 'captcha');
                 if (md5(strtolower($captcha)) !== $sess_captcha) {
                     $message_array['code'] = -1;
-                    $message_array['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_invalid_captcha'];
+                    $message_array['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_invalid_captcha'];
                     echo json_encode($message_array);
                     exit;
                 }
@@ -330,31 +392,23 @@ class WPC {
             $email = $user->user_email;
             $user_url = $user->user_url;
         } else {
-            $name = filter_input(INPUT_POST, 'name');
-            $email = filter_input(INPUT_POST, 'email');
+            if ($this->wpc_options_serialized->wpc_is_name_field_required) {
+                $name = filter_input(INPUT_POST, 'name');
+            } else {
+                $name = !(filter_input(INPUT_POST, 'name')) ? __('anonymous', WPC_Core::$TEXT_DOMAIN) : filter_input(INPUT_POST, 'name');
+            }
+            if ($this->wpc_options_serialized->wpc_is_email_field_required) {
+                $email = filter_input(INPUT_POST, 'email');
+            } else {
+                $email = !(filter_input(INPUT_POST, 'email')) ? 'autogen_' . md5(uniqid() . time()) . '@example.com' : filter_input(INPUT_POST, 'email');
+            }
             $user_id = 0;
             $user_url = '';
         }
 
-        $comment = wp_kses($comment, array(
-            'br' => array(),
-            'a' => array('href' => array(), 'title' => array()),
-            'i' => array(),
-            'b' => array(),
-            'u' => array(),
-            'strong' => array(),
-            'p' => array(),
-            'img' => array('src' => array(), 'width' => array(), 'height' => array(), 'alt' => array())
-        ));
-
-        $comment = $this->wpc_helper->make_clickable($comment);
+        $comment = wp_kses($comment, $this->wpc_helper->wpc_allowed_tags);
 
         if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $comment && filter_var($comment_post_ID)) {
-
-            $held_moderate = 1;
-            if ($this->wpc_options->wpc_options_serialized->wpc_held_comment_to_moderate) {
-                $held_moderate = 0;
-            }
 
             $new_commentdata = array(
                 'user_id' => $user_id,
@@ -365,54 +419,95 @@ class WPC {
                 'comment_content' => $comment,
                 'comment_author_url' => $user_url,
                 'comment_type' => 'woodiscuz',
-                'comment_approved' => $held_moderate
+                'comment_agent' => $this->wpc_user_agent
             );
-            $new_comment_id = wp_insert_comment($new_commentdata);
+            $new_comment_id = wp_new_comment($new_commentdata);
             $new_comment = new WPC_Comment(get_comment($new_comment_id, OBJECT));
+            $held_moderate = 1;
+            if ($new_comment->comment_approved) {
+                $held_moderate = 0;
+            }
+            $wpc_notification_inserted_id = 0;
+            if ($notification_type == 'reply' && !$this->wpc_db_helper->wpc_has_comment_notification($comment_post_ID, $new_comment_id, $email)) {
+                $wpc_notification_inserted_id = $this->wpc_db_helper->wpc_add_email_notification($new_comment_id, $comment_post_ID, $email);
+            }
 
-            if (!$held_moderate) {
+            if ($wpc_notification_inserted_id) {
+                $this->wpc_confirm_email_sender($wpc_notification_inserted_id, $email, $comment_post_ID, $new_comment_id);
+            }
+
+            if ($held_moderate) {
                 $message_array['code'] = -2;
-                $message_array['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_held_for_moderate'];
+                $message_array['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_held_for_moderate'];
             } else {
                 $message_array['code'] = 1;
-                $message_array['message'] = $this->comment_tpl_builder->get_comment_template($new_comment);
+                $message_array['message'] = $this->comment_tpl_builder->get_comment_template($new_comment, null, $comment_depth);
+                $message_array['is_in_same_container'] = $is_in_same_container;
             }
             $message_array['wpc_new_comment_id'] = $new_comment_id;
+
+            $wpc_notification_inserted_id = 0;
+            if ($is_comment_subscribed && !$this->wpc_db_helper->wpc_has_comment_notification($comment_post_ID, $new_comment_id, $email)) {
+                $wpc_notification_inserted_id = $this->wpc_db_helper->wpc_add_email_notification($new_comment_id, $comment_post_ID, $email);
+            }
+
+            if ($wpc_notification_inserted_id) {
+                $this->wpc_confirm_email_sender($wpc_notification_inserted_id, $email, $comment_post_ID, $new_comment_id);
+            }
         } else {
             $message_array['code'] = -1;
             $message_array['wpc_new_comment_id'] = -1;
-            $message_array['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_invalid_field'];
+            $message_array['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_invalid_field'];
         }
         echo json_encode($message_array);
         exit;
     }
 
     /**
-     * notify on new comments
+     * redirect first commenter to the selected page from options
      */
-    public function email_notification() {
-
-        $wpc_new_comment_id = isset($_POST['wpc_new_comment_id']) ? intval($_POST['wpc_new_comment_id']) : -1;
-        $wpc_comment_parent = isset($_POST['wpc_comment_parent']) ? intval($_POST['wpc_comment_parent']) : -1;
-        if ($wpc_new_comment_id !== -1 && $wpc_comment_parent !== -1) {
-            if ($this->wpc_options->wpc_options_serialized->wpc_notify_moderator) {
-                wp_notify_postauthor($wpc_new_comment_id);
+    public function woodiscuz_comment_redirect() {
+        $message_array = array();
+        $wpc_comment_id = intval(filter_input(INPUT_POST, 'wpc_new_comment_id'));
+        if ($wpc_comment_id) {
+            $comment = get_comment($wpc_comment_id);
+            if ($comment->comment_ID) {
+                $wpc_user_comment_count = get_comments(array('author_email' => $comment->comment_author_email, 'count' => true));
+                if ($this->wpc_options_serialized->woodiscuz_redirect_page && $wpc_user_comment_count == 1) {
+                    $message_array['code'] = 1;
+                    $message_array['redirect_to'] = get_permalink($this->wpc_options_serialized->woodiscuz_redirect_page);
+                }
             }
-            if ($this->wpc_options->wpc_options_serialized->wpc_notify_comment_author && $wpc_comment_parent) {
-                $wpc_new_comment_content = get_comment($wpc_new_comment_id)->comment_content;
-                $comment = get_comment($wpc_comment_parent);
-                $to = $comment->comment_author_email;
-                $subject = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_email_subject'];
-                $permalink = get_comment_link($wpc_comment_parent);
-                $message = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_email_message'];
-                $message .= "<br/><br/><a href='$permalink'>$permalink</a>";
-                $message .= "<br/><br/>$wpc_new_comment_content";
-                $headers = array();
-                $headers[] = "Content-Type: text/html; charset=UTF-8";
-                $headers[] = "From: " . get_bloginfo('name') . "\r\n";
-                wp_mail($to, $subject, $message, $headers);
+        } else {
+            $message_array['code'] = -1;
+        }
+        echo json_encode($message_array);
+        exit();
+    }
+
+    /**
+     * Check notification type and send email to post new comments subscribers
+     */
+    public function wpc_check_notification_type() {
+        $comment_id = intval($_POST['wpc_comment_id']);
+        $post_id = intval($_POST['wpc_post_id']);
+        $current_user = wp_get_current_user();
+
+
+        if ($current_user->user_email) {
+            $email = $current_user->user_email;
+        } else {
+            $email = isset($_POST['wpc_email']) ? $_POST['wpc_email'] : '';
+        }
+
+        if ($comment_id && $email && $post_id) {
+            $comment = get_comment($comment_id);
+            $parent_comment_id = $comment->comment_parent;
+            if ($comment->comment_approved && $parent_comment_id) {
+                $this->wpc_notify_on_new_reply($parent_comment_id, $comment->comment_ID, $email);
             }
         }
+        exit();
     }
 
     /**
@@ -421,9 +516,8 @@ class WPC {
     public function email_request_for_comment($order_id) {
         $comment_author_email = get_post_meta($order_id, '_billing_email');
         if ($comment_author_email) {
-            $request_subject = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_request_reply_subject'];
-            $request_message = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_request_reply_message'];
-            $product_link = get_permalink($order_id);
+            $request_subject = $this->wpc_options_serialized->wpc_phrases['wpc_request_reply_subject'];
+            $request_message = $this->wpc_options_serialized->wpc_phrases['wpc_request_reply_message'];
 
             $wpc_order = new WC_Order($order_id);
             $wpc_order_items = $wpc_order->get_items();
@@ -443,23 +537,36 @@ class WPC {
      * vote on comment via ajax
      */
     public function vote_on_comment() {
+        if ($this->wpc_options_serialized->wpc_voting_buttons_show_hide) {
+            exit();
+        }
+        if ($this->wpc_db_helper->is_phrase_exists('wpc_discuss_tab')) {
+            $this->wpc_options_serialized->wpc_phrases = $this->wpc_db_helper->get_phrases();
+        }
         $messageArray = array();
         $messageArray['code'] = -1;
         $comment_id = '';
-        if (!is_user_logged_in()) {
-            $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_login_to_vote'];
+        if (!$this->wpc_options_serialized->wpc_is_guest_can_vote && !is_user_logged_in()) {
+            $messageArray['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_login_to_vote'];
             echo json_encode($messageArray);
             exit();
         }
         if (isset($_POST['comment_ID']) && isset($_POST['vote_type']) && intval($_POST['comment_ID']) && intval($_POST['vote_type'])) {
             $comment_id = $_POST['comment_ID'];
-            $user_id = get_current_user_id();
+            $user_id_or_ip = is_user_logged_in() ? get_current_user_id() : WPC_Helper::get_real_ip_addr();
             $vote_type = $_POST['vote_type'];
 
-            $is_user_voted = $this->wpc_db_helper->is_user_voted($user_id, $comment_id);
+            $is_user_voted = $this->wpc_db_helper->is_user_voted($user_id_or_ip, $comment_id);
             $comment = get_comment($comment_id);
-            if ($comment->user_id == $user_id) {
-                $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_self_vote'];
+
+            if (!is_user_logged_in() && $comment->comment_author_IP == $user_id_or_ip) {
+                $messageArray['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_deny_voting_from_same_ip'];
+                echo json_encode($messageArray);
+                exit();
+            }
+
+            if ($comment->user_id == $user_id_or_ip) {
+                $messageArray['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_self_vote'];
                 echo json_encode($messageArray);
                 exit();
             }
@@ -467,16 +574,16 @@ class WPC {
             if ($is_user_voted != '') {
                 $vote = intval($is_user_voted) + intval($vote_type);
                 if ($vote >= -1 && $vote <= 1) {
-                    $this->wpc_db_helper->update_vote_type($user_id, $comment_id, $vote);
+                    $this->wpc_db_helper->update_vote_type($user_id_or_ip, $comment_id, $vote);
                     $vote_count = intval(get_comment_meta($comment_id, 'woodiscuz_votes', true)) + intval($vote_type);
                     update_comment_meta($comment_id, 'woodiscuz_votes', '' . $vote_count);
                     $messageArray['code'] = 1;
-                    $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_vote_counted'];
+                    $messageArray['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_vote_counted'];
                 } else {
-                    $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_vote_only_one_time'];
+                    $messageArray['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_vote_only_one_time'];
                 }
             } else {
-                $this->wpc_db_helper->add_vote_type($user_id, $comment_id, $vote_type);
+                $this->wpc_db_helper->add_vote_type($user_id_or_ip, $comment_id, $vote_type);
                 $vote_count = get_comment_meta($comment_id, 'woodiscuz_votes', true);
                 if ($vote_count == '') {
                     add_comment_meta($comment_id, 'woodiscuz_votes', '' . $vote_type);
@@ -485,10 +592,10 @@ class WPC {
                     update_comment_meta($comment_id, 'woodiscuz_votes', '' . $vote_count);
                 }
                 $messageArray['code'] = 1;
-                $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_vote_counted'];
+                $messageArray['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_vote_counted'];
             }
         } else {
-            $messageArray['message'] = $this->wpc_options->wpc_options_serialized->wpc_phrases['wpc_voting_error'];
+            $messageArray['message'] = $this->wpc_options_serialized->wpc_phrases['wpc_voting_error'];
         }
 
         echo json_encode($messageArray);
@@ -504,14 +611,15 @@ class WPC {
         if (!$post_id) {
             $post_id = $post->ID;
         }
-        $wpc_comment_count = $this->wpc_options->wpc_options_serialized->wpc_comment_count;
-        $wpc_comment_list_order = $this->wpc_options->wpc_options_serialized->wpc_comment_list_order ? $this->wpc_options->wpc_options_serialized->wpc_comment_list_order : 'desc';
-        $wpc_comments_max_depth = $this->wpc_options->wpc_options_serialized->wpc_comments_max_depth ? $this->wpc_options->wpc_options_serialized->wpc_comments_max_depth : 3;
+        $wpc_comment_count = $this->wpc_options_serialized->wpc_comment_count;
+        $wpc_comment_list_order = $this->wpc_options_serialized->wpc_comment_list_order ? $this->wpc_options_serialized->wpc_comment_list_order : 'desc';
+        $wpc_comments_max_depth = $this->wpc_options_serialized->wpc_comments_max_depth ? $this->wpc_options_serialized->wpc_comments_max_depth : 3;
 
         $comm_list_args = array(
             'callback' => array(&$this, 'wpc_comment_callback'),
             'style' => 'div',
             'type' => 'woodiscuz',
+            'page' => 1,
             'per_page' => $comments_offset * $wpc_comment_count,
             'max_depth' => $wpc_comments_max_depth,
             'reverse_top_level' => false,
@@ -567,12 +675,12 @@ class WPC {
 
     public function wpc_comment_callback($comment, $args, $depth) {
         $GLOBALS['comment'] = $comment;
-        echo $this->comment_tpl_builder->get_comment_template($comment);
+        echo $this->comment_tpl_builder->get_comment_template($comment, $args, $depth);
     }
 
     public function is_guest_can_comment() {
         $user_can_comment = TRUE;
-        if ($this->wpc_options->wpc_options_serialized->wpc_user_must_be_registered) {
+        if ($this->wpc_options_serialized->wpc_user_must_be_registered) {
             if (!is_user_logged_in()) {
                 $user_can_comment = FALSE;
             }
@@ -588,7 +696,7 @@ class WPC {
         $plugin_dir_path = plugin_dir_path(__FILE__);
         $path_array = array_values(array_filter(explode(DIRECTORY_SEPARATOR, $plugin_dir_path)));
         $path_last_part = $path_array[count($path_array) - 1];
-        WPC::$PLUGIN_DIRECTORY = untrailingslashit($path_last_part);
+        WPC_Core::$PLUGIN_DIRECTORY = untrailingslashit($path_last_part);
     }
 
     /**
@@ -600,17 +708,166 @@ class WPC {
         return $args;
     }
 
-	// Add settings link on plugin page
+// Add settings link on plugin page
     public function wpc_add_plugin_settings_link($links) {
-        $settings_link = '<a href="' . admin_url() . 'admin.php?page=woodiscuz_options_page">' . __('Settings', 'default') . '</a> |';
-        $settings_link .= '<a href="' . admin_url() . 'admin.php?page=woodiscuz_phrases_page">' . __('Phrases', 'default') . '</a>';
+        $settings_link = '<a href="' . admin_url() . 'admin.php?page=woodiscuz_options_page">' . __('Settings', 'default') . '</a>';
+        if (!$this->wpc_options_serialized->wpc_is_use_po_mo) {
+            $settings_link .= ' | <a href="' . admin_url() . 'admin.php?page=woodiscuz_phrases_page">' . __('Phrases', 'default') . '</a>';
+        }
         array_unshift($links, $settings_link);
         return $links;
     }
 
+    /**
+     * get comment text from db
+     */
+    public function wpc_get_editable_comment_content() {
+        $message_array = array();
+        $comment_ID = intval(filter_input(INPUT_POST, 'comment_id'));
+        $current_user = wp_get_current_user();
+        if ($comment_ID) {
+            $comment = get_comment($comment_ID);
+            if (isset($current_user) && $comment->user_id == $current_user->ID && $this->wpc_helper->is_comment_editable($comment)) {
+                $message_array['code'] = 1;
+                $message_array['message'] = $comment->comment_content;
+            } else {
+                $message_array['code'] = -1;
+                $message_array['phrase_message'] = $this->wpc_options_serialized->wpc_phrases['wpc_comment_edit_not_possible'];
+            }
+        } else {
+            $message_array['code'] = -1;
+            $message_array['phrase_message'] = $this->wpc_options_serialized->wpc_phrases['wpc_comment_edit_not_possible'];
+        }
+        echo json_encode($message_array);
+        exit();
+    }
+
+    /**
+     * save edited comment via ajax
+     */
+    public function wpc_save_edited_comment() {
+        $message_array = array();
+        $comment_ID = intval(filter_input(INPUT_POST, 'comment_id'));
+        $comment_content = filter_input(INPUT_POST, 'comment_content');
+        $comment = get_comment($comment_ID);
+        $current_user = wp_get_current_user();
+        $trimmed_comment_content = trim($comment_content);
+        // Change messages in next version - shoud be diff. messages for each specific error
+        if ($trimmed_comment_content && isset($current_user) && $comment->user_id == $current_user->ID) {
+            if ($trimmed_comment_content != $comment->comment_content) {
+                $comment_content = wp_kses($comment_content, $this->wpc_helper->wpc_allowed_tags);
+
+                $author_ip = WPC_Helper::get_real_ip_addr();
+                $this->wpc_user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+                $commentarr = array(
+                    'comment_ID' => $comment_ID,
+                    'comment_content' => apply_filters('pre_comment_content', $comment_content),
+                    'comment_author_IP' => apply_filters('pre_comment_user_ip', $author_ip),
+                    'comment_agent' => apply_filters('pre_comment_user_agent', $this->wpc_user_agent),
+                    'comment_approved' => $comment->comment_approved
+                );
+                if (wp_update_comment($commentarr)) {
+                    $message_array['code'] = 1;
+                    $message_array['message'] = $this->wpc_helper->make_clickable($comment_content);
+                } else {
+                    $message_array['code'] = -1;
+                    $message_array['phrase_message'] = $this->wpc_options_serialized->wpc_phrases['wpc_comment_not_updated'];
+                }
+            } else {
+                $message_array['code'] = -2;
+                $message_array['phrase_message'] = $this->wpc_options_serialized->wpc_phrases['wpc_comment_not_edited'];
+            }
+        } else {
+            $message_array['code'] = -1;
+            $message_array['phrase_message'] = $this->wpc_options_serialized->wpc_phrases['wpc_comment_edit_not_possible'];
+        }
+        echo json_encode($message_array);
+        exit;
+    }
+
+    public function wpc_confirm_email_sender($subscribe_id, $email, $post_id, $new_comment_id) {
+        $curr_post = get_post($post_id);
+        $curr_post_author = get_userdata($curr_post->post_author);
+
+        $subject = isset($this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_subject']) ? $this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_subject'] : __('Subscribe Confirmation', WPC_Core::$TEXT_DOMAIN);
+        $message = isset($this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_message']) ? $this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_message'] : __('Hi, <br/> You just subscribed for new comments on our website. This means you will receive an email when new comments are posted according to subscription option you\'ve chosen. <br/> To activate, click confirm below. If you believe this is an error, ignore this message and we\'ll never bother you again.', WPC_Core::$TEXT_DOMAIN);
+
+        $confirm_url = $this->wpc_db_helper->wpc_confirm_link($subscribe_id);
+        $unsubscribe_url = $this->wpc_db_helper->wpc_unsubscribe_link($new_comment_id, $email);
+        $post_permalink = get_permalink($post_id);
+        $message .= "<br/><br/><a href='$post_permalink'>$post_permalink</a>";
+        $message .= "<br/><br/><a href='$confirm_url'>" . $this->wpc_options_serialized->wpc_phrases['wpc_confirm_email'] . "</a>";
+        $message .= "<br/><br/><a href='$unsubscribe_url'>" . $this->wpc_options_serialized->wpc_phrases['wpc_ignore_subscription'] . "</a>";
+        $headers = array();
+        $content_type = apply_filters('wp_mail_content_type', 'text/html');
+        $from_name = apply_filters('wp_mail_from_name', get_bloginfo('name'));
+        $headers[] = "Content-Type:  $content_type; charset=UTF-8";
+        $headers[] = "From: " . $from_name . "\r\n";
+        wp_mail($email, $subject, $message, $headers);
+    }
+
+    /**
+     * notify on comment new replies
+     */
+    public function wpc_notify_on_new_reply($parent_comment_id, $new_comment_id, $email) {
+        $emails_array = $this->wpc_db_helper->wpc_get_post_new_reply_notification($parent_comment_id, $email);
+        $subject = ($this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_subject']) ? $this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_subject'] : __('New Reply', WPC_Core::$TEXT_DOMAIN);
+        $message = ($this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_message']) ? $this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_message'] : __('New reply on the discussion section you\'ve been interested in', WPC_Core::$TEXT_DOMAIN);
+        foreach ($emails_array as $e_row) {
+            $this->wpc_email_sender($e_row, $new_comment_id, $subject, $message);
+        }
+    }
+
+    /**
+     * send email
+     */
+    public function wpc_email_sender($email_data, $wpc_new_comment_id, $subject, $message) {
+        $comment = get_comment($wpc_new_comment_id);
+        $curr_post = get_post($comment->comment_post_ID);
+        $curr_post_author = get_userdata($curr_post->post_author);
+
+        if ($email_data['email'] == $curr_post_author->user_email) {
+            if (get_option('moderation_notify') && !$comment->comment_approved) {
+                return;
+            } else if (get_option('comments_notify') && $comment->comment_approved) {
+                return;
+            }
+        }
+
+        $wpc_new_comment_content = $comment->comment_content;
+        $permalink = esc_url(get_permalink($comment->comment_post_ID)) . '#wpc-woodiscuz-' . $wpc_new_comment_id;
+        $unsubscribe_url = get_permalink($comment->comment_post_ID) . "?wooDiscuzSubscribeID=" . $email_data['id'] . "&key=" . $email_data['activation_key'] . '&#wpc_unsubscribe_message';
+        $message .= "<br/><br/><a href='$permalink'>$permalink</a>";
+        $message .= "<br/><br/>$wpc_new_comment_content";
+        $message .= "<br/><br/><a href='$unsubscribe_url'>" . $this->wpc_options_serialized->wpc_phrases['wpc_unsubscribe'] . "</a>";
+        $headers = array();
+        $content_type = apply_filters('wp_mail_content_type', 'text/html');
+        $from_name = apply_filters('wp_mail_from_name', get_bloginfo('name'));
+        $headers[] = "Content-Type:  $content_type; charset=UTF-8";
+        $headers[] = "From: " . $from_name . "\r\n";
+        wp_mail($email_data['email'], $subject, $message, $headers);
+    }
+
+    public function wpc_notify_to_subscriber($new_status, $old_status, $comment) {
+        if ($old_status != $new_status) {
+            if ($new_status == 'approved') {
+                $comment_id = $comment->comment_ID;
+                $email = $comment->comment_author_email;
+                $parent_comment = get_comment($comment->comment_parent);
+                if ($parent_comment) {
+                    $this->wpc_notify_on_new_reply($parent_comment->comment_ID, $comment_id, $email);
+                }
+            }
+        }
+    }
+
+    public function wpc_unsubscribe($id, $activation_key) {
+        $this->wpc_db_helper->wpc_unsubscribe($id, $activation_key);
+    }
+
 }
 
-$wpc = new WPC();
+$wpc = new WPC_Core();
 if (isset($_GET['woodiscuz_update_reviews'])) {
     $wpc->update_product_comments();
     unset($_GET['woodiscuz_update_reviews']);

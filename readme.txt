@@ -4,8 +4,8 @@ Contributors: gVectors Team
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JD86QPWM6QUXW
 Tags: WooCommerce, WooCommerce Comments, WooCommerce Reviews, WooCommerce Product Discussions, comments, reviews, discussions, product, shop, ecommerce, comments tab, discussion tab, question and answer, product question, product support
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 1.1.6
+Tested up to: 4.1.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,10 @@ WooCommerce product comments and discussion Tab. Allows your customers to discus
 * | Comment voting with positive and negative result
 * | Smart voting system with tracking by logged-in user and cookies
 * | Product sharing options: Facebook, Twitter and Google+
+* | Recent Comments Widget
+* | Recent Reviews Widget (WooCommerce one doesn't filter WooDiscuz comments)
+* | Users can edit their comments (time-frame can be limited by admin)
+* | Users can Subscribe/Unsubscribe to new comments
 * 
 * | **Dashboard** 
 * | Option to set Discussion Tab as the first opened Tab on product page 
@@ -58,8 +62,9 @@ WooCommerce product comments and discussion Tab. Allows your customers to discus
 * | Option to set number of comment threads per page (for "load more comments" button) 
 * | Option to notify administrators and comment authors on new comment/reply
 * | Option to manage font color and comment/reply background colors
+* | Option to set WooDiscuz tab (discussion) priority
+* | Option to redirect first commenters to "Thank You" page 
 * | Front-end phrase managing options, you'll be able to translate or change all phrases
-
 
 [youtube https://www.youtube.com/watch?v=umtFm20haRA /]
 
@@ -118,6 +123,28 @@ There will not be any additional changes on Wordpress update. If you update your
 7. Another Full Front-End View Screenshot #7
 
 == Changelog ==
+
+= 2.0.0 =
+* Added : Recent Comments Widget
+* Added : Recent Reviews Widget (WooCommerce one doesn't filter WooDiscuz comments)
+* Added : Additional phrases for plural form
+* Added : Tabbed General Settings admin page
+* Added : Option to set WooDiscuz tab (discussion) priority
+* Added : Tabbed Phrase Manager admin page
+* Added : Users can Subscribe/Unsubscribe to new comments
+* Added : Option to allow guests vote for comments
+* Added : VK.com and OK.ru social network share buttons
+* Added : Automatic URLs to link conversion in comment texts
+* Added : Option to redirect first commenters to "Thank You" page 
+* Added : Language translation support with .mo and .po files
+* Added : Close pop-up messages by clicking outside of message-box
+* Added : Users can edit their comments (time-frame can be limited by admin)
+* Added: Option to enable .po/.mo translation files for mult-language sites
+* Fixed Bug: Header CSS code for dynamic style values ( 90% reduced )
+* Fixed Bug: JavaScript and CSS conflicts with wpDiscuz
+* Fixed Bug: Limited maximum characters for phrases
+
+
 = 1.1.6 =
 * Fixed Bug: Adapted with some themes ( Fatal error: Cannot redeclare add_user() )
 * Fixed Bug: Incorrect comment date/time if the default Wordpress date format is on
