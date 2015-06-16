@@ -835,7 +835,7 @@ class WPC_Core {
         }
 
         $wpc_new_comment_content = $comment->comment_content;
-        $permalink = esc_url(get_permalink($comment->comment_post_ID)) . '#wpc-woodiscuz-' . $wpc_new_comment_id;
+        $permalink = esc_url(get_permalink($comment->comment_post_ID)) . '#wpc-comment-' . $wpc_new_comment_id;
         $unsubscribe_url = get_permalink($comment->comment_post_ID) . "?wooDiscuzSubscribeID=" . $email_data['id'] . "&key=" . $email_data['activation_key'] . '&#wpc_unsubscribe_message';
         $message .= "<br/><br/><a href='$permalink'>$permalink</a>";
         $message .= "<br/><br/>$wpc_new_comment_content";

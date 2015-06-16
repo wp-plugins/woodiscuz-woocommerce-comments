@@ -82,7 +82,7 @@ class WPC_Comment_Template_Builder {
         $parent_comment = (!$comment->comment_parent && count($child_comments)) ? ' parnet_comment' : '';
 
         $output = '<div id="wpc-comm-' . $unique_id . '" class="' . $wpc_comment_wrapper_class . ' ' . $parent_comment . ' wpc_comment_level-' . $depth . '">';
-        $output .= '<div id="wpc-woodiscuz-' . $comment->comment_ID . '" class="wpc-comment-left">' . $wpc_comm_author_avatar;
+        $output .= '<div id="wpc-comment-' . $comment->comment_ID . '" class="wpc-comment-left">' . $wpc_comm_author_avatar;
         if (!$this->wpc_options_serialized->wpc_author_titles_show_hide) {
             $output .= '<div class="wpc-comment-label">' . $author_title . '</div>';
         }
