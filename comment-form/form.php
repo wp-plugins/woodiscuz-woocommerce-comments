@@ -136,9 +136,11 @@ $wpc_is_email_field_required = ($this->wpc_options_serialized->wpc_is_email_fiel
     <?php } ?>
 
     <div style="clear:both"></div>
+    <?php if ($this->wpc_options_serialized->wpc_show_plugin_powered_by) { ?>
     <div class="by-woodiscuz"><span id="awoodiscuz" onclick='javascript:document.getElementById("bywoodiscuz").style.display = "inline";
-            document.getElementById("awoodiscuz").style.display = "none";'><img src="<?php echo plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/icon_info.png'); ?>" align="absmiddle" class="woodimg"/></span>&nbsp;<a href="http://woodiscuz.com/" id="bywoodiscuz" title="WooDIscuz v<?php echo get_option($this->woodiscuz_version); ?>- Interactive Comment System for eCommerce Platforms">WooDiscuz</a></div>
-
+            document.getElementById("awoodiscuz").style.display = "none";'><img src="<?php echo plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/icon_info.png'); ?>" align="absmiddle" class="woodimg"/></span>&nbsp;<a href="http://woodiscuz.com/" id="bywoodiscuz" title="WooDIscuz v<?php echo get_option($this->woodiscuz_version); ?>- Interactive Comment System for eCommerce Platforms">WooDiscuz</a>
+    </div>
+    <?php }?>
     <div id="wpc_openModalFormAction" class="modalDialog">
         <div id="wpc_response_info" class="wpc_modal">
             <div id="wpc_response_info_box">

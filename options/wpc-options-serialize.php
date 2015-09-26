@@ -262,6 +262,8 @@ class WPC_Options_Serialize {
      * Default Value - Unchecked
      */
     public $wpc_reply_subscription_on_off;
+    
+    public $wpc_show_plugin_powered_by;
 
     function __construct($wpc_db_helper) {
         $this->wpc_db_helper = $wpc_db_helper;
@@ -306,6 +308,7 @@ class WPC_Options_Serialize {
         $this->wpc_comment_text_color = $options['wpc_comment_text_color'];
         $this->wpc_is_use_po_mo = isset($options['wpc_is_use_po_mo']) ? $options['wpc_is_use_po_mo'] : 0;
         $this->wpc_reply_subscription_on_off = isset($options['wpc_reply_subscription_on_off']) ? $options['wpc_reply_subscription_on_off'] : 0;
+        $this->wpc_show_plugin_powered_by = isset($options['wpc_show_plugin_powered_by']) ? $options['wpc_show_plugin_powered_by'] : 0;
     }
 
     /**
@@ -423,6 +426,7 @@ class WPC_Options_Serialize {
             'wpc_comment_text_color' => $this->wpc_comment_text_color,
             'wpc_is_use_po_mo' => $this->wpc_is_use_po_mo,
             'wpc_reply_subscription_on_off' => $this->wpc_reply_subscription_on_off,
+            'wpc_show_plugin_powered_by' => $this->wpc_show_plugin_powered_by,
         );
 
         return $options;
@@ -465,6 +469,7 @@ class WPC_Options_Serialize {
             'wpc_comment_text_color' => '#555',
             'wpc_is_use_po_mo' => '0',
             'wpc_reply_subscription_on_off' => '0',
+            'wpc_show_plugin_powered_by' => '0',
         );
         add_option($this->wpc_options_slug, serialize($options));
     }

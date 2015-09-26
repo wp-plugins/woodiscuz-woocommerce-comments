@@ -193,6 +193,20 @@
             </label>
         </td>
         </tr>
+        <tr valign="top">
+            <th scope="row" >
+                <label for="wpc_show_plugin_powered_by">
+                    <?php _e('Help Woodiscuz to grow allowing people to recognize which comment plugin you use', WPC_Core::$TEXT_DOMAIN); ?>
+                </label>
+        <p style="font-size:13px; color:#999999; width:80%; padding-left:0px; margin-left:0px;"><?php _e('Please check this option on to help Woodiscuz get more popularity as your thank to the hard work we do for you totally free. This option adds a very small (16x16px) icon under the comment section which will allow your site visitors recognize the name of comment solution you use.', WPC_Core::$TEXT_DOMAIN); ?></p>
+        </th>
+        <td colspan="3">                                
+            <label for="wpc_show_plugin_powered_by">
+                <input type="checkbox" <?php checked($this->wpc_options_serialized->wpc_show_plugin_powered_by == 1) ?> value="1" name="wpc_show_plugin_powered_by" id="wpc_show_plugin_powered_by" />
+                <span id="woodiscuz_thank_you" style="color:#006600; font-size:13px;"><?php _e('Thank you!', WPC_Core::$TEXT_DOMAIN); ?></span>
+            </label>
+        </td>
+        </tr>
         </tbody>
     </table>
 </div>

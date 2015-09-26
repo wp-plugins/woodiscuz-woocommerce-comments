@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 2.0.1
+  Version: 2.0.2
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -22,7 +22,7 @@ include_once 'widgets' . WOODISCUZDS . 'widget-woocommerce-reviews.php';
 include_once 'widgets' . WOODISCUZDS . 'widget-woodiscuz-comments.php';
 
 class WPC_Core {
-
+    
     private $wpc_options;
     private $wpc_options_serialized;
     private $comment_types;
@@ -409,7 +409,7 @@ class WPC_Core {
         $comment = wp_kses($comment, $this->wpc_helper->wpc_allowed_tags);
 
         if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $comment && filter_var($comment_post_ID)) {
-
+            $comment = addslashes($comment);
             $new_commentdata = array(
                 'user_id' => $user_id,
                 'comment_post_ID' => $comment_post_ID,
@@ -759,6 +759,7 @@ class WPC_Core {
 
                 $author_ip = WPC_Helper::get_real_ip_addr();
                 $this->wpc_user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+                $comment_content = addslashes($comment_content);
                 $commentarr = array(
                     'comment_ID' => $comment_ID,
                     'comment_content' => apply_filters('pre_comment_content', $comment_content),

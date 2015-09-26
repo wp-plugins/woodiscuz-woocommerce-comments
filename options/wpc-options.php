@@ -66,6 +66,7 @@ class WPC_Options {
             $this->wpc_options_serialized->wpc_comment_text_color = isset($_POST['wpc_comment_text_color']) ? $_POST['wpc_comment_text_color'] : '#555';
             $this->wpc_options_serialized->wpc_is_use_po_mo = isset($_POST['wpc_is_use_po_mo']) ? $_POST['wpc_is_use_po_mo'] : 0;
             $this->wpc_options_serialized->wpc_reply_subscription_on_off = isset($_POST['wpc_reply_subscription_on_off']) ? $_POST['wpc_reply_subscription_on_off'] : 0;
+            $this->wpc_options_serialized->wpc_show_plugin_powered_by = isset($_POST['wpc_show_plugin_powered_by']) ? $_POST['wpc_show_plugin_powered_by'] : 0;
             $this->wpc_options_serialized->update_options();
         }
         ?>
@@ -146,6 +147,8 @@ class WPC_Options {
                 delete_option($this->wpc_options_serialized->wpc_options_slug);
                 $this->wpc_options_serialized->add_options();
                 $this->wpc_options_serialized->init_options(get_option($this->wpc_options_serialized->wpc_options_slug));
+                $this->wpc_options_serialized->wpc_show_plugin_powered_by = 1;
+                $this->wpc_options_serialized->update_options();
             }
             ?>
 
