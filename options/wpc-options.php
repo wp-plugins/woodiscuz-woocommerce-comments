@@ -28,7 +28,7 @@ class WPC_Options {
         if (isset($_POST['wpc_submit_options'])) {
 
             if (function_exists('current_user_can') && !current_user_can('manage_options')) {
-                die(_e('Hacker?', WPC_Core::$TEXT_DOMAIN));
+                die(_e('Hacker?', 'woodiscuz'));
             }
 
             if (function_exists('check_admin_referer')) {
@@ -76,7 +76,7 @@ class WPC_Options {
             <div style="float:left; width:50px; height:55px; margin:10px 10px 20px 0px;">
                 <img src="<?php echo plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/plugin-icon-48.png'); ?>" style="height:43px;"/>
             </div>
-            <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz General Settings', WPC_Core::$TEXT_DOMAIN); ?></h2>
+            <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz General Settings', 'woodiscuz'); ?></h2>
             <br style="clear:both" />
 
             <link rel="stylesheet" href="<?php echo plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/'); ?>bxslider/jquery.bxslider.css" type="text/css" />
@@ -161,10 +161,10 @@ class WPC_Options {
 
                 <div id="parentHorizontalTab">
                     <ul class="resp-tabs-list hor_1">
-                        <li><?php _e('General settings', WPC_Core::$TEXT_DOMAIN); ?></li>
-                        <li><?php _e('Show/Hide Components', WPC_Core::$TEXT_DOMAIN); ?></li>                        
-                        <li><?php _e('Email Subscription', WPC_Core::$TEXT_DOMAIN); ?></li>
-                        <li><?php _e('Background and Colors', WPC_Core::$TEXT_DOMAIN); ?></li>
+                        <li><?php _e('General settings', 'woodiscuz'); ?></li>
+                        <li><?php _e('Show/Hide Components', 'woodiscuz'); ?></li>                        
+                        <li><?php _e('Email Subscription', 'woodiscuz'); ?></li>
+                        <li><?php _e('Background and Colors', 'woodiscuz'); ?></li>
                     </ul>
                     <div class="resp-tabs-container hor_1">                            
                         <?php
@@ -193,8 +193,8 @@ class WPC_Options {
                         <tr valign="top">
                             <td colspan="4">                                
                                 <p class="submit">
-									<a style="float: left;" class="button button-secondary" href="<?php echo admin_url(); ?>admin.php?page=woodiscuz_options_page&woodiscuz_reset_options=1"><?php _e('Reset Options', WPC_Core::$TEXT_DOMAIN); ?></a>
-                                    <input type="submit" style="float:right;" class="button button-primary" name="wpc_submit_options" value="<?php _e('Save Changes', WPC_Core::$TEXT_DOMAIN); ?>" />
+									<a style="float: left;" class="button button-secondary" href="<?php echo admin_url(); ?>admin.php?page=woodiscuz_options_page&woodiscuz_reset_options=1"><?php _e('Reset Options', 'woodiscuz'); ?></a>
+                                    <input type="submit" style="float:right;" class="button button-primary" name="wpc_submit_options" value="<?php _e('Save Changes', 'woodiscuz'); ?>" />
                                 </p>
                             </td>
                         </tr>
@@ -212,7 +212,7 @@ class WPC_Options {
         if (isset($_POST['wpc_submit_phrases'])) {
 
             if (function_exists('current_user_can') && !current_user_can('manage_options')) {
-                die(_e('Hacker?', WPC_Core::$TEXT_DOMAIN));
+                die(_e('Hacker?', 'woodiscuz'));
             }
 
             if (function_exists('check_admin_referer')) {
@@ -310,7 +310,7 @@ class WPC_Options {
             <div style="float:left; width:50px; height:55px; margin:10px 10px 20px 0px;">
                 <img src="<?php echo plugins_url(WPC_Core::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/plugin-icon-48.png'); ?>" style="height:43px;"/>
             </div>
-            <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz Front-end Phrases', WPC_Core::$TEXT_DOMAIN); ?></h2>
+            <h2 style="padding-bottom:20px; padding-top:15px;"><?php _e('WooDiscuz Front-end Phrases', 'woodiscuz'); ?></h2>
             <br style="clear:both" />
             <form action="<?php echo admin_url(); ?>admin.php?page=woodiscuz_phrases_page&updated=true" method="post" name="woodiscuz_phrases_page" class="wpc-phrases-settings-form wpc-form">
                 <?php
@@ -321,12 +321,12 @@ class WPC_Options {
 
                 <div id="parentHorizontalTab1">
                     <ul class="resp-tabs-list hor_2">
-                        <li><?php _e('General', WPC_Core::$TEXT_DOMAIN); ?></li>
-                        <li><?php _e('Form', WPC_Core::$TEXT_DOMAIN); ?></li>
-                        <li><?php _e('Comment', WPC_Core::$TEXT_DOMAIN); ?></li>
-                        <li><?php _e('Date/Time', WPC_Core::$TEXT_DOMAIN); ?></li>
-                        <li><?php _e('Email', WPC_Core::$TEXT_DOMAIN); ?></li>
-                        <li><?php _e('Notification', WPC_Core::$TEXT_DOMAIN); ?></li>
+                        <li><?php _e('General', 'woodiscuz'); ?></li>
+                        <li><?php _e('Form', 'woodiscuz'); ?></li>
+                        <li><?php _e('Comment', 'woodiscuz'); ?></li>
+                        <li><?php _e('Date/Time', 'woodiscuz'); ?></li>
+                        <li><?php _e('Email', 'woodiscuz'); ?></li>
+                        <li><?php _e('Notification', 'woodiscuz'); ?></li>
                     </ul>
                     <div class="resp-tabs-container hor_2">  
                         <?php include 'phrases-layouts/phrases-general.php'; ?>
@@ -354,7 +354,7 @@ class WPC_Options {
                         <tr valign="top">
                             <td colspan="4">
                                 <p class="submit">
-                                    <input type="submit" class="button button-primary" name="wpc_submit_phrases" value="<?php _e('Save Changes', WPC_Core::$TEXT_DOMAIN); ?>" />
+                                    <input type="submit" class="button button-primary" name="wpc_submit_phrases" value="<?php _e('Save Changes', 'woodiscuz'); ?>" />
                                 </p>
                             </td>
                         </tr>

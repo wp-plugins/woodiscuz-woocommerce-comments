@@ -3,7 +3,7 @@
 /*
   Plugin Name: WooDiscuz - WooCommerce Comments
   Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 2.0.2
+  Version: 2.0.3
   Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
   Author URI: http://www.gvectors.com/
   Plugin URI: http://woodiscuz.com/
@@ -35,7 +35,6 @@ class WPC_Core {
     public $commetns_count = 0;
     private $comment_count_text;
     public static $PLUGIN_DIRECTORY;
-    public static $TEXT_DOMAIN = 'woodiscuz';
     public $woodiscuz_version = 'woodiscuz_version';
     public $wpc_user_agent = '';
 
@@ -125,7 +124,7 @@ class WPC_Core {
 
     public function woop_disscus_requirements() {
         if (!is_plugin_active('woocommerce/woocommerce.php')) {
-            echo "<div class='error'><p>" . __('WooDiscuz requires Woocommerce to be installed!', WPC_Core::$TEXT_DOMAIN) . "</p></div>";
+            echo "<div class='error'><p>" . __('WooDiscuz requires Woocommerce to be installed!', 'woodiscuz') . "</p></div>";
         }
         if ($this->wpc_db_helper->get_empty_comment_types()) {
             echo "<div class='update-nag woocommerce-message wc-connect' style='width:95%'>
@@ -239,8 +238,8 @@ class WPC_Core {
 
     public function add_comment_type($args) {
         $this->comment_types = $args;
-        $args['woodiscuz'] = __('WooDiscuz', WPC_Core::$TEXT_DOMAIN);
-        $args['woodiscuz_review'] = __('Woocomerce Review', WPC_Core::$TEXT_DOMAIN);
+        $args['woodiscuz'] = __('WooDiscuz', 'woodiscuz');
+        $args['woodiscuz_review'] = __('Woocomerce Review', 'woodiscuz');
         return $args;
     }
 
@@ -395,7 +394,7 @@ class WPC_Core {
             if ($this->wpc_options_serialized->wpc_is_name_field_required) {
                 $name = filter_input(INPUT_POST, 'name');
             } else {
-                $name = !(filter_input(INPUT_POST, 'name')) ? __('anonymous', WPC_Core::$TEXT_DOMAIN) : filter_input(INPUT_POST, 'name');
+                $name = !(filter_input(INPUT_POST, 'name')) ? __('anonymous', 'woodiscuz') : filter_input(INPUT_POST, 'name');
             }
             if ($this->wpc_options_serialized->wpc_is_email_field_required) {
                 $email = filter_input(INPUT_POST, 'email');
@@ -527,8 +526,11 @@ class WPC_Core {
             }
             $request_message .= $wpc_items_links;
             $headers = array();
-            $headers[] = "Content-Type: text/html; charset=UTF-8";
-            $headers[] = "From: " . get_bloginfo('name') . "\r\n";
+            $content_type = apply_filters('wp_mail_content_type', 'text/html');
+            $from_name = apply_filters('wp_mail_from_name', get_option('blogname'));
+            $from_email = apply_filters('wp_mail_from', get_option('admin_email'));
+            $headers[] = "Content-Type:  $content_type; charset=UTF-8";
+            $headers[] = "From: " . $from_name . " <" . $from_email . "> \r\n";
             wp_mail($comment_author_email, $request_subject, $request_message, $headers);
         }
     }
@@ -790,8 +792,8 @@ class WPC_Core {
         $curr_post = get_post($post_id);
         $curr_post_author = get_userdata($curr_post->post_author);
 
-        $subject = isset($this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_subject']) ? $this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_subject'] : __('Subscribe Confirmation', WPC_Core::$TEXT_DOMAIN);
-        $message = isset($this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_message']) ? $this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_message'] : __('Hi, <br/> You just subscribed for new comments on our website. This means you will receive an email when new comments are posted according to subscription option you\'ve chosen. <br/> To activate, click confirm below. If you believe this is an error, ignore this message and we\'ll never bother you again.', WPC_Core::$TEXT_DOMAIN);
+        $subject = isset($this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_subject']) ? $this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_subject'] : __('Subscribe Confirmation', 'woodiscuz');
+        $message = isset($this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_message']) ? $this->wpc_options_serialized->wpc_phrases['wpc_confirm_email_message'] : __('Hi, <br/> You just subscribed for new comments on our website. This means you will receive an email when new comments are posted according to subscription option you\'ve chosen. <br/> To activate, click confirm below. If you believe this is an error, ignore this message and we\'ll never bother you again.', 'woodiscuz');
 
         $confirm_url = $this->wpc_db_helper->wpc_confirm_link($subscribe_id);
         $unsubscribe_url = $this->wpc_db_helper->wpc_unsubscribe_link($new_comment_id, $email);
@@ -801,9 +803,10 @@ class WPC_Core {
         $message .= "<br/><br/><a href='$unsubscribe_url'>" . $this->wpc_options_serialized->wpc_phrases['wpc_ignore_subscription'] . "</a>";
         $headers = array();
         $content_type = apply_filters('wp_mail_content_type', 'text/html');
-        $from_name = apply_filters('wp_mail_from_name', get_bloginfo('name'));
+        $from_name = apply_filters('wp_mail_from_name', get_option('blogname'));
+        $from_email = apply_filters('wp_mail_from', get_option('admin_email'));
         $headers[] = "Content-Type:  $content_type; charset=UTF-8";
-        $headers[] = "From: " . $from_name . "\r\n";
+        $headers[] = "From: " . $from_name . " <" . $from_email . "> \r\n";
         wp_mail($email, $subject, $message, $headers);
     }
 
@@ -812,8 +815,8 @@ class WPC_Core {
      */
     public function wpc_notify_on_new_reply($parent_comment_id, $new_comment_id, $email) {
         $emails_array = $this->wpc_db_helper->wpc_get_post_new_reply_notification($parent_comment_id, $email);
-        $subject = ($this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_subject']) ? $this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_subject'] : __('New Reply', WPC_Core::$TEXT_DOMAIN);
-        $message = ($this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_message']) ? $this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_message'] : __('New reply on the discussion section you\'ve been interested in', WPC_Core::$TEXT_DOMAIN);
+        $subject = ($this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_subject']) ? $this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_subject'] : __('New Reply', 'woodiscuz');
+        $message = ($this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_message']) ? $this->wpc_options_serialized->wpc_phrases['wpc_new_reply_email_message'] : __('New reply on the discussion section you\'ve been interested in', 'woodiscuz');
         foreach ($emails_array as $e_row) {
             $this->wpc_email_sender($e_row, $new_comment_id, $subject, $message);
         }
@@ -843,9 +846,10 @@ class WPC_Core {
         $message .= "<br/><br/><a href='$unsubscribe_url'>" . $this->wpc_options_serialized->wpc_phrases['wpc_unsubscribe'] . "</a>";
         $headers = array();
         $content_type = apply_filters('wp_mail_content_type', 'text/html');
-        $from_name = apply_filters('wp_mail_from_name', get_bloginfo('name'));
+        $from_name = apply_filters('wp_mail_from_name', get_option('blogname'));
+        $from_email = apply_filters('wp_mail_from', get_option('admin_email'));
         $headers[] = "Content-Type:  $content_type; charset=UTF-8";
-        $headers[] = "From: " . $from_name . "\r\n";
+        $headers[] = "From: " . $from_name . " <" . $from_email . "> \r\n";
         wp_mail($email_data['email'], $subject, $message, $headers);
     }
 

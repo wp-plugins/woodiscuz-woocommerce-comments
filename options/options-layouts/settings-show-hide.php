@@ -1,10 +1,10 @@
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Show/Hide Components', WPC_Core::$TEXT_DOMAIN); ?></h2>
+    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Show/Hide Components', 'woodiscuz'); ?></h2>
     <table class="wp-list-table widefat plugins"  style="margin-top:10px; border:none;">
         <tbody>          
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Hide WooCommerce Review Tab', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hide WooCommerce Review Tab', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_tab_show_hide">
@@ -14,7 +14,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Hide Voting buttons', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hide Voting buttons', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_voting_buttons_show_hide">
@@ -24,7 +24,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Hide Share Button', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hide Share Button', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_share_buttons_show_hide">
@@ -34,7 +34,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Hide the  CAPTCHA field', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hide the  CAPTCHA field', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_captcha_show_hide">
@@ -44,7 +44,7 @@
             </tr>            
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Hide Reply button for Guests', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hide Reply button for Guests', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_reply_button_guests_show_hide">
@@ -64,7 +64,7 @@
             </tr>            
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Hide Author Titles', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hide Author Titles', 'woodiscuz'); ?>
                         </th>
                         <td colspan="3">                                
                             <label for="wpc_author_titles_show_hide">
@@ -74,7 +74,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Hide Subscription', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hide Subscription', 'woodiscuz'); ?>
                         </th>
                         <td colspan="3">
                             <label for="wpc_reply_subscription_on_off">

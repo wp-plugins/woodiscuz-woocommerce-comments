@@ -1,10 +1,10 @@
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Comment Template Phrases', WPC_Core::$TEXT_DOMAIN); ?></h2>
+    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Comment Template Phrases', 'woodiscuz'); ?></h2>
     <table class="wp-list-table widefat plugins"  style="margin-top:10px; border:none;">
         <tbody>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Reply', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Reply', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_reply_text">
@@ -14,7 +14,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Share', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Share', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_share_text">
@@ -24,7 +24,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Edit', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Edit', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_edit_text">
@@ -34,7 +34,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Share On Facebook', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Share On Facebook', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_share_facebook">
@@ -44,7 +44,7 @@
             </tr>
             <tr valign="top" >
                 <th scope="row">
-                    <?php _e('Share On Twitter', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Share On Twitter', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_share_twitter">
@@ -54,7 +54,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Share On Google', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Share On Google', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_share_google">
@@ -64,7 +64,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Share On VKontakte', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Share On VKontakte', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_share_vk">
@@ -74,7 +74,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Share On Odnoklassniki', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Share On Odnoklassniki', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_share_ok">
@@ -84,7 +84,7 @@
             </tr>
             <tr valign="top" >
                 <th scope="row">
-                    <?php _e('Hide Replies', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hide Replies', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_hide_replies_text">
@@ -94,7 +94,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Show Replies', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Show Replies', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_show_replies_text">
@@ -104,7 +104,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Title For Guests', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Title For Guests', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_user_title_guest_text">
@@ -114,7 +114,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Title For Members', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Title For Members', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_user_title_member_text">
@@ -124,7 +124,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Title For Customers', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Title For Customers', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_user_title_customer_text">
@@ -134,7 +134,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Title For Support', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Title For Support', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_user_title_support_text">
@@ -144,7 +144,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Vote Up', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Vote Up', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_vote_up">
@@ -154,7 +154,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Vote Down', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Vote Down', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_vote_down">
@@ -164,7 +164,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Save edited comment button text', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Save edited comment button text', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_comment_edit_save_button">
@@ -174,7 +174,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Cancel comment editing button text', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Cancel comment editing button text', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_comment_edit_cancel_button">

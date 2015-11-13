@@ -1,10 +1,10 @@
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Email Subscription Settings', WPC_Core::$TEXT_DOMAIN); ?></h2>
+    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Email Subscription Settings', 'woodiscuz'); ?></h2>
     <table class="wp-list-table widefat plugins"  style="margin-top:10px; border:none;">
         <tbody>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Notify post author on new comment', WPC_Core::$TEXT_DOMAIN); ?> 
+                    <?php _e('Notify post author on new comment', 'woodiscuz'); ?> 
                 </th>
                 <td colspan="2">                                
                     <label for="wpc_notify_moderator">
@@ -14,7 +14,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Notify comment author on new reply', WPC_Core::$TEXT_DOMAIN); ?> 
+                    <?php _e('Notify comment author on new reply', 'woodiscuz'); ?> 
                 </th>
                 <td colspan="2">                                
                     <label for="wpc_notify_comment_author">
@@ -24,7 +24,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Requesting for comment on purchased product', WPC_Core::$TEXT_DOMAIN); ?> 
+                    <?php _e('Requesting for comment on purchased product', 'woodiscuz'); ?> 
                 </th>
                 <td colspan="2">                                
                     <label for="wpc_request_for_comment">

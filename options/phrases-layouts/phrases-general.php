@@ -1,10 +1,10 @@
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('General Phrases', WPC_Core::$TEXT_DOMAIN); ?></h2>
+    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('General Phrases', 'woodiscuz'); ?></h2>
     <table class="wp-list-table widefat plugins"  style="margin-top:10px; border:none;">
         <tbody>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Disscussion Tab Title', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Disscussion Tab Title', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_discuss_tab">
@@ -14,7 +14,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Header', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Header', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_header_text">
@@ -24,7 +24,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Load More Button', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Load More Button', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_load_more_submit_text">

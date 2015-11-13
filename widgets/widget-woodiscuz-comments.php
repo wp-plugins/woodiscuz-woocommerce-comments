@@ -8,11 +8,11 @@ class WooDiscuz_Comments_Widget extends WP_Widget {
          */
         $widget_ops = array(
             'classname' => 'woodiscuz_comments_widget',
-            'description' => __('This Widget displays woocommerce product comments', WPC_Core::$TEXT_DOMAIN)
+            'description' => __('This Widget displays woocommerce product comments', 'woodiscuz')
         );
 
         $control_ops = array();
-        parent::__construct('woodiscuz_woocommerce_product_comments', __('Woodiscuz Recent Comments', WPC_Core::$TEXT_DOMAIN), $widget_ops, $control_ops);
+        parent::__construct('woodiscuz_woocommerce_product_comments', __('Woodiscuz Recent Comments', 'woodiscuz'), $widget_ops, $control_ops);
     }
 
     /**
@@ -68,7 +68,7 @@ class WooDiscuz_Comments_Widget extends WP_Widget {
      */
     function form($instance) {
         //Set up some default widget settings.
-        $defaults = array('title' => __('Woodiscuz Recent Comments', WPC_Core::$TEXT_DOMAIN),'number' => 10);
+        $defaults = array('title' => __('Woodiscuz Recent Comments', 'woodiscuz'),'number' => 10);
         $instance = wp_parse_args((array) $instance, $defaults);
         include 'admin-form' . WOODISCUZDS . 'form-woodiscuz-product-comments.php';
     }

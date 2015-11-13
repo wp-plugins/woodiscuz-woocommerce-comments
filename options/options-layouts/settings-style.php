@@ -1,10 +1,10 @@
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Background and Colors', WPC_Core::$TEXT_DOMAIN); ?></h2>
+    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Background and Colors', 'woodiscuz'); ?></h2>
     <table class="wp-list-table widefat plugins"  style="margin-top:10px; border:none;">
         <tbody>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <label for="wpc_comment_text_size"><?php _e('Comment text size in pixels', WPC_Core::$TEXT_DOMAIN); ?></label>
+                    <label for="wpc_comment_text_size"><?php _e('Comment text size in pixels', 'woodiscuz'); ?></label>
                 </th>
                 <td colspan="3">
                     <select id="wpc_comment_text_size" name="wpc_comment_text_size">
@@ -21,10 +21,10 @@
 
             <tr valign="top" class="wpc-row-light">
                 <th scope="row" style="width:55%;">
-                    <label for="wpc_form_bg_color"><?php _e('Comment Form Background Color', WPC_Core::$TEXT_DOMAIN); ?></label>
+                    <label for="wpc_form_bg_color"><?php _e('Comment Form Background Color', 'woodiscuz'); ?></label>
                 </th>
                 <td width="1">
-                    <input type="text" class="regular-text" value="<?php echo isset($this->wpc_options_serialized->wpc_form_bg_color) ? $this->wpc_options_serialized->wpc_form_bg_color : '#f9f9f9'; ?>" id="wpc_form_bg_color" name="wpc_form_bg_color" placeholder="<?php _e('Example: #00ff00', WPC_Core::$TEXT_DOMAIN); ?>"/>
+                    <input type="text" class="regular-text" value="<?php echo isset($this->wpc_options_serialized->wpc_form_bg_color) ? $this->wpc_options_serialized->wpc_form_bg_color : '#f9f9f9'; ?>" id="wpc_form_bg_color" name="wpc_form_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
                 </td>
 
                 <td class="picker_img_cell">
@@ -45,10 +45,10 @@
 
             <tr valign="top" class="wpc-row-light">
                 <th scope="row" style="width:55%;">
-                    <label for="wpc_comment_bg_color"><?php _e('Comment Background Color', WPC_Core::$TEXT_DOMAIN); ?></label>
+                    <label for="wpc_comment_bg_color"><?php _e('Comment Background Color', 'woodiscuz'); ?></label>
                 </th>
                 <td width="1">
-                    <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_bg_color; ?>" id="wpc_comment_bg_color" name="wpc_comment_bg_color" placeholder="<?php _e('Example: #00ff00', WPC_Core::$TEXT_DOMAIN); ?>"/>
+                    <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_bg_color; ?>" id="wpc_comment_bg_color" name="wpc_comment_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
                 </td>
 
                 <td class="picker_img_cell">
@@ -69,10 +69,10 @@
 
             <tr valign="top" class="wpc-row-dark">
                 <th scope="row" style="width:55%;">
-                    <label for="wpc_reply_bg_color"><?php _e('Reply Background Color', WPC_Core::$TEXT_DOMAIN); ?></label>
+                    <label for="wpc_reply_bg_color"><?php _e('Reply Background Color', 'woodiscuz'); ?></label>
                 </th>
                 <td>
-                    <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_reply_bg_color; ?>" id="wpc_reply_bg_color" name="wpc_reply_bg_color" placeholder="<?php _e('Example: #00ff00', WPC_Core::$TEXT_DOMAIN); ?>"/>
+                    <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_reply_bg_color; ?>" id="wpc_reply_bg_color" name="wpc_reply_bg_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
                 </td>
 
                 <td class="picker_img_cell">
@@ -93,10 +93,10 @@
 
             <tr valign="top" class="wpc-row-light">
                 <th scope="row" style="width:55%;">
-                    <label for="wpc_comment_text_color"><?php _e('Comment Text Color', WPC_Core::$TEXT_DOMAIN); ?></label>
+                    <label for="wpc_comment_text_color"><?php _e('Comment Text Color', 'woodiscuz'); ?></label>
                 </th>
                 <td>
-                    <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_text_color; ?>" id="wpc_comment_text_color" name="wpc_comment_text_color" placeholder="<?php _e('Example: #00ff00', WPC_Core::$TEXT_DOMAIN); ?>"/>
+                    <input type="text" class="regular-text" value="<?php echo $this->wpc_options_serialized->wpc_comment_text_color; ?>" id="wpc_comment_text_color" name="wpc_comment_text_color" placeholder="<?php _e('Example: #00ff00', 'woodiscuz'); ?>"/>
                 </td>
 
                 <td class="picker_img_cell">

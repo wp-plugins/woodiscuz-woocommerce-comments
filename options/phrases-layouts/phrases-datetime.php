@@ -1,10 +1,10 @@
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Date/Time Phrases', WPC_Core::$TEXT_DOMAIN); ?></h2>
+    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Date/Time Phrases', 'woodiscuz'); ?></h2>
     <table class="wp-list-table widefat plugins"  style="margin-top:10px; border:none;">
         <tbody>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Year', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Year', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_year_text">
@@ -15,18 +15,18 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Years (Plural Form)', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Years (Plural Form)', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_year_text_plural">
-                        <input type="text" value="<?php echo isset($this->wpc_options_serialized->wpc_phrases['wpc_year_text_plural']['datetime'][0]) ? $this->wpc_options_serialized->wpc_phrases['wpc_year_text_plural']['datetime'][0] : __('Years', WPC_Core::$TEXT_DOMAIN); ?>" name="wpc_year_text_plural" id="wpc_year_text_plural" />
+                        <input type="text" value="<?php echo isset($this->wpc_options_serialized->wpc_phrases['wpc_year_text_plural']['datetime'][0]) ? $this->wpc_options_serialized->wpc_phrases['wpc_year_text_plural']['datetime'][0] : __('Years', 'woodiscuz'); ?>" name="wpc_year_text_plural" id="wpc_year_text_plural" />
                     </label>
                 </td>
             </tr>
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Month', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Month', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_month_text">
@@ -37,7 +37,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Months (Plural Form)', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Months (Plural Form)', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_month_text_plural">
@@ -48,7 +48,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Day', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Day', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_day_text">
@@ -59,7 +59,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Days (Plural Form)', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Days (Plural Form)', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_day_text_plural">
@@ -70,7 +70,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Hour', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hour', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_hour_text">
@@ -81,7 +81,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Hours (Plural Form)', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Hours (Plural Form)', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_hour_text_plural">
@@ -92,7 +92,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Minute', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Minute', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_minute_text">
@@ -103,7 +103,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Minutes (Plural Form)', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Minutes (Plural Form)', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_minute_text_plural">
@@ -114,7 +114,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Second', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Second', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_second_text">
@@ -125,7 +125,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Seconds (Plural Form)', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Seconds (Plural Form)', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_second_text_plural">
@@ -136,7 +136,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Plural (Ex. user -> user + s)', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Plural (Ex. user -> user + s)', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_plural_text">
@@ -147,7 +147,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Commented "right now" text', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Commented "right now" text', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_right_now_text">
@@ -158,7 +158,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Ago text', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Ago text', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_ago_text">
@@ -169,7 +169,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('"Today" text', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('"Today" text', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_posted_today_text">

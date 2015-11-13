@@ -1,10 +1,10 @@
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Notification Phrases', WPC_Core::$TEXT_DOMAIN); ?></h2>
+    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Notification Phrases', 'woodiscuz'); ?></h2>
     <table class="wp-list-table widefat plugins"  style="margin-top:10px; border:none;">
         <tbody>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Error message for empty field', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Error message for empty field', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_error_empty_text">
@@ -14,7 +14,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Error message for invalid email field', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Error message for invalid email field', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_error_email_text">
@@ -24,7 +24,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('You must be', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('You must be', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_you_must_be_text">
@@ -34,7 +34,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Logged In', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Logged In', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_logged_in_text">
@@ -44,7 +44,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('To post a comment', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('To post a comment', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_to_post_comment_text">
@@ -54,7 +54,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Vote Counted', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Vote Counted', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_vote_counted">
@@ -64,7 +64,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('You can vote only 1 time', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('You can vote only 1 time', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_vote_only_one_time">
@@ -74,7 +74,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Voting Error', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Voting Error', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_voting_error">
@@ -84,7 +84,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Login To Vote', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Login To Vote', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_login_to_vote">
@@ -94,7 +94,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('You Cannot Vote On Your Comment', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('You Cannot Vote On Your Comment', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_self_vote">
@@ -104,7 +104,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Invalid Captcha Code', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Invalid Captcha Code', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_invalid_captcha">
@@ -114,7 +114,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Some of field value is invalid', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Some of field value is invalid', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_invalid_field">
@@ -124,7 +124,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Comment waiting moderation', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Comment waiting moderation', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_held_for_moderate">
@@ -134,7 +134,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Message if comment was not updated', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Message if comment was not updated', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_comment_not_updated">
@@ -144,7 +144,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Message if comment no longer possible to edit', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Message if comment no longer possible to edit', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_comment_edit_not_possible">
@@ -155,7 +155,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Message if comment text not changed', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('Message if comment text not changed', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_comment_not_edited">
@@ -165,7 +165,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('You\'ve successfully unsubscribed.', WPC_Core::$TEXT_DOMAIN); ?>
+                    <?php _e('You\'ve successfully unsubscribed.', 'woodiscuz'); ?>
                 </th>
                 <td colspan="3">
                     <label for="wpc_unsubscribe_message">

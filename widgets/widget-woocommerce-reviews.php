@@ -8,10 +8,10 @@ class WooDiscuz_Reviews_Widget extends WP_Widget {
          */
         $widget_ops = array(
             'classname' => 'woodiscuz_woocommerce_reviews_widget',
-            'description' => __('This Widget displays woocommerce recent reviews', WPC_Core::$TEXT_DOMAIN)
+            'description' => __('This Widget displays woocommerce recent reviews', 'woodiscuz')
         );
         $control_ops = array();
-        parent::__construct('woodiscuz_woocommerce_recent_reviews', __('Woodiscuz Recent Reviews', WPC_Core::$TEXT_DOMAIN), $widget_ops, $control_ops);
+        parent::__construct('woodiscuz_woocommerce_recent_reviews', __('Woodiscuz Recent Reviews', 'woodiscuz'), $widget_ops, $control_ops);
     }
 
     /**
@@ -66,7 +66,7 @@ class WooDiscuz_Reviews_Widget extends WP_Widget {
      */
     function form($instance) {
         //Set up some default widget settings.
-        $defaults = array('title' => __('Woodiscuz Recent Reviews', WPC_Core::$TEXT_DOMAIN), 'number' => 10);
+        $defaults = array('title' => __('Woodiscuz Recent Reviews', 'woodiscuz'), 'number' => 10);
         $instance = wp_parse_args((array) $instance, $defaults);
         include 'admin-form' . WOODISCUZDS . 'form-woodiscuz-woocommerce-reviews.php';
     }
