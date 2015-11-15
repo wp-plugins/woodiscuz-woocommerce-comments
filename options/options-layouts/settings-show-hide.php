@@ -54,7 +54,7 @@
             </tr>
             <tr valign="top">
                 <th scope="row" style="width:55%;">
-                    <?php _e('Hide Reply button for Customers', WPC_Core ::$TEXT_DOMAIN); ?> 
+                    <?php _e('Hide Reply button for Customers','woodiscuz'); ?> 
                 </th>
                 <td colspan="3">                                
                     <label for="wpc_reply_button_customers_show_hide">

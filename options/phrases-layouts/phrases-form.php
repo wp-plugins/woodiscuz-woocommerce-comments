@@ -68,7 +68,7 @@
                 </th>
                 <td colspan="3">
                     <label for="wpc_notify_on_new_reply">
-                        <input type="text" value="<?php echo isset($this->wpc_options_serialized->wpc_phrases['wpc_notify_on_new_reply']) ? $this->wpc_options_serialized->wpc_phrases['wpc_notify_on_new_reply'] : __('Notify of new replies to this comment', WC_Core::$TEXT_DOMAIN); ?>" name="wpc_notify_on_new_reply" id="wpc_notify_on_new_reply" />
+                        <input type="text" value="<?php echo isset($this->wpc_options_serialized->wpc_phrases['wpc_notify_on_new_reply']) ? $this->wpc_options_serialized->wpc_phrases['wpc_notify_on_new_reply'] : __('Notify of new replies to this comment','woodiscuz'); ?>" name="wpc_notify_on_new_reply" id="wpc_notify_on_new_reply" />
                     </label>
                 </td>
             </tr>

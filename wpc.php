@@ -1,12 +1,14 @@
 <?php
 
 /*
-  Plugin Name: WooDiscuz - WooCommerce Comments
-  Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
-  Version: 2.0.3
-  Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
-  Author URI: http://www.gvectors.com/
-  Plugin URI: http://woodiscuz.com/
+ * Plugin Name: WooDiscuz - WooCommerce Comments
+ * Description: WooCommerce product comments and discussion Tab. Allows your customers to discuss about your products and ask pre-sale questions. Adds a new "Discussions" Tab next to "Reviews" Tab. Your shop visitors will thank you for ability to discuss about your products directly on your website product page. WooDiscuz also allows to vote for comments and share products.
+ * Version: 2.0.4
+ * Author: gVectors Team (A. Chakhoyan, G. Zakaryan, H. Martirosyan)
+ * Author URI: http://www.gvectors.com/
+ * Plugin URI: http://woodiscuz.com/
+ * Text Domain: wpdiscuz
+ * Domain Path: /languages/
  */
 
 define('WOODISCUZDS', DIRECTORY_SEPARATOR);
@@ -22,7 +24,7 @@ include_once 'widgets' . WOODISCUZDS . 'widget-woocommerce-reviews.php';
 include_once 'widgets' . WOODISCUZDS . 'widget-woodiscuz-comments.php';
 
 class WPC_Core {
-    
+
     private $wpc_options;
     private $wpc_options_serialized;
     private $comment_types;
